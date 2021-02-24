@@ -5,6 +5,12 @@
 
 include './includes/db_config.php';
 include './includes/sanitize.php';
+include './includes/authentication.php';
+
+if(isLoggedIn()){
+
+    // redirect to main page
+}
 
 $error = null;
 
@@ -30,13 +36,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 $_SESSION['employee_id'] = $employee['id'];
                 // store the access level of the employee
                 $_SESSION['admin'] = ($employee['isAdmin'] == 1)? true: false;
-                // redirect the user to the dashboard
+                // temporary success msg
+                $error = "User logged in!";
+                /*
+                TODO
+                REDIRECT USER TO main page
+                */
             }
             else{
                 // invalid password
                 $error = "Incorrect password";
             }
-           
         }
         else{
             $error = "Incorrect email address";
