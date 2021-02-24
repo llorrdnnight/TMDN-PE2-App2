@@ -14,5 +14,6 @@ Our teams task is to make the internal software/tools to support manamgemnt / HR
 
 Our Team consists of:
 * Thomas Boeykens
+* Yannick Fauche
 * Adrian Kapys
 * Levi Nauwelaerts
