@@ -17,3 +17,4 @@ Our Team consists of:
 * Yannick Fauche
 * Adrian Kapys
 * Levi Nauwelaerts
+* Jari Wilms
