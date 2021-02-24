@@ -18,3 +18,5 @@ Our Team consists of:
 * Adrian Kapys
 * Levi Nauwelaerts
 * Jari Wilms
+* Greg De Vuyst
+* Ibrahim Alouissa

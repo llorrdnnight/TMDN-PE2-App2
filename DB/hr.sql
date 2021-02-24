@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Gegenereerd op: 17 feb 2021 om 11:11
+-- Gegenereerd op: 24 feb 2021 om 22:02
 -- Serverversie: 10.4.13-MariaDB
 -- PHP-versie: 7.2.32
 
@@ -77,6 +77,13 @@ CREATE TABLE `employee` (
   `birthDate` date DEFAULT NULL,
   `isAdmin` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `employee`
+--
+
+INSERT INTO `employee` (`id`, `firstName`, `lastName`, `mailAddress`, `phoneNumber`, `password`, `salary`, `job`, `birthDate`, `isAdmin`) VALUES
+(2, 'John', 'Doe', 'johndoe@gmail.com', NULL, '$2y$10$3La7SX0yc6d5mjFUUwYwgOTpXv5.qvkzhoMNlLwBYBq6SC3r4ca1C', 3400.94, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -214,7 +221,7 @@ ALTER TABLE `department`
 -- AUTO_INCREMENT voor een tabel `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT voor een tabel `job`
