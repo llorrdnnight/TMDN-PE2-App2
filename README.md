@@ -13,10 +13,10 @@ Blue Sky unlimited would be air cargo company.
 Our teams task is to make the internal software/tools to support manamgemnt / HR.
 
 Our Team consists of:
+* Ibrahim Alouissa
 * Thomas Boeykens
+* Greg De Vuyst
 * Yannick Fauche
 * Adrian Kapys
 * Levi Nauwelaerts
 * Jari Wilms
-* Greg De Vuyst
-* Ibrahim Alouissa
