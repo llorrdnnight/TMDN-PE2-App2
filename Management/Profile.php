@@ -1,4 +1,11 @@
 <?php
+/**
+*Profile Page
+*
+* @author Adrian Kapys
+* @datetime 2 March 2021
+*/
+
 session_start();
 // Check if the session is set else redirect to login page
 if (isset($_SESSION['employee_id'])){}
@@ -15,7 +22,7 @@ header("Location: login.php")
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Profile</title>
-    <?php 
+    <?php
     $host = "localhost";
     $user = "Webuser";
     $password = "Labo2020";
@@ -25,7 +32,7 @@ header("Location: login.php")
 <body>
     <div class="wrapper">
         <div class="top">
-            
+
 
             <h1 class="title">Blue Sky Unlimited</h1>
         </div>
@@ -39,10 +46,10 @@ header("Location: login.php")
 
             </ul>
         </nav>
-        
+
         <div class="content">
             <div>
-                <h2>Personal info</h2>                    
+                <h2>Personal info</h2>
                     <div class="flex-container">
                         <div>
                         <?php
@@ -73,9 +80,9 @@ header("Location: login.php")
 
                     </div>
             </div>
-          
+
             <div>
-                <h2>Job function</h2>  
+                <h2>Job function</h2>
                 <div class="flex-container">
                     <div>
                     <?php
@@ -96,10 +103,10 @@ header("Location: login.php")
                 </div>
             </div>
         </div>
- 
+
     </div>
     <?php
         include "components/footer.php";    // footer by Levi
-        ?> 
+        ?>
 </body>
 </html>

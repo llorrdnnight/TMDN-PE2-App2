@@ -1,4 +1,10 @@
 <?php
+/**
+*Page to add a new user.
+*
+* @author Adrian Kapys
+* @datetime 2 March 2021
+*/
 
 include "components/check_db.php"; // check if the foreig keys have been set
 // add a new user

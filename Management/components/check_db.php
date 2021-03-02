@@ -1,4 +1,11 @@
 <?php
+/**
+*Check DB
+*
+* @author Adrian Kapys
+* @datetime 2 March 2021
+*/
+
 // connect to db
 $host = "localhost";
 $user = "root";
