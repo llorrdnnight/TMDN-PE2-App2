@@ -37,16 +37,16 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
 </div>
 <div class="center">
-    <div class="card">
+      <a href="Profile.php"><div class="card">
         <div class="container">
           <h4><b>Account</b></h4> 
         </div>
-      </div>
-      <div class="card">
+      </div></a>
+      <a href="#"><div class="card">
         <div class="container">
           <h4><b>Employee list</b></h4> 
         </div>
-      </div>
+      </div></a>
       <div class="card-logout">
           <form action="" method="post">
             <input type="submit" value="Logout">

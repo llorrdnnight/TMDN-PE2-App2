@@ -31,6 +31,7 @@ body{
   }
 
   .card {
+    cursor: pointer;
     background-color: #ebebeb;
     color: #3a6ea5;
     font-size: 21px;
@@ -54,11 +55,11 @@ body{
       }
   
   .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.2);
   }
   
   .card-logout:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.2);
   }
   
   .container {
