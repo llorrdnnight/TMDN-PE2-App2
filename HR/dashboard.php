@@ -1,3 +1,27 @@
+<?php
+
+session_start();
+include './includes/authentication.php';
+
+
+if(!isLoggedIn()){
+
+  header("Location: login.php");
+}
+
+
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+
+  logoutUser();
+  header("Location: login.php");
+
+
+}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,9 +45,12 @@
         </div>
       </div>
       <div class="card-logout">
-        <div class="container">
-          <h4><b>Log out</b></h4> 
-        </div>
+
+
+          <form action="" method="post">
+            <input type="submit" value="Logout">
+          </form>
+
       </div>
 </div>
 </body>

@@ -6,6 +6,7 @@
 include './includes/db_config.php';
 include './includes/sanitize.php';
 include './includes/authentication.php';
+session_start();
 
 if(isLoggedIn()){
 
@@ -37,11 +38,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 // store the access level of the employee
                 $_SESSION['admin'] = ($employee['isAdmin'] == 1)? true: false;
                 // temporary success msg
-                $error = "User logged in!";
-                /*
-                TODO
-                REDIRECT USER TO main page
-                */
+               
+                // REDIRECT USER TO main page
+                header("Location: dashboard.php");
+
             }
             else{
                 // invalid password
