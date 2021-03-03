@@ -26,13 +26,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dashboard</title>
+<title>Dashboard Management</title>
 <link rel="stylesheet" href="./css/reset.css">
 <link rel="stylesheet" href="./css/dashboard.css">
 </head>
 <body>
 
-<h2 class="title">Dashboard HR</h2>
+<h2 class="title">Dashboard</h2>
 <div class="center">
     <div class="card">
         <div class="container">
