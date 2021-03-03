@@ -26,13 +26,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dashboard HR</title>
+<title>Dashboard Management</title>
 <link rel="stylesheet" href="./css/reset.css">
 <link rel="stylesheet" href="./css/dashboard.css">
 </head>
 <body>
 <div class="header">
-<h2 class="logo">Dashboard HR</h2>
+<h2 class="logo">Dashboard Management</h2>
 <img class="img" src="images\Blue Sky Unlimited.png" alt="logo">
 
 </div>
