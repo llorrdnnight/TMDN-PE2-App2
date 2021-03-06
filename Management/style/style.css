@@ -1,0 +1,109 @@
+/* #region SHARED */
+html, body
+{
+    height: 100%;
+    color:rgb(68, 68, 68);
+}
+
+.nopadding
+{
+    padding: 0;
+}
+
+header
+{
+    color: white;
+    height: 60px;
+    background-color: rgb(63, 63, 100);
+}
+
+#sidebar-wrapper
+{
+    background-color: rgb(231, 231, 231);
+    padding: 15px 0px;
+    font-size: 16px;
+}
+
+#sidebar-wrapper ul ul
+{
+    padding-left: 10px;
+}
+
+#sidebar-wrapper a
+{
+    color: rgb(34, 110, 129);
+    text-decoration: none;
+}
+
+#sidebar-wrapper a:hover
+{
+    color:rgb(8, 40, 48);
+    text-decoration: underline;
+}
+
+.sidebar-nav ul, .sidebar-nav li
+{
+    padding: none;
+    margin: none;
+}
+
+#page-content-wrapper
+{
+    padding-top: 15px;
+    padding-left: 0px;
+    padding: 15px 0 0 0;
+}
+/* #endregion */
+
+/* #region DELIVERYFILTER */
+button
+{
+    width: 100px;
+}
+
+.input-group
+{
+    border: 1px solid black;
+}
+/* #endregion */
+
+/* #region DELIVERYTABLE */
+#deliveriestable
+{
+    color:rgb(68, 68, 68);
+}
+
+#deliveriestable tbody tr:hover
+{
+    cursor: pointer;
+}
+
+.collapserow
+{
+    display: none;
+}
+
+.deliverystatus
+{
+    width: 1%;
+}
+
+.delivered
+{
+    background-color: green;
+}
+
+.onhold
+{
+    background-color: gray;
+}
+
+.notdelivered
+{
+    background-color: red;
+}
+/* #endregion */
+
+/* #region DASHBOARD */
+
+/* #endregion */
