@@ -1,6 +1,6 @@
 <?php
 /**
-* Info of a speciif Employee
+* Info of a specific Employee
 *
 * @author Levi Nauwelaerts
 * @datetime 25 February 2021
