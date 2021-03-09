@@ -31,7 +31,7 @@ $error = null;
 
     }
     else $error = "Execution error";
-
+}
 ?>
     <!DOCTYPE html>
     <html lang="en">
