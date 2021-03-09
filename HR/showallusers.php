@@ -1,7 +1,7 @@
 <?php
 
 /**
-* Info of a speciif Employee
+* Info of all Employee
 *
 * Yannick Fauche
 * datetime 28 February 2021
