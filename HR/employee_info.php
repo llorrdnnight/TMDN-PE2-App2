@@ -27,7 +27,7 @@ $error = null;
           $employee = $stmt->fetch();
 
         }
-      else $error = "No employee for given ID found."
+      else $error = "No employee for given ID found.";
 
     }
     else $error = "Execution error";
