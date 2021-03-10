@@ -1,43 +1,76 @@
+/* #region VARIABLES */
+:root
+{
+    --white: #EBEBEB;
+    --gray: #C0C0C0;
+    --darkgray: #999999;
+    --black: #2e2e2e;
+
+    --red: #C41313;
+    --orange: #FF6700;
+
+    --green: #1E9239;
+
+    --lightblue: #3A6EA5;
+    --blue: #004E98;
+    --darkblue: #0D3459;
+
+    --text: #333333;
+}
+/* #endregion */
+
+/* #region WEBKITS */
+::-webkit-scrollbar{ display: none; }
+/* #endregion */
+
 /* #region SHARED */
 html, body
 {
     height: 100%;
-    color:rgb(68, 68, 68);
+    color: var(--text);
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
 }
 
-.nopadding
-{
-    padding: 0;
-}
+.nopadding{ padding: 0; }
 
 header
 {
-    color: white;
     height: 60px;
-    background-color: rgb(63, 63, 100);
+    color: var(--white);
+    background-color: var(--darkblue);
+}
+
+h1 a
+{
+    color: var(--white);
+    text-decoration: none;
+}
+
+h1 a:hover
+{
+    color: var(--orange);
+    text-decoration: none;
 }
 
 #sidebar-wrapper
 {
-    background-color: rgb(231, 231, 231);
+    /* background-color: var(--gray); */
     padding: 15px 0px;
     font-size: 16px;
 }
 
-#sidebar-wrapper ul ul
-{
-    padding-left: 10px;
-}
+#sidebar-wrapper ul ul{ padding-left: 10px; }
 
 #sidebar-wrapper a
 {
-    color: rgb(34, 110, 129);
+    color: var(--blue);
     text-decoration: none;
 }
 
 #sidebar-wrapper a:hover
 {
-    color:rgb(8, 40, 48);
+    color: var(--darkblue);
     text-decoration: underline;
 }
 
@@ -55,53 +88,24 @@ header
 }
 /* #endregion */
 
-/* #region DELIVERYFILTER */
-button
-{
-    width: 100px;
-}
+/* #region DELIVERIES */
+button{ width: 100px; }
 
-.input-group
-{
-    border: 1px solid black;
-}
-/* #endregion */
+.input-group{ border: 1px solid black; }
 
-/* #region DELIVERYTABLE */
-#deliveriestable
-{
-    color:rgb(68, 68, 68);
-}
+#deliveriestable{ color: var(--text); }
 
-#deliveriestable tbody tr:hover
-{
-    cursor: pointer;
-}
+#deliveriestable tbody tr:hover { cursor: pointer; }
 
-.collapserow
-{
-    display: none;
-}
+.collapserow{ display: none; }
 
-.deliverystatus
-{
-    width: 1%;
-}
+.deliverystatus{ width: 1%; }
 
-.delivered
-{
-    background-color: green;
-}
+.delivered{ background-color: var(--green); }
 
-.onhold
-{
-    background-color: gray;
-}
+.onhold{ background-color: var(--darkgray); }
 
-.notdelivered
-{
-    background-color: red;
-}
+.notdelivered{ background-color: var(--red); }
 /* #endregion */
 
 /* #region DASHBOARD */

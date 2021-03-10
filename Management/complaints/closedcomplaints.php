@@ -12,7 +12,7 @@
     function echoRecords($arr)
     {
         $table = "";
-        $table .= "<table id='opencomplaintstable'><tr>";
+        $table .= "<table id='closedcomplaintstable' class='table table-hover'><tr>";
         $table .= "<th>Complaint ID</th>";
         $table .= "<th>Order ID</th>";
         $table .= "<th>Category</th>";
@@ -64,50 +64,47 @@
     }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/Management/style/reset.css">
-    <link rel="stylesheet" type="text/css" href="/Management/style/style.css">
-    <link rel="stylesheet" type="text/css" href="/Management/style/complaints.css">
-    <title>Complaints</title>
+<?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/head/head.php"); ?>
+    <title>Complaints - Closed</title>
 </head>
 <body>
-    <nav>
-        <div id="navcategory">
-            <button>nav1</button>
-            <button>nav2</button>
-            <button>nav3</button>
-        </div>
-        
-        <div id="navexit"><button>exit</button></div>
-    </nav>
+    <div id="wrapper"> <!-- Page container -->
+        <header class="col-lg-12"> <!-- Header class -->
+            <h1><a href='closedcomplaints.php'>Closed Complaints</a></h1>
+        </header>
 
-    <header>Complaints</header>
-    
-    <div id="content">
-        <div id="select">
-            <button><a href="./complaintsdashboard.php">Dashboard</a></button>
-            <button><a href="./registercomplaint.php">Register Complaint</a></button>
-            <button><a href="./opencomplaints.php">Open Complaints</a></button>
-            <button class="selected"><a href="./closedcomplaints.php">Closed Complaints</a></button>
-        </div>
+        <div class="container-fluid"> <!-- Nav and content container -->
+            <div class="row"> <!-- Row class for nav and content columns -->
+                <?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/nav.html"); ?>
 
-        <div id="opencomplaints">
-            <?php 
-                if (isset($_GET["ComplaintID"]) && !empty($_GET["ComplaintID"]))
-                {
-                    echoComplaintDetails($json["Complaints"], $_GET["ComplaintID"]);
-                }
-                else
-                {
-                    echoRecords($json["Complaints"]);
-                }
-            ?>
+                <div id="page-content-wrapper" class="col-lg-11"> <!-- Separate wrapper for content -->
+                    <nav aria-label="Page navigation" class="d-flex justify-content-center">
+                        <ul class="pagination">
+                            <li class='page-item'><a class='page-link' href='dashboard.php'>Dashboard</a></li>
+                            <li class='page-item'><a class='page-link' href='opencomplaints.php'>Open Complaints</a></li>
+                            <li class='page-item'><a class='page-link' href='closedcomplaints.php'>Closed Complaints</a></li>
+                            <li class='page-item'><a class='page-link' href='registercomplaint.php'>Register Complaint</a></li>
+                        </ul>
+                    </nav>
+
+                    <div class="container-fluid">
+                        <div class="col-lg-12 nopadding">
+                            <div id="closedcomplaints">
+                                <?php 
+                                    if (isset($_GET["ComplaintID"]) && !empty($_GET["ComplaintID"]))
+                                    {
+                                        echoComplaintDetails($json["Complaints"], $_GET["ComplaintID"]);
+                                    }
+                                    else
+                                    {
+                                        echoRecords($json["Complaints"]);
+                                    }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 </body>
 </html>

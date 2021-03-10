@@ -15,7 +15,7 @@
         $ComplaintsDiv = "";
         $ComplaintsDiv .= "<p>Number of " . $status. " Complaints: " . count($Complaints) . "</p>";
         $ComplaintsDiv .= "<p>Open for > 30 days: " . getDaysOpen($Complaints, 1) . "</p>";
-        $ComplaintsDiv .= "<canvas id=" . $id . " class='canvas graph col-lg-8'></canvas>";
+        $ComplaintsDiv .= "<canvas id=" . $id . " class='canvas graph col-lg-8' style='height: 200px;'></canvas>";
 
         echo $ComplaintsDiv;
     }
@@ -37,45 +37,28 @@
     }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/Management/style/reset.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/Management/style/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-    <script src="/Management/scripts/javascript/charts.js"></script>
-    <title>Dashboard</title>
-</head>
+<?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/head/head.php"); ?>
+<?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/head/head-dashboard-bottom.html"); ?>
 <body>
     <div id="wrapper"> <!-- Page container -->
         <header class="col-lg-12"> <!-- Header class -->
-            <h1>Dashboard</h1>
+            <h1><a href="./dashboard.php">Dashboard</a></h1>
         </header>
 
 		<div class="container-fluid"> <!-- Nav and content container -->
 			<div class="row"> <!-- Row class for nav and content columns -->
-				<nav id="sidebar-wrapper" class="col-lg-1"> <!-- 1 unit wide column -->
-					<ul class="sidebar-nav">
-						<li><a href="/Management/deliveries.php">Deliveries</a></li>
-						<li><a href="/Management/lostpackages.php">Lost Packages</a></li>
-						<li><a href="/Management/complaints/dashboard.php">Complaints</a></li>
-						<li>
-							<ul>
-								<li><a href="/Management/complaints/dashboard.php">Dashboard</a></li>
-								<li><a href="/Management/complaints/opencomplaints.php">Open Complaints</a></li>
-								<li><a href="/Management/complaints/closedcomplaints.php">Closed Complaints</a></li>
-								<li><a href="/Management/complaints/registercomplaint.php">Register Complaint</a></li>
-							</ul>
-						</li>
-					</ul>
-				</nav>
+                <?php require("../components/nav.html"); ?>
 
 				<div id="page-content-wrapper" class="col-lg-11"> <!-- Separate wrapper for content -->
+                    <nav aria-label="Page navigation" class="d-flex justify-content-center">
+                        <ul class="pagination">
+                            <li class='page-item'><a class='page-link' href='dashboard.php'>Dashboard</a></li>
+                            <li class='page-item'><a class='page-link' href='opencomplaints.php'>Open Complaints</a></li>
+                            <li class='page-item'><a class='page-link' href='closedcomplaints.php'>Closed Complaints</a></li>
+                            <li class='page-item'><a class='page-link' href='registercomplaint.php'>Register Complaint</a></li>
+                        </ul>
+                    </nav>
+                    
 					<div class="container-fluid">
                         <div class="row mb-3 pl-3 pr-3">
                             <div id="dashboard-opencomplaints" class="col-lg-6 dashboard-item">
@@ -86,11 +69,16 @@
                                 <?php echoStatistics($json["Complaints"], "ClosedComplaintsGraph", "Closed"); ?>
                             </div>
                             
-                            <h3 style='clear: left;'>
+                            <!-- <h3 style='clear: left;'>
                                 TODO: Add pie chart with number of open complaints, grouped by days open, 7 days => a month => 3 months => 6 months => a year<br>
                                 Add bar chart with number of complaints, grouped per month, increases in height with number of complaints etc.<br>
                                 Add a list of open and closed complaints mixed, (editable in dashboard page?).
-                            </h3>
+                            </h3> -->
+                        </div>
+                        <div class="row mb-3 pl-3 pr-3">
+                            <div class="chart-container col-lg-12">
+                                <canvas id="test" class='canvas' style="height: 250px; width: 1600px;"></canvas>
+                            </div>
                         </div>
 					</div>
 				</div>

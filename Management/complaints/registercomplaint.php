@@ -37,42 +37,29 @@
     }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/Management/style/reset.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
-    <link rel="stylesheet" type="text/css" href="/Management/style/style.css">
-    <title>Complaints</title>
+<?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/head/head.php"); ?>
+    <title>Complaints - Register</title>
 </head>
 <body>
     <div id="wrapper"> <!-- Page container -->
         <header class="col-lg-12"> <!-- Header class -->
-            <h1>Deliveries</h1>
+            <h1><a href='registercomplaint.php'>Register Complaint</a></h1>
         </header>
 
 		<div class="container-fluid"> <!-- Nav and content container -->
 			<div class="row"> <!-- Row class for nav and content columns -->
-				<nav id="sidebar-wrapper" class="col-lg-1"> <!-- 1 unit wide column -->
-					<ul class="sidebar-nav">
-						<li><a href="/Management/deliveries.php">Deliveries</a></li>
-						<li><a href="/Management/lostpackages.php">Lost Packages</a></li>
-						<li><a href="/Management/complaints/dashboard.php">Complaints</a></li>
-						<li>
-							<ul>
-								<li><a href="/Management/complaints/dashboard.php">Dashboard</a></li>
-								<li><a href="/Management/complaints/opencomplaints.php">Open Complaints</a></li>
-								<li><a href="/Management/complaints/closedcomplaints.php">Closed Complaints</a></li>
-								<li><a href="/Management/complaints/registercomplaint.php">Register Complaint</a></li>
-							</ul>
-						</li>
-					</ul>
-				</nav>
+                <?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/nav.html"); ?>
 
 				<div id="page-content-wrapper" class="col-lg-11"> <!-- Separate wrapper for content -->
+                    <nav aria-label="Page navigation" class="d-flex justify-content-center">
+                        <ul class="pagination">
+                            <li class='page-item'><a class='page-link' href='dashboard.php'>Dashboard</a></li>
+                            <li class='page-item'><a class='page-link' href='opencomplaints.php'>Open Complaints</a></li>
+                            <li class='page-item'><a class='page-link' href='closedcomplaints.php'>Closed Complaints</a></li>
+                            <li class='page-item'><a class='page-link' href='registercomplaint.php'>Register Complaint</a></li>
+                        </ul>
+                    </nav>
+                    
 					<div class="container-fluid">
 						<div class="col-lg-12 nopadding">
                             <div id="registercomplaints">

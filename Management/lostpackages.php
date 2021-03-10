@@ -1,3 +1,23 @@
+<?php
+    $json = json_decode(file_get_contents("database.json"), true);
+
+    function echoLostPackages($arr)
+    {
+        foreach ($arr as $Package)
+        {
+            $row = "";
+            $row .= "<tr>";
+            $row .= "<td>" . $Package["PackageID"] . "</td>";
+            $row .= "<td><a href='./complaints/opencomplaints.php?ComplaintID=" . $Package["ComplaintID"] . "'>" . $Package["ComplaintID"] . "</a></td>";
+            $row .= "<td>" . $Package["OrderID"] . "</td>";
+            $row .= "<td>" . $Package["Date"] . "</td>";
+            $row .= "</tr>";
+            
+            echo $row;
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,44 +37,26 @@
 
 		<div class="container-fluid"> <!-- Nav and content container -->
 			<div class="row"> <!-- Row class for nav and content columns -->
-				<nav id="sidebar-wrapper" class="col-lg-1"> <!-- 1 unit wide column -->
-					<ul class="sidebar-nav">
-						<li><a href="/Management/deliveries.php">Deliveries</a></li>
-						<li><a href="/Management/lostpackages.php">Lost Packages</a></li>
-						<li><a href="/Management/complaints/dashboard.php">Complaints</a></li>
-						<li>
-							<ul>
-								<li><a href="/Management/complaints/dashboard.php">Dashboard</a></li>
-								<li><a href="/Management/complaints/opencomplaints.php">Open Complaints</a></li>
-								<li><a href="/Management/complaints/closedcomplaints.php">Closed Complaints</a></li>
-								<li><a href="/Management/complaints/registercomplaint.php">Register Complaint</a></li>
-							</ul>
-						</li>
-					</ul>
-				</nav>
+                <?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/nav.html"); ?>
 
 				<div id="page-content-wrapper" class="col-lg-11"> <!-- Separate wrapper for content -->
 					<div class="container-fluid">
                         <div id="lostpackages">
                             <table id="lostpackagestable" class="table table-hover">
-                                <tr>
-                                    <th>Package ID</th>
-                                    <th>Related Complaint ID</th>
-                                    <th>Order ID</th>
-                                    <th>Addressee</th>
-                                    <th>Last Checkpoint</th>
-                                    <th>Date</th>
-                                    <th>Days Lost</th>
-                                </tr>
-                                <tr>
-                                    <td>1234</td>
-                                    <td>54738954379</td>
-                                    <td>739443</td>
-                                    <td>Jan Banaan inc.</td>
-                                    <td>Belgium</td>
-                                    <td>25/02/2021</td>
-                                    <td>12</td>
-                                </tr>
+                                <thead>
+                                    <tr>
+                                        <th>Package ID</th>
+                                        <th>Complaint ID</th>
+                                        <th>Order ID</th>
+                                        <th>Date</th>
+                                        <th>Addressee</th>
+                                        <th>Last Checkpoint</th>
+                                        <th>Days Lost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php echoLostPackages($json["LostPackages"]); ?>
+                                </tbody>
                             </table>
                         </div>
 					</div>
