@@ -1,6 +1,6 @@
 <?php
 /**
-* Info of a speciif Employee
+* Info of a specific Employee
 *
 * @author Levi Nauwelaerts
 * @datetime 25 February 2021
@@ -27,11 +27,11 @@ $error = null;
           $employee = $stmt->fetch();
 
         }
-      else $error = "No employee for given ID found."
+      else $error = "No employee for given ID found.";
 
     }
     else $error = "Execution error";
-
+}
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -39,7 +39,7 @@ $error = null;
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <?php
-          echo "<title>Employee info " + $employee['id']+ "</title>"
+          echo "<title>Employee info ".$employee['id']."</title>";
         ?>
         <link rel="stylesheet" href="./css/reset.css">
     </head>
