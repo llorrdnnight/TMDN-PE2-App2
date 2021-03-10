@@ -1,1 +1,0 @@
-# Here should all the javascript files be stored
