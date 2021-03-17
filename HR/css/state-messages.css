@@ -1,0 +1,20 @@
+
+.success-message, .error-message{
+
+    position: absolute;
+    top: 1rem;
+    padding: 1rem 2rem;
+    color: white;
+    border-radius: .5rem;
+
+
+}
+
+.error-message{
+    background-color: #dc3545;;
+}
+
+.success-message{
+    background-color: #28a745; 
+    border-radius: .5rem;
+}

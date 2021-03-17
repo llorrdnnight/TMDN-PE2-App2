@@ -1,0 +1,125 @@
+@import './colors';
+
+
+html,textarea,input{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+
+.nav-bar{
+    background-color: $darkBlue;
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+
+    h1{
+        color: white !important;
+        font-size: 23px;
+        padding: 0rem 1.5rem;
+    }
+}
+
+h1,label,input,textarea{
+    color: $darkBlue;
+}
+
+
+
+textarea{
+    resize: none;
+}
+
+input[type=submit]{
+
+    background-color: $orange;
+    border: none;
+    align-self: center;
+    padding: 1rem 3rem;
+    border: 1px solid $orange;
+
+    cursor: pointer;
+    border-radius: 2rem;
+    transition: .3s linear;
+
+    &:hover{
+        background-color: unset;
+    }
+}
+
+input,textarea{
+    border: 1px solid $darkBlue;
+    padding: .5rem .2rem;
+
+}
+
+.wrapper{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+
+  
+
+    .absence-container{
+        display: flex;
+        align-items: center;
+        padding-bottom: 0;
+        height: 90vh;
+        form{
+
+            width: 500px;
+            .row{
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 2rem;
+                &:last-of-type{
+                    margin-bottom: 0rem;
+                }
+                label{
+                    margin-bottom: .5rem;
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 650px){
+    .wrapper{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    
+    
+      
+    
+        .absence-container{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding-bottom: 0;
+            padding: 4rem 2rem;
+            height: auto;
+            box-sizing: border-box;
+            form{
+    
+                width: 100%;
+                .row{
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 2rem;
+                    &:last-of-type{
+                        margin-bottom: 0rem;
+                    }
+                    label{
+                        margin-bottom: .5rem;
+                    }
+                }
+            }
+        }
+    }
+
+}
