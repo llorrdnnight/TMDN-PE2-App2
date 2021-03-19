@@ -6,23 +6,28 @@
         print_r($_POST);
     }
 
-    function echoEditableComplaintDetails($arr, $ComplaintID)
+    function echoEditableComplaintDetails($Complaints, $ComplaintID)
     {
-        foreach($arr as $Complaint)
+        foreach($Complaints as $Complaint)
         {
             if ($Complaint["ComplaintID"] == $ComplaintID)
             {
                 $Details = "";
-                $Details .= "<form name='ecform' method='POST'>";
-                $Details .= "<label for='ComplaintID'>Complaint ID: <input name='OrderID' type='text' value='" . $Complaint["ComplaintID"] . "' disabled></label>";
-                $Details .= "<label for='OrderID'>Order ID<input name='OrderID' type='text' value='" . $Complaint["OrderID"] . "'></label>";
-                $Details .= "<label for='Category'>Category<input name='Category' type='text' value='" . $Complaint["Category"] . "'></label>";
-                $Details .= "<label for='Status'>Status<input name='Status' type='text' value='" . $Complaint["Status"] . "'></label>";
-                $Details .= "<label for='Customer'>Customer<input name='Customer' type='text' value='" . $Complaint["Customer"] . "'></label>";
-                $Details .= "<button name='Submit' type='submit'>Submit</button><button name='Reset' type='reset'>Reset</button>";
+                $Details .= "<form name='ecform'action='editcomplaint.php' method='POST'>";
+                $Details .= "<div class='form-row'>";
+                $Details .= "<div class='form-group col-lg-6'>";
+                $Details .= "<label for='ComplaintID'>Complaint ID:</label><input class='form-control' name='OrderID' type='text' value='" . $Complaint["ComplaintID"] . "' disabled>";
+                $Details .= "<label for='OrderID'>Order ID</label><input class='form-control' name='OrderID' type='text' value='" . $Complaint["OrderID"] . "'>";
+                $Details .= "<label for='Category'>Category</label><input class='form-control' name='Category' type='text' value='" . $Complaint["Category"] . "'>";
+                $Details .= "</div><div class='form-group col-lg-6'>";
+                $Details .= "<label for='Status'>Status</label><input class='form-control' name='Status' type='text' value='" . $Complaint["Status"] . "'>";
+                $Details .= "<label for='Customer'>Customer</label><input class='form-control' name='Customer' type='text' value='" . $Complaint["Customer"] . "'>";
+                $Details .= "</div></div><div class='form-row'><div class='btn-group'>";
+                $Details .= "<button name='Submit' type='submit' class='btn btn-success'>Submit</button><button name='Reset' type='reset' class='btn btn-secondary'>Reset</button>";
+                $Details .= "</div></div>";
                 $Details .= "</form>";
-                echo $Details;
 
+                echo $Details;
                 return;
             }
         }
@@ -43,18 +48,13 @@
                 <?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/nav.html"); ?>
 
 				<div id="page-content-wrapper" class="col-lg-11"> <!-- Separate wrapper for content -->
-                    <nav aria-label="Page navigation" class="d-flex justify-content-center">
-                        <ul class="pagination">
-                            <li class='page-item'><a class='page-link' href='dashboard.php'>Dashboard</a></li>
-                            <li class='page-item'><a class='page-link' href='opencomplaints.php'>Open Complaints</a></li>
-                            <li class='page-item'><a class='page-link' href='closedcomplaints.php'>Closed Complaints</a></li>
-                            <li class='page-item'><a class='page-link' href='registercomplaint.php'>Register Complaint</a></li>
-                        </ul>
-                    </nav>
+                    <?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/complaintsnav.html"); ?>
 
 					<div class="container-fluid">
-						<div class="col-lg-12 nopadding">
+						<div class="col-lg-12">
                             <div id="editcomplaint">
+                                <h1>Edit Complaint</h1>
+
                                 <?php 
                                     if (isset($_GET["ComplaintID"]) && !empty($_GET["ComplaintID"]))
                                         echoEditableComplaintDetails($json["Complaints"], $_GET["ComplaintID"]);

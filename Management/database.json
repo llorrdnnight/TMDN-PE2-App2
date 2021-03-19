@@ -3,7 +3,7 @@
     [
         { "ID": 1, "Firstname": "Jan", "Surname": "Banaan", "Address": "Janstraat", "IsAdmin": 1 },
         { "ID": 2, "Firstname": "Pieter", "Surname": "De Gieter", "Address": "Pieterstraat", "IsAdmin": 0 },
-        { "ID": 3, "Firstname": "Jos", "Surname": "De Vos", "Address": "Josstraat", "IsAdmin": 0 }
+        { "ID": 3, "Firstname": "Jos", "Surname": "Devos", "Address": "Josstraat", "IsAdmin": 0 }
     ],
 
     "Deliveries":

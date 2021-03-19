@@ -37,8 +37,10 @@
     }
 ?>
 
-<?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/head/head.php"); ?>
-<?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/head/head-dashboard-bottom.html"); ?>
+<?php 
+    require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/head/head.php"); 
+    require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/head/head-statistics-bottom.html"); 
+?>
 <body>
     <div id="wrapper"> <!-- Page container -->
         <header class="col-lg-12"> <!-- Header class -->
@@ -46,20 +48,14 @@
         </header>
 
 		<div class="container-fluid"> <!-- Nav and content container -->
-			<div class="row"> <!-- Row class for nav and content columns -->
+			<div class="row flex-grow-1"> <!-- Row class for nav and content columns -->
                 <?php require("../components/nav.html"); ?>
 
 				<div id="page-content-wrapper" class="col-lg-11"> <!-- Separate wrapper for content -->
-                    <nav aria-label="Page navigation" class="d-flex justify-content-center">
-                        <ul class="pagination">
-                            <li class='page-item'><a class='page-link' href='dashboard.php'>Dashboard</a></li>
-                            <li class='page-item'><a class='page-link' href='opencomplaints.php'>Open Complaints</a></li>
-                            <li class='page-item'><a class='page-link' href='closedcomplaints.php'>Closed Complaints</a></li>
-                            <li class='page-item'><a class='page-link' href='registercomplaint.php'>Register Complaint</a></li>
-                        </ul>
-                    </nav>
-                    
+                    <?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/complaintsnav.html"); ?>
+
 					<div class="container-fluid">
+                        <div class="row"><div id="test"></div></div>
                         <div class="row mb-3 pl-3 pr-3">
                             <div id="dashboard-opencomplaints" class="col-lg-6 dashboard-item">
                                 <?php echoStatistics($json["Complaints"], "OpenComplaintsGraph", "Open"); ?>
@@ -77,7 +73,7 @@
                         </div>
                         <div class="row mb-3 pl-3 pr-3">
                             <div class="chart-container col-lg-12">
-                                <canvas id="test" class='canvas' style="height: 250px; width: 1600px;"></canvas>
+                                <canvas id="MonthlyComplaintsGraph" class='canvas graph' style="height: 250px; width: 1600px;"></canvas>
                             </div>
                         </div>
 					</div>

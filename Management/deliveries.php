@@ -1,16 +1,17 @@
 <?php
     //Get temporary database file contents
     $json = json_decode(file_get_contents("database.json"), true);
-    $filteredjson = getFilteredArray($json["Deliveries"]);
 
+    //Declare empty array, the default page variable and the number of table rows
     $rows = array();
     $page = 1; $maxrows = 13;
 
-    $totalitems = count($filteredjson);
-    $totalpages = ceil($totalitems / $maxrows);
-
     if ($_SERVER["REQUEST_METHOD"] == "GET")
     {
+        $filteredjson = getFilteredArray($json["Deliveries"]);
+        $totalitems = count($filteredjson);
+        $totalpages = ceil($totalitems / $maxrows);
+
         //If a page is requested and is within the limits of our data array
         if (isset($_GET["Page"]) && $_GET["Page"] < $totalpages + 1)
             $page = $_GET["Page"];
@@ -25,43 +26,15 @@
         {
             if ($rowsleft)
             {
-                $add = true;
-                
-                //This is now done in the getFilteredArray function, but the value checking is not implemented yet.
-                // if (isset($_GET["PickupTime"]) && !empty($_GET["PickupTime"]))
-                //     if (substr($json["Deliveries"][$i]["PickupTime"], 0, 5) != $_GET["PickupTime"])
-                //         $add = false;
-                
-                // if (isset($_GET["Location"]) && !empty($_GET["Location"]))
-                //     if ($json["Deliveries"][$i]["Location"] != $_GET["Location"])
-                //         $add = false;
-                
-                // if (isset($_GET["DeliveryID"]) && !empty($_GET["DeliveryID"]))
-                //     if ($json["Deliveries"][$i]["DeliveryID"] != $_GET["DeliveryID"])
-                //         $add = false;
-                
-                // if (isset($_GET["Status"]) && !empty($_GET["Status"]))
-                //     if ($json["Deliveries"][$i]["Status"] != $_GET["Status"])
-                //         $add = false;
-                
-                // if (isset($_GET["Company"]) && !empty($_GET["Company"]))
-                //     if ($json["Deliveries"][$i]["Company"] != $_GET["Company"])
-                //         $add = false;
-                
-                // if (isset($_GET["ReceiptID"]) && !empty($_GET["ReceiptID"]))
-                //     if ($json["Deliveries"][$i]["ReceiptID"] != $_GET["ReceiptID"])
-                //         $add = false;
-                
-                if ($add)
-                {
-                    array_push($rows, $filteredjson[$i]);
-                    $rowsleft -= 1;
-                }
+                array_push($rows, $filteredjson[$i]);
+                $rowsleft -= 1;
             }
         }
     }
     else
     {
+        $totalitems = count($json["Deliveries"]);
+        $totalpages = ceil($totalitems / $maxrows);
         $rows = $json["Deliveries"];
     }
 
@@ -75,11 +48,13 @@
             if (isset($_GET[$Filter]))
             {
                 foreach($arr as $item)
+                {
                     if ($item[$Filter] == $_GET[$Filter])
                         array_push($FilteredArray, $item);
+                }
             }   
         }
-
+        
         if (count($FilteredArray) > 0)
             return $FilteredArray;
         else
@@ -158,7 +133,7 @@
         </div>
 
         <div class="row"> <!-- Row class for nav and content columns -->
-            <?php require("./components/nav.html"); ?>
+            <?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/nav.html"); ?>
 
             <div id="page-content-wrapper" class="col-xl-11 col-lg-10"> <!-- Separate wrapper for content -->
                 <form id="deliveryfilter" class="col-lg-12 g-0">

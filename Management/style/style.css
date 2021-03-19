@@ -70,8 +70,7 @@ h1 a:hover
 
 #sidebar-wrapper a:hover
 {
-    color: var(--darkblue);
-    text-decoration: underline;
+    color: var(--orange);
 }
 
 .sidebar-nav ul, .sidebar-nav li
@@ -82,6 +81,7 @@ h1 a:hover
 
 #page-content-wrapper
 {
+    background-color: rgb(245, 245, 245);
     padding-top: 15px;
     padding-left: 0px;
     padding: 15px 0 0 0;
@@ -109,5 +109,8 @@ button{ width: 100px; }
 /* #endregion */
 
 /* #region DASHBOARD */
-
+.graph
+{
+    margin: 0 auto;
+}
 /* #endregion */

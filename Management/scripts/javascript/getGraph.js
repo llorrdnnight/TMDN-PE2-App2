@@ -4,7 +4,7 @@ function getColorGradient(arr)
     Colors = [];
 
     for (i in arr)
-        Colors.push("rgba(" + (i * StepSize) + ", " + (255 - i * StepSize) + ", 96, 0.8)");
+        Colors.push("rgba(" + (i * StepSize) + ", " + (255 - i * StepSize) + ", 96, 0.9)");
 
     return Colors;
 }
@@ -15,9 +15,9 @@ function setPieChartData(id, category)
     Labels = ["< 7 days", "> 7 days", "> 30 days", "> 90 days", "> 6 months", "> 1 year"];
 
     if (category == "Open")
-        DataUrl = "?Category=Open";
+        DataUrl = "?Category=Open&t=" + Math.random();
     else
-        DataUrl = "?Category=Closed";
+        DataUrl = "?Category=Closed&t=" + Math.random();
 
     $.ajax(
     {
@@ -50,97 +50,62 @@ function setPieChartData(id, category)
     });
 }
 
+function getBackgroundColor(arr, color)
+{
+    var Colors = [];
+
+    if (color)
+        arr.forEach(element => { Colors.push("rgba(99, 255, 132, 0.9)"); });
+    else
+        arr.forEach(element => { Colors.push("rgba(255, 99, 132, 0.9)"); });
+
+    return Colors;
+}
+
 function setBarChartData(id)
 {
-    var ctx = document.getElementById("test").getContext("2d");
+    DataUrl = "?StartDate=2020-03-13&EndDate=2021-03-1&t=" + Math.random();
 
-    new Chart(ctx,
+    $.ajax(
     {
-        type: "bar",
-        data:
+        url : "getChartData.php" + DataUrl,
+        dataType : "json",
+        success : function(Result)
         {
-            labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar"],
-            datasets:
-            [
+            var ctx = document.getElementById(id).getContext("2d");
+
+            new Chart(ctx,
+            {
+                type: "bar",
+                data:
                 {
-                    label: "Closed",
-                    data: [12, 14, 7, 12, 20, 6, 18, 16, 7, 12, 4, 2],
-                    fill: false,
-                    backgroundColor:
+                    labels: Result["Labels"],
+                    datasets:
                     [
-                        "rgba(99, 255, 132, 0.8)",
-                        "rgba(99, 255, 132, 0.8)",
-                        "rgba(99, 255, 132, 0.8)",
-                        "rgba(99, 255, 132, 0.8)",
-                        "rgba(99, 255, 132, 0.8)",
-                        "rgba(99, 255, 132, 0.8)",
-                        "rgba(99, 255, 132, 0.8)",
-                        "rgba(99, 255, 132, 0.8)",
-                        "rgba(99, 255, 132, 0.8)",
-                        "rgba(99, 255, 132, 0.8)",
-                        "rgba(99, 255, 132, 0.8)",
-                        "rgba(99, 255, 132, 0.8)"
-                    ],
-                    borderColor:
-                    [
-                        "rgb(99, 255, 132)",
-                        "rgb(99, 255, 132)",
-                        "rgb(99, 255, 132)",
-                        "rgb(99, 255, 132)",
-                        "rgb(99, 255, 132)",
-                        "rgb(99, 255, 132)",
-                        "rgb(99, 255, 132)",
-                        "rgb(99, 255, 132)",
-                        "rgb(99, 255, 132)",
-                        "rgb(99, 255, 132)",
-                        "rgb(99, 255, 132)",
-                        "rgb(99, 255, 132)"
-                    ],
-                    borderWidth: 1
+                        {
+                            label: "Closed",
+                            data: Result["ClosedMonths"],
+                            fill: false,
+                            backgroundColor: getBackgroundColor(Result["OpenMonths"], true),
+                            borderColor: getBackgroundColor(Result["OpenMonths"], true),
+                            borderWidth: 1
+                        },
+                        {
+                            label: "Open",
+                            data: Result["OpenMonths"],
+                            fill: false,
+                            backgroundColor: getBackgroundColor(Result["ClosedMonths"], false),
+                            borderColor: getBackgroundColor(Result["ClosedMonths"], false),
+                            borderWidth: 1
+                        }
+                    ]
                 },
+                options:
                 {
-                    label: "Open",
-                    data: [0, 0, 0, 0, 1, 2, 1, 4, 6, 6, 9, 10],
-                    fill: false,
-                    backgroundColor:
-                    [
-                        "rgba(255, 99, 132, 0.8)",
-                        "rgba(255, 99, 132, 0.8)",
-                        "rgba(255, 99, 132, 0.8)",
-                        "rgba(255, 99, 132, 0.8)",
-                        "rgba(255, 99, 132, 0.8)",
-                        "rgba(255, 99, 132, 0.8)",
-                        "rgba(255, 99, 132, 0.8)",
-                        "rgba(255, 99, 132, 0.8)",
-                        "rgba(255, 99, 132, 0.8)",
-                        "rgba(255, 99, 132, 0.8)",
-                        "rgba(255, 99, 132, 0.8)",
-                        "rgba(255, 99, 132, 0.8)"
-                    ],
-                    borderColor:
-                    [
-                        "rgb(255, 99, 132)",
-                        "rgb(255, 99, 132)",
-                        "rgb(255, 99, 132)",
-                        "rgb(255, 99, 132)",
-                        "rgb(255, 99, 132)",
-                        "rgb(255, 99, 132)",
-                        "rgb(255, 99, 132)",
-                        "rgb(255, 99, 132)",
-                        "rgb(255, 99, 132)",
-                        "rgb(255, 99, 132)",
-                        "rgb(255, 99, 132)",
-                        "rgb(255, 99, 132)"
-                    ],
-                    borderWidth: 1
+                    title: { display: true, text: "Open and closed complaints grouped by month" },
+                    scales:{ yAxes: [{ ticks: { beginAtZero:true }}]}
                 }
-            ]
-        },
-        options:
-        {
-            // responsive: true,
-            title: { display: true, text: "Open and closed complaints grouped by month" },
-            scales:{ yAxes: [{ ticks: { beginAtZero:true }}]}
+            });
         }
     });
 }
@@ -150,6 +115,5 @@ $(document).ready(function()
     var Canvases = document.getElementsByClassName("graph");
     setPieChartData(Canvases[0].id, "Open");
     setPieChartData(Canvases[1].id, "Closed");
-    setBarChartData("test");
+    setBarChartData(Canvases[2].id);
 });
-
