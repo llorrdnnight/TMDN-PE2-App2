@@ -39,7 +39,9 @@ $msg = " Query done!";
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Add User</title>
+
     <?php 
+    // this piece of code is redundant
     $host = "localhost";
     $user = "Webuser";
     $password = "Labo2020";
