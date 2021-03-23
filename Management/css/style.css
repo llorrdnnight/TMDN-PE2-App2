@@ -1,110 +1,31 @@
-body{
-    background-color: rgb(108, 136, 163);
-    opacity: 0.9;
-    height: 100%;
-    font-family:Arial
-}
+
 footer {
     bottom: 0;
     width: 100%;
     height: 5%;
-    background-color: black; 
     text-align: center;
+    background-color: #a9a9a9;
     position: fixed;
 }
 
-.wrapper{
-	min-width:300px;
-	max-width:1200px;
-	margin:10px auto 10px auto;
-}
-.top{
+.wrapper {
+    height: 100vh;
     width: 100%;
-    height: 100px;
-    background-color: white;
-    border-radius: 20px;
-    margin: 10px auto 10px auto;
-}
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(#2d3130, #174061, #4d5758);
+  }
+
 .content{
-    width: 100%;
+    width: 30%;
     height: auto;
     min-height: 500px;
     background-color: white;
     border-radius: 20px;
     margin: 10px auto 10px auto;
+    align-self: center;
 
 }
 
-.logo{
-	border:1px solid black;
-	border-radius: 20px;
-	box-shadow:5px 5px 10px black;
-    float:left;
-    margin: 5px 5px;
-}
-.title{
-	font-size:40px;
-	text-shadow: black 7px 7px 10px;
-	text-align: center;
-    padding: 20px 0px;
-  }
-  table, th, td,tr{
-    border: 1px solid black;
-    border-collapse: collapse;
-    text-align: center;
-    padding: 5px;
-}
-th{
-    background-color: #aaaaaa;
-}
-
-/* place menu elements horizontally and add border to list elements */
-nav li {
-	float: left;
-	width: 16.5%;						
-    border-radius: 20px;
-    background-color: white;
-}
-
-/* give the ul the correct height */
-nav ul:after {
-	content: "";
-	display: block;
-	clear: both;
-}
-
-/* style the menu elements*/
-nav a {
-	display:block;
-	color: black;
-	text-decoration: none;
-	text-align:center;
-    padding: 10px 15px;
-    border-radius: 20px;
-    background-color: white;
-    border:  1px solid black; 
-}
-
-/* style the active menu button */
-.active {
-	background-color: tomato;
-}
-
-/* change color on hover except for the active menu item*/
-nav a:hover:not(.active) {
-	background-color: #CCC;
-	color: black;
-}
-/* hide lists level 2 */
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-}
-  .dropdown:hover .dropdown-content {
-
-    display: inline-block;
-  }
   .align_center{
       align-items: center;
   }
@@ -136,7 +57,7 @@ h1{
 	padding: 5px;
 	margin: 5px;
 }
-h2 {
+div h2 {
 	font-size: 175%;
 	padding: 10px;
     margin: 10px;
@@ -153,35 +74,5 @@ p,textarea {
     font-size: 110%;
     resize: none;
 }
-.button{
-    margin: 10px;
-    padding: 10px;
-}
-input{
-    border: black solid 1px;
-}
-.next{
-    height: 40px;
-    width: 200%;
-    justify-content: end;
-    text-align: right;
-}
-.prev{
-    height: 40px;
-    width: 200%;
-    justify-content: start;
-}
-.buttonSlide{
-    width: 90px;
-    height: 40px;
-}
-.stopstart{
-    margin-bottom: 100px;
-    padding-bottom: 50px;
-    text-align: center;
-}
-.intro{
-    width: 70%;
-    text-align: center;
-    margin: auto;
-}
+
+

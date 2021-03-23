@@ -1,0 +1,210 @@
+/* reset */
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+* {
+    user-select: none;
+}
+
+h1,h2,h3,h4,h5{
+    color: var(--orange);
+}
+
+small {
+    color: var(--lightGray);
+}
+
+.desktop{
+    display: block;
+}
+
+.mobile{ 
+    display: none !important;
+}
+
+/* Navigation */
+
+nav {
+    top: 0;
+    background-color: var(--darkBlue) !important;
+    width: 100%;
+    z-index: 999;
+    opacity: 1;
+    transition: all 0.2s ease;
+    background-size: 100%;
+}
+
+nav * {
+    color: var(--white) !important;
+}
+
+#nav-content {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: 2em;
+}
+
+.nav-logo{
+    width: auto;
+    height: auto;
+    min-width: 220.27px;
+    min-height: 39.22px;
+    max-height: 12vh;
+    max-width: 45%;
+}
+
+.nav-link {
+    font-size: 1em !important;
+}
+
+.nav-link:hover{
+    color: var(--lightGray) !important;
+}
+
+/* This is a bootstrap class for the dropdown button on the nav bar */
+.navbar-toggler{
+    height: 100% !important;
+    width: auto !important;
+}
+
+/* This is a bootstrap class for the dropdown button (inside content) on the nav bar */
+.navbar-toggler-icon{
+}
+
+.active > .nav-link{
+    color: var(--orange) !important;
+}
+
+/* Container */
+
+.container {
+    
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+/* This is the track on which the scrollbar moves */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+/* The thumb represents the bar that you can move over the track */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* variables */
+
+:root {
+    /*https://coolors.co/ff6700-ebebeb-c0c0c0-3a6ea5-004e98*/
+    --darkBlue: #0D3459;
+    --blue: #004e98; 
+    --lightBlue: #3A6EA5;
+    --lightGray: #C0C0C0;
+    --darkGray: #a9a9a9;
+    --white: #EBEBEB;
+    --orange: #ff6700; 
+    --lightOrange: #ffa467; 
+}
+
+/* Media queries */
+@media only screen and (max-device-width: 991px){
+    .desktop{
+        display: none !important;
+    }
+    
+    .mobile{
+        display: block !important;
+    }
+    
+    #nav-content {
+        margin-right: 0 !important;
+    }
+    
+    #nav-content > #navbar{
+        text-align: center !important;
+    }
+    
+    .nav-link {
+        font-size: 1.5em !important;
+    }
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    nav > a {
+        margin-left: 2em !important;
+    }
+    
+    .container {
+        
+    }
+}
+
+
+@media only screen and (min-width: 1920px) {
+    nav {
+        max-height: 10vh !important;
+    }
+}
