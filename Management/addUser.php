@@ -4,11 +4,11 @@ include './includes/db_config.php';
 include './includes/sanitize.php';
 include "components/check_db.php"; // check if the foreig keys have been set
 // add a new user
-
+$msg = "";
+$err = FALSE;
 // if post request has been sent
 if($_SERVER['REQUEST_METHOD'] == "POST"){
-    $msg = "";
-    $err = FALSE;
+
     // retrieve the POST variables and sanitize them
     $fName = sanitize($_POST['fName']);
     $lName = sanitize($_POST['lName']);
