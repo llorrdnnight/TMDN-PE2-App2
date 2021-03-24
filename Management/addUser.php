@@ -20,14 +20,22 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     // add a new user
 $password = password_hash("password",PASSWORD_DEFAULT);
-$sql = "SELECT COUNT(*) AS 'id' FROM employee;";
+$sql = "SELECT id FROM employee;";
 $result = mysqli_query($link,$sql);
-$row = mysqli_fetch_array($result);
-$id = $row['id'] + 1;
+
+    while(($row = mysqli_fetch_array($result))){
+        $id = 1;
+        if($id == $row['id']){
+            $id++;
+        }
+    }
+
+
+
 $sql = "INSERT INTO employee(id,firstName,lastName,mailAddress,password,birthDate,phoneNumber,salary,job,isAdmin) VALUES($id,\"$fName\",\"$lName\",\"$email\",\"$password\",\"2000-03-21\",$pnum,$sal,$job,$admin);";
 mysqli_query($link,$sql);
 mysqli_close($link);
-$msg = " Query done!";
+$msg = $bod;
 }
 ?>
 
