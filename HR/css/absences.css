@@ -2,6 +2,13 @@ html, textarea, input {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+.formError {
+  color: #cc3838;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
 .nav-bar {
   background-color: #0D3459;
   width: 100%;
@@ -9,12 +16,37 @@ html, textarea, input {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.nav-bar .left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-left: 2rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.nav-bar .left i {
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.nav-bar .right {
+  color: white;
+  padding-right: 2rem;
+}
+
+.nav-bar .right span {
+  padding-left: .2rem;
 }
 
 .nav-bar h1 {
@@ -34,6 +66,7 @@ textarea {
 input[type=submit] {
   background-color: #FF6700;
   border: none;
+  color: white;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
@@ -47,6 +80,7 @@ input[type=submit] {
 
 input[type=submit]:hover {
   background-color: unset;
+  color: #0D3459;
 }
 
 input, textarea {
@@ -100,6 +134,18 @@ input, textarea {
 
 .wrapper .absence-container form .row label {
   margin-bottom: .5rem;
+}
+
+.rt {
+  position: absolute;
+  top: 1rem;
+  padding: 1rem 2rem;
+  color: white;
+  border-radius: .5rem;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  background-color: #dc3545;
 }
 
 @media only screen and (max-width: 650px) {

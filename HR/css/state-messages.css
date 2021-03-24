@@ -6,7 +6,9 @@
     padding: 1rem 2rem;
     color: white;
     border-radius: .5rem;
-
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%)
 
 }
 
