@@ -4,9 +4,11 @@ include './includes/db_config.php';
 include './includes/sanitize.php';
 include "components/check_db.php"; // check if the foreig keys have been set
 // add a new user
-$msg = null;
+
 // if post request has been sent
 if($_SERVER['REQUEST_METHOD'] == "POST"){
+    $msg = "";
+    $err = FALSE;
     // retrieve the POST variables and sanitize them
     $fName = sanitize($_POST['fName']);
     $lName = sanitize($_POST['lName']);
@@ -17,25 +19,30 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $sal = $_POST['sal'];
     $job = $_POST['job'];
     $admin = $_POST['admin'];
+    $id = 1;
 
     // add a new user
 $password = password_hash("password",PASSWORD_DEFAULT);
-$sql = "SELECT id FROM employee;";
+$sql = "SELECT * FROM employee;";
 $result = mysqli_query($link,$sql);
 
     while(($row = mysqli_fetch_array($result))){
-        $id = 1;
         if($id == $row['id']){
             $id++;
         }
+        if($email == $row['mailAddress']){
+            
+            $msg = "This email is already in use !";
+            $err = TRUE;
+        }
     }
 
-
-
-$sql = "INSERT INTO employee(id,firstName,lastName,mailAddress,password,birthDate,phoneNumber,salary,job,isAdmin) VALUES($id,\"$fName\",\"$lName\",\"$email\",\"$password\",\"2000-03-21\",$pnum,$sal,$job,$admin);";
+if($err == FALSE){
+    $sql = "INSERT INTO employee(id,firstName,lastName,mailAddress,password,birthDate,phoneNumber,salary,job,isAdmin) VALUES($id,\"$fName\",\"$lName\",\"$email\",\"$password\",\"2000-03-21\",$pnum,$sal,$job,$admin);";
+    $msg = "Query complete";
+}
 mysqli_query($link,$sql);
 mysqli_close($link);
-$msg = $bod;
 }
 ?>
 
