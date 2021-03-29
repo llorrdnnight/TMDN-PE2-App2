@@ -98,6 +98,25 @@ input,textarea{
         form{
 
             width: 500px;
+            .radio{
+                flex-direction: row !important;
+                align-items: center;
+                label{
+
+                    margin-bottom: 0 !important;
+
+                    &:first-of-type{
+                        margin-right: .5rem;
+                    }
+                }
+                input[type=checkbox]{
+                   
+                    margin-left: .2rem;
+                    position: relative;
+                    top: 1px;
+                   
+                }
+            }
             .row{
                 display: flex;
                 flex-direction: column;
@@ -107,6 +126,22 @@ input,textarea{
                 }
                 label{
                     margin-bottom: .5rem;
+                }
+
+               
+            }
+
+            .info{
+                flex-direction: column !important;
+                align-items: flex-start;
+
+                strong{
+                    font-weight: 600;
+                }
+                p{
+                    font-size: 12px;
+                    margin-top: .5rem;
+                    line-height: 1rem;
                 }
             }
         }
@@ -126,6 +161,317 @@ input,textarea{
     background-color: #dc3545;;
 
 }
+
+// OVERVIEW PAGE -------------------------------
+
+.content{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.inner-content{
+    margin: 5rem;
+    width: 100%;
+    border-radius: .2rem;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    button{
+        background-color: $orange;
+        border: none;
+        color: white;
+        margin-top: 5rem;
+        border-radius: 2rem;
+        cursor: pointer;
+        padding: 1rem 3rem;
+        border: 1px solid $orange;
+        transition: .3s linear;
+
+        &:hover{
+            background-color: unset;
+            color: $darkBlue;
+        }
+    }
+}
+
+.title{
+    font-size: 30px;
+    color: white;
+  
+
+}
+
+.icons{
+
+
+    color: rgb(14, 240, 14);
+    > *{
+        margin: 0rem 1rem;
+
+        &:first-of-type{
+            margin-left: 0rem;
+        }
+
+  
+    }
+
+    .fa-times{
+        color: red;
+    }
+
+    .fa-check{
+        color: rgb(24, 240, 24);
+        text-align: center;
+        width: 70px;
+    }
+
+}
+.active{
+    background-color: $orange !important;
+    color: white !important;
+}
+
+.active-toggle{
+
+    background-color: $orange !important;
+    color: white !important;
+}
+
+.nav{
+    width: 100%;
+    display: flex;
+    padding: 0rem;
+    padding-bottom: 1.5rem;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid $darkBlue;
+    margin-bottom: 2rem;
+
+    .right{
+        display: flex;
+        flex-direction: column;
+        > * {
+            margin: .8rem 0rem;
+        }
+
+        .row{
+
+            background-color: $lightGray;
+            padding: .6rem 0rem;
+            border-radius: 1rem;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            height: 15px;
+
+
+            
+       
+          
+            a{
+                padding: .6rem 2rem;
+                height: 15px;
+                display: flex;
+                align-items: center;
+                z-index: 5;
+                text-decoration: none;
+                color: $darkBlue;
+                border-radius: 1rem;
+            }
+
+        }
+    }
+
+    .searchField{
+        border: 1px solid $darkBlue;
+        padding: 0rem .5rem;
+        height: 32px;
+        align-self: flex-end;
+        border-radius: 1rem;
+
+        button{
+            margin-top: 0rem;
+            padding: 0;
+            background-color: unset;
+            border: none;
+        }
+        i{
+            color: $darkBlue;
+        }
+    }
+
+    input[type=search]{
+        background-color: unset;
+        border: none;
+        color: $darkBlue;
+
+        &::placeholder{
+            color: $darkBlue;
+        }
+
+        &:focus{
+            outline: none;
+        }
+    }
+
+   .filter-box{
+       
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  
+    .row{
+        margin-bottom: .5rem;
+
+        &:nth-of-type(2){
+            font-size: 12px;
+        }
+    }
+
+
+    > *{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+
+        &:last-of-type{
+             margin-right: 0rem;
+        }
+      
+    }
+    a{
+        text-decoration: none;
+        color: $darkBlue;
+        box-sizing: border-box;
+        padding: .7rem 1.5rem;
+        background-color: $lightGray;
+        border: 1px solid $darkBlue;
+        border-right: none;
+
+       
+
+        &:last-child{
+            border-right: 1px solid $darkBlue;
+        }
+    } }
+}
+
+.certified{
+
+    select{
+        font-size: 15px;
+        height: 25px;
+        color: $darkBlue;
+    }
+
+    option{
+        font-size: 15px;
+    }
+
+    margin-top: 1rem;
+
+
+    a{
+        padding: .5rem 2rem;
+        margin: 0;
+        text-decoration: none;
+        color: $darkBlue;
+
+        &:first-of-type{
+            padding-left: 0rem;
+        }
+        
+
+
+    }
+
+}
+
+.employee-info{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: flex-start;
+    border: 1px solid $darkBlue;
+    justify-content: space-between;
+    background-color: $lightGray;
+    padding: .5rem 1.5rem;
+    margin-bottom: 2rem;
+
+    > * {
+        margin: .5rem 0rem;
+    }
+    span{
+        margin-right: .3rem;
+    }
+
+    strong{
+        font-weight: 600;
+    }
+}
+
+table{
+
+    button[type=submit]{
+        margin-top: 0rem;
+        padding: .2rem 1rem;
+        width: 70px;
+    }
+  
+    width: 100%;
+
+    td{
+
+        width: 150px;
+
+        a{
+            text-decoration: none;
+        }
+        padding: 1rem;
+
+        i{
+            margin-right: .3rem;
+        }
+    }
+    
+    tr:nth-child(odd){
+        button[type=submit]{
+            
+            &:hover{
+                color: white;
+            }
+        }
+        background-color: $lightBlue;
+        color: white;
+        a{
+            color: white;
+        }
+    }
+    tr:nth-child(even){
+       
+        background-color: $lightGray;
+        a{
+            color: $darkBlue;
+        }
+    }
+      
+    tr{
+        &:nth-child(1){
+            background-color: $darkBlue;
+        }
+    }
+}
+
+.emptyTable{
+    margin-top: 2rem;
+}
+
 @media only screen and (max-width: 650px){
     .wrapper{
         width: 100%;
