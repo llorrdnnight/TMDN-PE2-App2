@@ -17,21 +17,29 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 $startDate = sanitize($_POST['startDate']);
 $endDate = sanitize($_POST['endDate']);
 $reason = sanitize($_POST['reason']);
+$doctor =  $_POST['doctor'];
+
+$type = $_POST['type'];
 
 
-if(empty($startDate) || empty($endDate) || empty($reason)){
 
-    $formError = "Fill in all the fields.";
-}
 
-else{
-    if(Absence::createAbsence($startDate, $endDate, $reason, $db)){
-        $success = true;
+    if(empty($startDate) || empty($endDate) || empty($reason) || !isset($doctor)){
+
+        $formError = "Fill in all the fields.";
     }
+    
     else{
-        $error = true;
+        if(Absence::createAbsence($startDate, $endDate, $reason, $db)){
+            $success = true;
+        }
+        else{
+            $error = true;
+        }
     }
-}
+
+
+
 
 
 
@@ -62,7 +70,7 @@ else{
     <div class="wrapper">
         <?php if($success): ?>
         <div class="success-message">
-            <p>Your absence has been filed correctly!</p>
+            <p>Your absence has been filed correctly! Make sure you mail the doctor certificate when you acquire it.</p>
         </div>
         <?php endif; ?>
 
@@ -88,22 +96,25 @@ else{
                     <p class="rt-error"></p>
                 </div>                
                 <div class="row">
-                    <label for="">Start date</label>
+                    <label for="">Start date *</label>
                     <input type="date" name="startDate" value="<?php echo date("Y-m-d") ?>" id="start">
                 </div>
                 <div class="row">
-                    <label for="">Days of absence</label>
+                    <label for="">Days of absence *</label>
                     <input type="text" value="1" name="" id="days">
                 </div>
                 <div class="row">
-                    <label for="">End date</label>
+                    <label for="">End date *</label>
                     <input type="date" name="endDate" id="end">
                 </div>
-                <div class="row">
-                    <label for="">Reason of absence</label>
-                    <textarea name="reason" id="" cols="30" rows="10" spellcheck="false"></textarea>
+                <div class="row radio info">
+                    <label for="">I'll acquire a doctor certificate * <input type="checkbox" name="doctor" id=""></label>
+                    <p>The doctor certificate (when acquired) needs to be mailed to <strong>absences@blueskyunlimited.com</strong></p>
                 </div>
-
+                <div class="row" id="reason">
+                    <label for="">Reason of absence *</label>
+                    <textarea name="reason" placeholder="Explain with a few words. ex: Headache" id="" cols="30" rows="2" spellcheck="false"></textarea>
+                </div>
                 <div class="row">
                     <input type="submit" value="Send">
                 </div>
@@ -174,10 +185,14 @@ $("#start").change(() => {
         $(".rt-error").text("You cannot file an absence in the past!")
         showErrorMessage(".rt", "You cannot file an absence in the past!", 3000);
     }
+
     // find the difference in days between 2 dates
     const diffTime = Math.abs(endDate - startDate);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
     // if diffdays is not a number - put empty string in days of absence
+
+    
+
     if(isNaN(diffDays)){
     $("#days").val("");
     }
