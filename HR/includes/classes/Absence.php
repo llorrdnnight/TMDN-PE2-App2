@@ -58,10 +58,10 @@ public static function getAllAbsences($db, $start = null, $offset = null, $state
 
     if(is_null($start) && is_null($offset)){
 
-        $sql = "SELECT * FROM absences ORDER BY startDate desc";
+        $sql = "SELECT * FROM absences ORDER BY startDate desc, state asc";
 
         if(!is_null($state)){
-            $sql = "SELECT * FROM absences WHERE state = $state ORDER BY startDate desc";
+            $sql = "SELECT * FROM absences WHERE state = $state ORDER BY startDate desc, state asc";
         }
 
       
@@ -69,10 +69,10 @@ public static function getAllAbsences($db, $start = null, $offset = null, $state
 
     else{
 
-        $sql = "SELECT * FROM absences ORDER BY startDate desc LIMIT $start, $offset";
+        $sql = "SELECT * FROM absences ORDER BY startDate desc, state asc LIMIT $start, $offset";
 
         if(!is_null($state)){
-            $sql = "SELECT * FROM absences WHERE state = '$state' ORDER BY startDate desc LIMIT $start, $offset";
+            $sql = "SELECT * FROM absences WHERE state = '$state' ORDER BY startDate desc, state asc LIMIT $start, $offset";
         }
         
     }
@@ -91,11 +91,11 @@ public static function getAbsencesByDate($start = null, $offset = null,$date,$st
 
     if(!is_null($start) && !is_null($offset)){
 
-        $sql = "SELECT * FROM absences WHERE startDate <= :date AND endDate > :date LIMIT $start, $offset ";
+        $sql = "SELECT * FROM absences WHERE startDate <= :date AND endDate > :date order by state asc LIMIT $start, $offset ";
 
         if(!is_null($state)){
 
-            $sql = "SELECT * FROM absences WHERE startDate <= :date AND endDate > :date AND state = :state LIMIT $start, $offset ";
+            $sql = "SELECT * FROM absences WHERE startDate <= :date AND endDate > :date AND state = :state order by state asc LIMIT $start, $offset ";
 
     }
     }
@@ -103,11 +103,11 @@ public static function getAbsencesByDate($start = null, $offset = null,$date,$st
 
     else{
 
-        $sql = "SELECT * FROM absences WHERE startDate <= :date AND endDate > :date ";
+        $sql = "SELECT * FROM absences WHERE startDate <= :date AND endDate > :date order by state asc ";
 
         if(!is_null($state)){
 
-            $sql = "SELECT * FROM absences WHERE startDate <= :date AND endDate > :date AND state = :state ";
+            $sql = "SELECT * FROM absences WHERE startDate <= :date AND endDate > :date AND state = :state order by state asc ";
 
     }
 
