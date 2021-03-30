@@ -15,24 +15,30 @@ if(isLoggedIn()){
 
 $error = null;
 
+
 function printRows() {
     global $db;
+    global $row;
+    $job_id = $_GET["Jobid"];
 
-    $sql = "SELECT job.id, job.name, job.available ,department.name as dpname, department.location
-    FROM job 
-    INNER JOIN department  On job.department = department.id";
+    $sql = "SELECT degree, experience, general, job.name
+    FROM jobdescription
+    INNER JOIN job  On job.description = jobdescription.id 
+    WHERE job.id = '$job_id'";
+
+
     $result = $db->query($sql);
 
     foreach($result as $row)
     {
         echo '<tr>
-                <td>'.$row["name"].'</td>
-                <td>'.$row["dpname"].'</td>
-                <td>'.$row["location"].'</td>
-                <td>'.$row["available"].'</td>
-                <td><a href="vacatureinfo.php?Jobid='.$row["id"].'">Read More...</a></td>
-            </tr>';
-    }
+            <td>'.$row["name"].'</td>
+            <td>'.$row["degree"].'</td>
+            <td>'.$row["experience"].'</td>
+            <td>'.$row["general"].'</td>
+        </tr>';
+}
+
 
 }
 
@@ -52,8 +58,8 @@ function printRows() {
 <body>
 <div class="nav-bar">
             <div class="left">
-                <a href="dashboard.php"><i class="fas fa-arrow-left"></i></a>
-                <h1>Vacature</h1>
+                <a href="vacature.php"><i class="fas fa-arrow-left"></i></a>
+                <h1>Vacature Info</h1>
             </div>
             <div class="right">
             <i class="fa fa-user-circle"></i>
@@ -67,10 +73,9 @@ function printRows() {
 				<thead>
 					<tr>
 						<th>Job Title</th>
-						<th>Department</th>
-						<th>Location</th>
-						<th>available</th>
-                        <th>Info</th>
+						<th>degree</th>
+						<th>Experience</th>
+						<th>general</th>
                     </tr>
 				</thead>
 				<tbody>
@@ -78,7 +83,7 @@ function printRows() {
 				</tbody>
 			</table>
 		</div>
-	</div> <!-- End of container -->
+	</div> 
 </div>
 </div>
 </body>
