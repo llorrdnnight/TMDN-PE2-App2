@@ -6,7 +6,7 @@ include '../includes/classes/Employee.php';
 error_reporting(E_ERROR | E_PARSE);
 // loadMore variables
 $start = 0;
-$offset = 10;
+$offset = 5;
 // GET vars
 $sortDate = null;
 $state = null;
@@ -66,7 +66,8 @@ if(isset($_GET['state'])){
 if(isset($_GET['employee'])){
     $employee = $_GET['employee'];
     $employeeName = Employee::getEmployeeNameById($employee, $db);
-    $absences = Absence::getAbsencesByEmployee($employee,$db);
+    $absences = Absence::getAbsencesByEmployee($start,$offset,$employee,$db);
+    $numberOfRecords = count(Absence::getAbsencesByEmployee(null,null,$employee,$db));
     // calculate some details about the employee
     $employeeDetails = Employee::getEmployeeById($employee,$db);
     // how many days absent this year
@@ -85,7 +86,8 @@ if(isset($_GET['employee'])){
 // check if there is a search query
 else if(isset($_GET['q'])){
     $search = $_GET['q'];
-    $absences = Absence::getAbsencesBySearch($search, $db);
+    $numberOfRecords = count(Absence::getAbsencesBySearch(null,null, $search, $db));
+    $absences = Absence::getAbsencesBySearch($start,$offset,$search, $db);
 }
 // check if there is a date query
 else{
@@ -188,11 +190,23 @@ else{
         <div class="content">
 
             <div class="inner-content">
+
+            <?php if (isset($search)): ?>
+                    <div class="employee-info">
+                        <div class="row">
+                            <a href="./overview.php"><i class="fas fa-arrow-left"></i></a>
+                            <span>Search results for:</span><strong>'<?php echo $search; ?>'</strong>
+                        </div>
+                      
+                    </div>
+            <?php endif; ?>
+
             <?php if (isset($employee)): ?>
                     <div class="employee-info">
                         <div class="row">
-                                <span>Employee:</span><strong><?php echo $employeeName; ?></strong>
-                            </div>
+                            <a href="./overview.php"><i class="fas fa-arrow-left"></i></a>
+                            <span>Employee:</span><strong><?php echo $employeeName; ?></strong>
+                        </div>
                         <div class="row">
                             <span>Days sick this year:</span><strong><?php echo $sicknessDays; ?></strong>
                         </div>
@@ -200,7 +214,11 @@ else{
                             <span>Go to profile <i class="fa fa-user-circle"></i> </span></strong>
                         </div>
                     </div>
-                    <?php endif; ?>
+            <?php endif; ?>
+
+
+                <?php if(is_null($employee) && is_null($search)): ?>
+
                 <div class="nav">
 
 
@@ -208,17 +226,17 @@ else{
 
                         <div class="filter-box">
                             <div class="row">
-                                <a href="./overview.php?&<?php
-                                if(isset($_GET['type'])){echo "type=$type";}
+                                <a href="./overview.php?<?php
+                                if(isset($_GET['type'])){echo "&type=$type";}
                                 ?>" class="<?php if(!isset($_GET['date'])){echo "active-toggle";}?>">All</a>
-                                <a href="./overview.php?date=yesterday&<?php
-                                if(isset($_GET['type'])){echo "type=$type";}
+                                <a href="./overview.php?date=yesterday<?php
+                                if(isset($_GET['type'])){echo "&type=$type";}
                                 ?>" class="<?php if($_GET['date'] == "yesterday"){echo "active";} ?>">Yesterday</a>
-                                <a href="./overview.php?date=today&<?php
-                                if(isset($_GET['type'])){echo "type=$type";}
+                                <a href="./overview.php?date=today<?php
+                                if(isset($_GET['type'])){echo "&type=$type";}
                                 ?>" class="<?php if($_GET['date'] == "today"){echo "active";} ?>">Today</a>
-                                <a href="./overview.php?date=tomorrow&<?php
-                                if(isset($_GET['type'])){echo "type=$type";}
+                                <a href="./overview.php?date=tomorrow<?php
+                                if(isset($_GET['type'])){echo "&type=$type";}
                                 ?>" class="<?php if($_GET['date'] == "tomorrow"){echo "active";} ?>">Tomorrow</a>
                             </div>
                         </div>
@@ -240,14 +258,14 @@ else{
                     </div>
 
                         <div class="row">
-                            <a href="./overview.php?&<?php
-                            if(isset($_GET['date'])){echo "date=$sortDate";}
+                            <a href="./overview.php?<?php
+                            if(isset($_GET['date'])){echo "&date=$sortDate";}
                             ?>" class="<?php if(!isset($_GET['state'])){echo "active-toggle";} ?>">All</a>    
-                            <a href="./overview.php?state=verified&<?php
-                            if(isset($_GET['date'])){echo "date=$sortDate";}
+                            <a href="./overview.php?state=verified<?php
+                            if(isset($_GET['date'])){echo "&date=$sortDate";}
                             ?>" class="<?php if($_GET['state'] == "verified"){echo "active-toggle";} ?>">Verified</a>
-                            <a href="./overview.php?state=pending&<?php
-                            if(isset($_GET['date'])){echo "date=$sortDate";}
+                            <a href="./overview.php?state=pending<?php
+                            if(isset($_GET['date'])){echo "&date=$sortDate";}
                             ?>" class="<?php if($_GET['state'] == "pending"){echo "active-toggle";} ?>">Pending</a>
 
                         </div>
@@ -256,6 +274,8 @@ else{
                    
                     </div>
                 </div>
+
+                <?php endif; ?>
 
                 <table>
                         <tr>
@@ -289,7 +309,10 @@ else{
                         
                         } 
 
-                             if(isset($_GET['employee'])){echo "employee=$employee";}
+                             if(isset($_GET['employee'])){echo "employee=$employee"."&";}
+
+                             if(isset($_GET['q'])){echo "q=$search";}
+
 
                             
                             ?>" method="POST">
@@ -321,6 +344,8 @@ else{
                 <input type="hidden" id="date" value="<?php echo $_GET['date']; ?>">
 
                 <input type="hidden" id="employee" value="<?php echo $_GET['employee']; ?>">
+
+                <input type="hidden" id="search" value="<?php echo $_GET['q']; ?>">
 
 
 

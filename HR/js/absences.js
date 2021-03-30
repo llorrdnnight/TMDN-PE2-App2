@@ -1,4 +1,4 @@
-let offset = 10;
+let offset = 5;
 let start = $("#startValue");
 let numberOfRecords = $("#numberOfRecords");
 
@@ -11,10 +11,12 @@ $("#loadMore").click(function() {
     let date = $("#date").val();
     let state = $("#state").val();
     let employee = $("#employee").val();
+    let search = $("#search").val();
+
 
 
     $.get(
-        "../includes/ajax_php/getAbsences.php", {start: startValue, date: date, state: state }, function(response){
+        "../includes/ajax_php/getAbsences.php", {start: startValue, date: date, state: state, employee: employee, search:search }, function(response){
     
             // do something with the data
             console.log(response);

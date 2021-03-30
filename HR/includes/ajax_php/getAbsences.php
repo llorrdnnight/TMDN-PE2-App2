@@ -19,7 +19,7 @@ if($_SERVER['REQUEST_METHOD'] == "GET"){
 
     $start = $_GET['start'];
     $sortDate = $_GET['date'];
-    $offset = 10;
+    $offset = 5;
     $state = null;
 
 
@@ -62,6 +62,21 @@ if($_SERVER['REQUEST_METHOD'] == "GET"){
     else{
 
         $absences = Absence::getAllAbsences($db,$start,$offset,$state);
+
+
+    }
+
+
+    if(!empty($_GET['employee'])){
+
+        $employee = $_GET['employee'];
+        $absences = Absence::getAbsencesByEmployee($start, $offset, $employee, $db);
+    }
+
+    if(!empty($_GET['search'])){
+
+        $search = $_GET['search'];
+        $absences = Absence::getAbsencesBySearch($start,$offset,$search,$db);
 
 
     }

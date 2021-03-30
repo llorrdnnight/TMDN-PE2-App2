@@ -63,6 +63,7 @@ public static function getAllAbsences($db, $start = null, $offset = null, $state
         if(!is_null($state)){
             $sql = "SELECT * FROM absences WHERE state = $state ORDER BY startDate desc";
         }
+
       
     }
 
@@ -73,9 +74,6 @@ public static function getAllAbsences($db, $start = null, $offset = null, $state
         if(!is_null($state)){
             $sql = "SELECT * FROM absences WHERE state = '$state' ORDER BY startDate desc LIMIT $start, $offset";
         }
-
-   
-
         
     }
 
@@ -131,9 +129,22 @@ public static function getAbsencesByDate($start = null, $offset = null,$date,$st
 }
 
 
-public static function getAbsencesByEmployee($employee,$db){
+public static function getAbsencesByEmployee($start = null, $offset = null,$employee,$db){
 
-    $stmt = $db->prepare("SELECT * FROM absences WHERE employee = :employee ");
+    $sql = "";
+    if(is_null($start) && is_null($offset)){
+
+        $sql = "SELECT * FROM absences WHERE employee = :employee order by state";
+
+    }
+
+    else{
+
+        $sql = "SELECT * FROM absences WHERE employee = :employee order by state LIMIT $start, $offset";
+
+    }
+
+    $stmt = $db->prepare($sql);
     $stmt->bindParam(":employee", $employee);
 
     if($stmt->execute()){
@@ -145,9 +156,23 @@ public static function getAbsencesByEmployee($employee,$db){
 }
 
 
-public static function getAbsencesBySearch($q, $db){
+public static function getAbsencesBySearch($start = null, $offset = null,$q, $db){
 
-    $stmt = $db->prepare("SELECT * FROM absences WHERE employee IN(SELECT id FROM employee WHERE CONCAT(firstName, ' ', 'lastName') LIKE :q)");
+
+    $sql = "";
+
+    if(is_null($start) && is_null($offset)){
+
+        $sql = "SELECT * FROM absences WHERE employee IN(SELECT id FROM employee WHERE CONCAT(firstName, ' ', lastName) LIKE :q)";
+
+    }
+
+    else{
+
+        $sql = "SELECT * FROM absences WHERE employee IN(SELECT id FROM employee WHERE CONCAT(firstName, ' ', lastName) LIKE :q) LIMIT $start, $offset";
+    }
+
+    $stmt = $db->prepare($sql);
     $q = $q.'%';
     $stmt->bindParam(":q", $q);
 

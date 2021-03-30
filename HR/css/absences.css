@@ -483,6 +483,12 @@ input, textarea {
   margin-bottom: 2rem;
 }
 
+.employee-info .row a {
+  margin-right: .5rem;
+  text-decoration: none;
+  color: #0D3459;
+}
+
 .employee-info > * {
   margin: .5rem 0rem;
 }
