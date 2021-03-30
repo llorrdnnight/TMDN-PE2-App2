@@ -22,7 +22,7 @@
                 $Details .= "</div><div class='form-group col-lg-6'>";
                 $Details .= "<label for='Status'>Status</label><input class='form-control' name='Status' type='text' value='" . $Complaint["Status"] . "'>";
                 $Details .= "<label for='Customer'>Customer</label><input class='form-control' name='Customer' type='text' value='" . $Complaint["Customer"] . "'>";
-                $Details .= "</div></div><div class='form-row'><div class='btn-group'>";
+                $Details .= "</div></div><div class='form-row'><div class='btn-group col-xl-2 p-0 pr-2'>";
                 $Details .= "<button name='Submit' type='submit' class='btn btn-success'>Submit</button><button name='Reset' type='reset' class='btn btn-secondary'>Reset</button>";
                 $Details .= "</div></div>";
                 $Details .= "</form>";
@@ -38,32 +38,40 @@
     <title>Complaints - Edit</title>
 </head>
 <body>
-    <div id="wrapper"> <!-- Page container -->
-        <header class="col-lg-12"> <!-- Header class -->
-            <h1>Edit Complaint</h1>
-        </header>
-
-		<div class="container-fluid"> <!-- Nav and content container -->
-			<div class="row"> <!-- Row class for nav and content columns -->
-                <?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/nav.html"); ?>
-
-				<div id="page-content-wrapper" class="col-lg-11"> <!-- Separate wrapper for content -->
-                    <?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/complaintsnav.html"); ?>
-
-					<div class="container-fluid">
-						<div class="col-lg-12">
-                            <div id="editcomplaint">
+    <div id="wrapper" class="container-fluid h-100"><!-- full body wrapper -->
+        <div class="row h-100">
+            <div class="col-12">
+                <div class="d-flex flex-column h-100"><!-- content flexbox -->
+                    <div class="row">
+                        <div class="col-12 p-0">
+                            <header class="col-lg-12"> <!-- Header class -->
                                 <h1>Edit Complaint</h1>
+                            </header>
+                        </div>
+                    </div>
 
-                                <?php 
-                                    if (isset($_GET["ComplaintID"]) && !empty($_GET["ComplaintID"]))
-                                        echoEditableComplaintDetails($json["Complaints"], $_GET["ComplaintID"]);
-                                    else
-                                        header("Location: opencomplaints.php");
-                                ?>
+                    <div class="row flex-grow-1">
+                        <?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/nav.html"); ?><!-- Navbar -->
+
+                        <div class="col-xl-10 col-md-9 p-0"><!-- insert content here -->
+                            <?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/complaintsnav.html"); ?>
+
+                            <div class="container-fluid">
+                                <div class="col-lg-12">
+                                    <div id="editcomplaint">
+                                        <h1>Edit Complaint</h1>
+
+                                        <?php 
+                                            if (isset($_GET["ComplaintID"]) && !empty($_GET["ComplaintID"]))
+                                                echoEditableComplaintDetails($json["Complaints"], $_GET["ComplaintID"]);
+                                            else
+                                                header("Location: opencomplaints.php");
+                                        ?>
+                                    </div>
+                                </div>
                             </div>
-						</div>
-					</div>
+                        </div>
+                    </div>
 				</div>
 			</div>
 		</div>

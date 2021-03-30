@@ -37,43 +37,47 @@
     }
 ?>
 
-<?php 
-    require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/head/head.php"); 
-    require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/head/head-statistics-bottom.html"); 
-?>
+<?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/head/head.php"); ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <script src="/Management/scripts/javascript/getGraph.js"></script>
+    <title>Complaints - Dashboard</title>
+</head>
 <body>
-    <div id="wrapper"> <!-- Page container -->
-        <header class="col-lg-12"> <!-- Header class -->
-            <h1><a href="./dashboard.php">Dashboard</a></h1>
-        </header>
-
-		<div class="container-fluid"> <!-- Nav and content container -->
-			<div class="row flex-grow-1"> <!-- Row class for nav and content columns -->
-                <?php require("../components/nav.html"); ?>
-
-				<div id="page-content-wrapper" class="col-lg-11"> <!-- Separate wrapper for content -->
-                    <?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/complaintsnav.html"); ?>
-
-					<div class="container-fluid">
-                        <div class="row"><div id="test"></div></div>
-                        <div class="row mb-3 pl-3 pr-3">
-                            <div id="dashboard-opencomplaints" class="col-lg-6 dashboard-item">
-                                <?php echoStatistics($json["Complaints"], "OpenComplaintsGraph", "Open"); ?>
-                            </div>
-                            
-                            <div id="dashboard-opencomplaints" class="col-lg-6 dashboard-item">
-                                <?php echoStatistics($json["Complaints"], "ClosedComplaintsGraph", "Closed"); ?>
-                            </div>
-                            
-                            <!-- <h3 style='clear: left;'>
-                                TODO: Add pie chart with number of open complaints, grouped by days open, 7 days => a month => 3 months => 6 months => a year<br>
-                                Add bar chart with number of complaints, grouped per month, increases in height with number of complaints etc.<br>
-                                Add a list of open and closed complaints mixed, (editable in dashboard page?).
-                            </h3> -->
+    <div id="wrapper" class="container-fluid h-100"><!-- full body wrapper -->
+        <div class="row h-100">
+            <div class="col-12">
+                <div class="d-flex flex-column h-100"><!-- content flexbox -->
+                    <div class="row">
+                        <div class="col-12 p-0">
+                            <header class="col-lg-12"><!-- Header class -->
+                                <h1><a href="./dashboard.php">Dashboard</a></h1>
+                            </header>
                         </div>
-                        <div class="row mb-3 pl-3 pr-3">
-                            <div class="chart-container col-lg-12">
-                                <canvas id="MonthlyComplaintsGraph" class='canvas graph' style="height: 250px; width: 1600px;"></canvas>
+                    </div>
+
+                    <div class="row flex-grow-1">
+                        <?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/nav.html"); ?><!-- Navbar -->
+
+                        <div class="col-xl-10 col-md-9 p-0"><!-- insert content here -->
+                            <?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/complaintsnav.html"); ?>
+
+                            <div class="container-fluid">
+                                <div class="row"><div id="test"></div></div>
+                                <div class="row mb-3 pl-3 pr-3">
+                                    <div id="dashboard-opencomplaints" class="col-lg-6 dashboard-item">
+                                        <?php echoStatistics($json["Complaints"], "OpenComplaintsGraph", "Open"); ?>
+                                    </div>
+                                    
+                                    <div id="dashboard-opencomplaints" class="col-lg-6 dashboard-item">
+                                        <?php echoStatistics($json["Complaints"], "ClosedComplaintsGraph", "Closed"); ?>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3 pl-3 pr-3">
+                                    <div class="chart-container col-lg-12">
+                                        <canvas id="MonthlyComplaintsGraph" class='canvas graph' style="height: 250px; width: 1600px;"></canvas>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 					</div>

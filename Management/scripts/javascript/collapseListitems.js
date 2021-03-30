@@ -3,8 +3,8 @@ $(document).ready(function()
     //uncomment this after navbar icons have been added to indicate it is expandable / collapsible
     // $("#collapselist").toggle();
 
-    $("#collapselink").click(function()
+    $(".collapselink").click(function()
     {
-        $("#collapselist").toggle();
+        $(this).next().toggle();
     })
 });

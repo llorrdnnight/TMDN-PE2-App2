@@ -2,14 +2,15 @@
 :root
 {
     --white: #EBEBEB;
-    --gray: #C0C0C0;
-    --darkgray: #999999;
-    --black: #2e2e2e;
+    --lightgray: #C0C0C0;
+    --gray: #999999;
+    --darkgray: #3f3f3f;
+    --black: #858585;
 
-    --red: #C41313;
+    --red: #c42121;
     --orange: #FF6700;
 
-    --green: #1E9239;
+    --green: #198b2c;
 
     --lightblue: #3A6EA5;
     --blue: #004E98;
@@ -27,12 +28,14 @@
 html, body
 {
     height: 100%;
-    color: var(--text);
     -ms-overflow-style: none; 
     scrollbar-width: none;
 }
 
-.nopadding{ padding: 0; }
+body *
+{
+    color: var(--text);
+}
 
 header
 {
@@ -41,26 +44,22 @@ header
     background-color: var(--darkblue);
 }
 
-h1 a
+header h1 a
 {
     color: var(--white);
     text-decoration: none;
 }
 
-h1 a:hover
+header h1 a:hover
 {
     color: var(--orange);
     text-decoration: none;
 }
 
-#sidebar-wrapper
+#sidebar-wrapper /* navbar */
 {
-    /* background-color: var(--gray); */
-    padding: 15px 0px;
-    font-size: 16px;
+    background-color: var(--white);
 }
-
-#sidebar-wrapper ul ul{ padding-left: 10px; }
 
 #sidebar-wrapper a
 {
@@ -68,49 +67,37 @@ h1 a:hover
     text-decoration: none;
 }
 
-#sidebar-wrapper a:hover
-{
-    color: var(--orange);
-}
+#sidebar-wrapper a:hover{ color: var(--orange); }
 
-.sidebar-nav ul, .sidebar-nav li
+#sidebar-wrapper ul > li > ul
 {
-    padding: none;
-    margin: none;
-}
-
-#page-content-wrapper
-{
-    background-color: rgb(245, 245, 245);
-    padding-top: 15px;
-    padding-left: 0px;
-    padding: 15px 0 0 0;
+    padding-left: 10px;
 }
 /* #endregion */
 
 /* #region DELIVERIES */
-button{ width: 100px; }
+#deliveriestable tbody tr:hover{ cursor: pointer; }
 
-.input-group{ border: 1px solid black; }
-
-#deliveriestable{ color: var(--text); }
-
-#deliveriestable tbody tr:hover { cursor: pointer; }
-
+/* These rows are filled with details about each delivery, and need to be hidden at the start */
 .collapserow{ display: none; }
 
+/* needs to be changed to a better type, here or in php file */
 .deliverystatus{ width: 1%; }
 
 .delivered{ background-color: var(--green); }
 
-.onhold{ background-color: var(--darkgray); }
+.onhold{ background-color: var(--gray); }
 
 .notdelivered{ background-color: var(--red); }
 /* #endregion */
 
-/* #region DASHBOARD */
-.graph
-{
-    margin: 0 auto;
-}
+/* #region STATISTICS */
+.graph{ margin: 0 auto; }
 /* #endregion */
+
+/* which page does this even apply to... */
+#recent
+{
+    width: 100%;
+    table-layout: fixed;
+}

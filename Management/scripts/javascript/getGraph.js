@@ -21,9 +21,9 @@ function setPieChartData(id, category)
 
     $.ajax(
     {
-        url : "getChartData.php" + DataUrl,
-        dataType : "json",
-        success : function(Result)
+        url: "/Management/scripts/php/getChartData.php" + DataUrl,
+        dataType: "json",
+        success: function(Result)
         {
             var ctx = document.getElementById(id).getContext('2d');
             
@@ -68,9 +68,9 @@ function setBarChartData(id)
 
     $.ajax(
     {
-        url : "getChartData.php" + DataUrl,
-        dataType : "json",
-        success : function(Result)
+        url: "/Management/scripts/php/getChartData.php" + DataUrl,
+        dataType: "json",
+        success: function(Result)
         {
             var ctx = document.getElementById(id).getContext("2d");
 

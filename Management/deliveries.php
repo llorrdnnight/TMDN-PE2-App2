@@ -4,7 +4,8 @@
 
     //Declare empty array, the default page variable and the number of table rows
     $rows = array();
-    $page = 1; $maxrows = 13;
+    $page = 1; 
+    $maxrows = 12;
 
     if ($_SERVER["REQUEST_METHOD"] == "GET")
     {
@@ -15,8 +16,6 @@
         //If a page is requested and is within the limits of our data array
         if (isset($_GET["Page"]) && $_GET["Page"] < $totalpages + 1)
             $page = $_GET["Page"];
-        else
-            $page = 1;
 
         $rowsleft = $maxrows;
         if ($page * $maxrows > $totalitems)
@@ -123,92 +122,102 @@
 ?>
 
 <?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/head/head.php"); ?>
-<?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/head/head-deliveries-bottom.html"); ?>
+    <script src="./scripts/javascript/expandRow.js"></script>
+    <script src="./scripts/javascript/cleanForm.js"></script>
+    <title>Deliveries</title>
+</head>
 <body>
-    <div id="wrapper" class="container-fluid h-100"> <!-- Page container -->
-        <div class="row">
-            <header class="col-lg-12"> <!-- Header class -->
-                <h1><a href='deliveries.php'>Deliveries</a></h1>
-            </header>
-        </div>
-
-        <div class="row"> <!-- Row class for nav and content columns -->
-            <?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/nav.html"); ?>
-
-            <div id="page-content-wrapper" class="col-xl-11 col-lg-10"> <!-- Separate wrapper for content -->
-                <form id="deliveryfilter" class="col-lg-12 g-0">
-                    <div>
-                        <div class="btn-group">
-                            <button class="btn btn-success" type="submit">Filter</button>
-                            <button class="btn btn-secondary" type="reset">Reset</button>
+    <div id="wrapper" class="container-fluid h-100"><!-- full body wrapper -->
+        <div class="row h-100">
+            <div class="col-12">
+                <div class="d-flex flex-column h-100"><!-- content flexbox -->
+                    <div class="row">
+                        <div class="col-12 p-0">
+                            <header><!-- insert header here -->
+                                <h1 class="pl-2"><a href='deliveries.php'>Deliveries</a></h1>
+                            </header>
                         </div>
                     </div>
 
-                    <div class="form-row mb-3">
-                        <div class="col-lg-2 col-sm-4">
-                            <label for="PickupTime">Pickup Time</label>
-                            <input class="form-control" name="PickupTime" type="time">
-                        </div>
+                    <div class="row flex-grow-1">
+                        <?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/nav.html"); ?><!-- Navbar -->
+                        <div class="col-xl-10 col-md-9 p-0"><!-- insert content here -->
+                            <form id="deliveryfilter" class="col-lg-12 pt-3 g-0">
+                                <div>
+                                    <div class="btn-group col-xl-2 p-0 pr-2">
+                                        <button class="btn btn-success" type="submit">Filter</button>
+                                        <button class="btn btn-secondary" type="reset">Reset</button>
+                                    </div>
+                                </div>
 
-                        <div class="col-lg-2 col-sm-4">
-                            <label for="Location">Location</label>
-                            <input class="form-control" name="Location" type="text">
-                        </div>
+                                <div class="form-row mb-3 pt-2">
+                                    <div class="col-lg-2 col-sm-4">
+                                        <label for="PickupTime">Pickup Time</label>
+                                        <input class="form-control" name="PickupTime" type="time">
+                                    </div>
 
-                        <div class="col-lg-2 col-sm-4">
-                            <label for="DeliveryID">Delivery ID</label>
-                            <input class="form-control" name="DeliveryID" type="number">
-                        </div>
+                                    <div class="col-lg-2 col-sm-4">
+                                        <label for="Location">Location</label>
+                                        <input class="form-control" name="Location" type="text">
+                                    </div>
 
-                        <div class="col-lg-2 col-sm-4">
-                            <label for="Status">Status</label>
-                            <select class="form-control" name="Status">
-                                <option hidden disabled selected value>-</option>
-                                <option value="Delivered">Delivered</option>
-                                <option value="On Hold">On Hold</option>
-                                <option value="Not Delivered">Not Delivered</option>
-                            </select>
-                        </div>
+                                    <div class="col-lg-2 col-sm-4">
+                                        <label for="DeliveryID">Delivery ID</label>
+                                        <input class="form-control" name="DeliveryID" type="number">
+                                    </div>
 
-                        <div class="col-lg-2 col-sm-4">
-                            <label for="Company">Company</label>
-                            <input class="form-control" name="Company" type="text">
-                        </div>
+                                    <div class="col-lg-2 col-sm-4">
+                                        <label for="Status">Status</label>
+                                        <select class="form-control" name="Status">
+                                            <option hidden disabled selected value>-</option>
+                                            <option value="Delivered">Delivered</option>
+                                            <option value="On Hold">On Hold</option>
+                                            <option value="Not Delivered">Not Delivered</option>
+                                        </select>
+                                    </div>
 
-                        <div class="col-lg-2 col-sm-4">
-                            <label for="ReceiptID">Receipt ID</label>
-                            <input class="form-control" name="ReceiptID" type="number">
-                        </div>
+                                    <div class="col-lg-2 col-sm-4">
+                                        <label for="Company">Company</label>
+                                        <input class="form-control" name="Company" type="text">
+                                    </div>
 
-                        <?php echo "<input name='Page' type='hidden' value='" . $page . "'>"; ?>
+                                    <div class="col-lg-2 col-sm-4">
+                                        <label for="ReceiptID">Receipt ID</label>
+                                        <input class="form-control" name="ReceiptID" type="number">
+                                    </div>
+
+                                    <?php echo "<input name='Page' type='hidden' value='" . $page . "'>"; ?>
+                                </div>
+                            </form>
+
+                            <div class="col-lg-12 g-0 pt-2">
+                                <table id="deliveriestable" class="table table-hover table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Pickup Time</th>
+                                            <th>Location</th>
+                                            <th>Delivery ID</th>
+                                            <th>Status</th>
+                                            <th>Company</th>
+                                            <th>Receipt ID</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php echoDeliveries($rows); ?>
+                                    </tbody>
+                                </table>
+
+                                <nav aria-label="Page navigation" class="d-flex justify-content-center">
+                                    <ul class="pagination">
+                                        <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+                                        <?php echoPageIndex($totalpages); ?>
+                                        <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
                     </div>
-                </form>
-
-                <div class="col-lg-12 g-0">
-                    <table id="deliveriestable" class="table table-hover table-responsive">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Pickup Time</th>
-                                <th>Location</th>
-                                <th>Delivery ID</th>
-                                <th>Status</th>
-                                <th>Company</th>
-                                <th>Receipt ID</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php echoDeliveries($rows); ?>
-                        </tbody>
-                    </table>
-
-                    <nav aria-label="Page navigation" class="d-flex justify-content-center">
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
-                            <?php echoPageIndex($totalpages); ?>
-                            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
-                        </ul>
-                    </nav>
                 </div>
             </div>
         </div>
