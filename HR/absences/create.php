@@ -6,6 +6,7 @@ include '../includes/db_config.php';
 include '../includes/authentication.php';
 include '../includes/sanitize.php';
 include '../includes/classes/Absence.php';
+include '../includes/classes/Employee.php';
 
 if(!isLoggedIn()){
     header("Location: ../dashboard.php");
@@ -58,7 +59,7 @@ $type = $_POST['type'];
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/absences.css">
     <link rel="stylesheet" href="../css/state-messages.css">
-    <title>Dashboard - File an absence</title>
+    <title>Dashboard - Sickness report</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../js/notification.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
@@ -82,11 +83,11 @@ $type = $_POST['type'];
         <div class="nav-bar">
             <div class="left">
                 <a href="../dashboard.php"><i class="fas fa-arrow-left"></i></a>
-                <h1>File an absence</h1>
+                <h1>Sickness report</h1>
             </div>
             <div class="right">
             <i class="fa fa-user-circle"></i>
-            <span>John Doe</span>
+            <span><?php echo Employee::getEmployeeNameById(getUserId(), $db); ?></span>
             </div>
             
         </div>
