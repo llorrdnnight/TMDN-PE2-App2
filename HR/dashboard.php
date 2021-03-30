@@ -29,6 +29,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 <title>Dashboard HR</title>
 <link rel="stylesheet" href="./css/reset.css">
 <link rel="stylesheet" href="./css/dashboard.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+
 </head>
 <body>
 <div class="header">
@@ -47,10 +49,27 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
           <h4><b>Employee list</b></h4> 
         </div>
       </div>
+      <a href="Vacature.php"><div class="card">
+        <div class="container">
+          <h4><b>Vacature</b></h4> 
+        </div>
+      </div></a>
+      <a href="absences/create.php"><div class="card">
+        <div class="container">
+          <h4><b>File an absence</b></h4> 
+        </div>
+      </div></a>
+      <a href="absences/overview.php"><div class="card">
+        <div class="container">
+          <h4><b>Absences</b></h4> 
+        </div>
+      </div></a>
       <div class="card-logout">
+        <div class="container">
           <form action="" method="post">
             <input type="submit" value="Logout">
           </form>
+        </div>
       </div>
 </div>
 </body>
