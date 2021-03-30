@@ -1,5 +1,11 @@
 <?php
-    $json = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."/Management/database.json"), true);
+session_start();
+// Check if the session is set else redirect to login page
+if (isset($_SESSION['employee_id'])){}
+
+else
+header("Location: login.php");
+    $json = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."/TMDN-PE2-App2/Management/database.json"), true);
 
     if (isset($_POST["Submit"]))
     {

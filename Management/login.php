@@ -2,7 +2,7 @@
 /**
  * @author Greg De Vuyst
  */
-
+session_start();
 include './includes/db_config.php';
 include './includes/sanitize.php';
 
@@ -31,6 +31,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 // store the access level of the employee
                 $_SESSION['admin'] = ($employee['isAdmin'] == 1)? true: false;
                 // redirect the user to the dashboard
+				header("Location: dashboard.php");
             }
             else{
                 // invalid password

@@ -1,5 +1,5 @@
 <?php
-    define("SCRIPT_ROOT", "http://localhost/Management");
+    define("SCRIPT_ROOT", "http://localhost/TMDN-PE2-App2/Management");
 ?>
 
 <!DOCTYPE html>

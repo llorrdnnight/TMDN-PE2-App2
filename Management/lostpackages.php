@@ -1,4 +1,10 @@
 <?php
+session_start();
+// Check if the session is set else redirect to login page
+if (isset($_SESSION['employee_id'])){}
+
+else
+header("Location: login.php");
     $json = json_decode(file_get_contents("database.json"), true);
 
     function echoLostPackages($arr)
@@ -37,7 +43,7 @@
 
 		<div class="container-fluid"> <!-- Nav and content container -->
 			<div class="row"> <!-- Row class for nav and content columns -->
-                <?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/nav.html"); ?>
+                <?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/nav.html"); ?>
 
 				<div id="page-content-wrapper" class="col-lg-11"> <!-- Separate wrapper for content -->
 					<div class="container-fluid">

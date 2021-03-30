@@ -1,6 +1,11 @@
 <?php
     include "OrderList.php";
-
+    session_start();
+    // Check if the session is set else redirect to login page
+    if (isset($_SESSION['employee_id'])){}
+    
+    else
+    header("Location: login.php");
     $id = $_GET['id'];
     foreach($orderArr as $order){
         if($order->get_id() == $id){
@@ -82,22 +87,7 @@
 
 		<div class="container-fluid"> <!-- Nav and content container -->
 			<div class="row"> <!-- Row class for nav and content columns -->
-				<nav id="sidebar-wrapper" class="col-lg-1"> <!-- 1 unit wide column -->
-					<ul class="sidebar-nav">
-						<li><a href="/Management/orders.php">Orders</a></li>
-						<li><a href="/Management/deliveries.php">Deliveries</a></li>
-						<li><a href="/Management/lostpackages.php">Lost Packages</a></li>
-						<li><a href="/Management/complaints/dashboard.php">Complaints</a></li>
-						<li>
-							<ul>
-								<li><a href="/Management/complaints/dashboard.php">Dashboard</a></li>
-								<li><a href="/Management/complaints/opencomplaints.php">Open Complaints</a></li>
-								<li><a href="/Management/complaints/closedcomplaints.php">Closed Complaints</a></li>
-								<li><a href="/Management/complaints/registercomplaint.php">Register Complaint</a></li>
-							</ul>
-						</li>
-					</ul>
-				</nav>
+            <?php require("./components/nav.html"); ?>
 
 				<div id="page-content-wrapper" class="col-lg-11"> <!-- Separate wrapper for content -->
 					<div class="container-fluid"> <!-- Insert code after this container -->

@@ -1,4 +1,10 @@
 <?php
+session_start();
+// Check if the session is set else redirect to login page
+if (isset($_SESSION['employee_id'])){}
+
+else
+header("Location: login.php");
     //Get temporary database file contents
     $json = json_decode(file_get_contents("database.json"), true);
     $filteredjson = getFilteredArray($json["Deliveries"]);
@@ -147,8 +153,8 @@
     }
 ?>
 
-<?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/head/head.php"); ?>
-<?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/head/head-deliveries-bottom.html"); ?>
+<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head/head.php"); ?>
+<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head/head-deliveries-bottom.html"); ?>
 <body>
     <div id="wrapper" class="container-fluid h-100"> <!-- Page container -->
         <div class="row">

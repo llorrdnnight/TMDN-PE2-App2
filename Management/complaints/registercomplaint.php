@@ -1,5 +1,11 @@
 <?php
-    $json = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."/Management/database.json"), true);
+session_start();
+// Check if the session is set else redirect to login page
+if (isset($_SESSION['employee_id'])){}
+
+else
+header("Location: login.php");
+    $json = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."/TMDN-PE2-App2/Management/database.json"), true);
     $newComplaint = array();
 
     if ($_SERVER["REQUEST_METHOD"] == "POST")
@@ -37,7 +43,7 @@
     }
 ?>
 
-<?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/head/head.php"); ?>
+<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head/head.php"); ?>
     <title>Complaints - Register</title>
 </head>
 <body>
@@ -48,7 +54,7 @@
 
 		<div class="container-fluid"> <!-- Nav and content container -->
 			<div class="row"> <!-- Row class for nav and content columns -->
-                <?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/nav.html"); ?>
+                <?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/nav.html"); ?>
 
 				<div id="page-content-wrapper" class="col-lg-11"> <!-- Separate wrapper for content -->
                     <nav aria-label="Page navigation" class="d-flex justify-content-center">
