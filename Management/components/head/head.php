@@ -7,5 +7,5 @@
     <link rel="stylesheet" href="/Management/style/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/Management/style/style.css"><!-- Default stylesheet, TODO: merge with Thomas' stylesheet -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><!-- J+query -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><!-- Jquery -->
     <script src="/Management/scripts/javascript/collapseListitems.js"></script><!-- For collapsing navigation <li> items -->

@@ -49,7 +49,7 @@
     {
         if (isset($_GET["Category"]))
         {
-            $json = json_decode(file_get_contents("../database.json"), true);
+            $json = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/Management/database.json"), true);
             $Days = array(0, 7, 30, 90, 180, 365);
             $Data = array(0, 0, 0, 0, 0, 0);
             

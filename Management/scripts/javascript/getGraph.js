@@ -25,7 +25,7 @@ function setPieChartData(id, category)
         dataType: "json",
         success: function(Result)
         {
-            var ctx = document.getElementById(id).getContext('2d');
+            var ctx = id.getContext('2d');
             
             new Chart(ctx, 
             {
@@ -72,7 +72,7 @@ function setBarChartData(id)
         dataType: "json",
         success: function(Result)
         {
-            var ctx = document.getElementById(id).getContext("2d");
+            var ctx = id.getContext("2d");
 
             new Chart(ctx,
             {
@@ -112,8 +112,7 @@ function setBarChartData(id)
 
 $(document).ready(function()
 {
-    var Canvases = document.getElementsByClassName("graph");
-    setPieChartData(Canvases[0].id, "Open");
-    setPieChartData(Canvases[1].id, "Closed");
-    setBarChartData(Canvases[2].id);
+    setPieChartData(document.getElementById("OpenComplaintsGraph"), "Open");
+    setPieChartData(document.getElementById("ClosedComplaintsGraph"), "Closed");
+    setBarChartData(document.getElementById("MonthlyComplaintsGraph"));
 });
