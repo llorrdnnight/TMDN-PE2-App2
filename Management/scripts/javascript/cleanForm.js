@@ -1,6 +1,6 @@
 $(document).ready(function()
 {
-    $("#deliveryfilter").submit(function()
+    $("form").submit(function()
     {
         $("input").each(function()
         {

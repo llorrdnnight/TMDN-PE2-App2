@@ -1,4 +1,10 @@
 <?php
+session_start();
+// Check if the session is set else redirect to login page
+if (isset($_SESSION['employee_id'])){}
+
+else
+header("Location: login.php");
 	$json = json_decode(file_get_contents("MOCK_DATA.json"), true);
 
     // Fill Arrays with 0's
@@ -41,15 +47,10 @@
                 $monthProfits[$split['day']] += $Profit['price'];
             }
         }
-    }
-?>
-    <?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head/head.php"); ?>
+    }?>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <!-- Used By Google Charts -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
+<script type="text/javascript">
         // Load the Visualization API and the corechart package.
         google.charts.load('current', {'packages':['bar']});
 
@@ -103,22 +104,34 @@
             chartM.draw(dataM, google.charts.Bar.convertOptions(options));
         }
     </script>
+    
+<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head/head.php"); ?>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Used By Google Charts -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <title>Revenue</title>
 </head>
 
 <body>
-    <div id="wrapper"> <!-- Page container -->
-        <header class="col-lg-12"> <!-- Header class -->
-            <h1>Revenue</h1>
-        </header>
+<div id="wrapper" class="container-fluid h-100"><!-- full body wrapper -->
+        <div class="row h-100">
+            <div class="col-12">
+                <div class="d-flex flex-column h-100"><!-- content flexbox -->
+                    <div class="row">
+                        <div class="col-12 p-0">
+                            <header class="col-lg-12"> <!-- Header class -->
+                                <h1>Revenue</h1>
+                            </header>
+                        </div>
+                    </div>
 
-		<div class="container-fluid"> <!-- Nav and content container -->
-			<div class="row"> <!-- Row class for nav and content columns -->
+
+		<div class="row flex-grow-1">
             <?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/nav.html"); ?>
 				
-
-				<div id="page-content-wrapper" class="col-lg-11"> <!-- Separate wrapper for content -->
+            <div id="page-content-wrapper" class="col-lg-11"> <!-- Separate wrapper for content -->
 					<div class="container-fluid"> <!-- Insert code after this container -->
                         <form action="./revenue.php" method="get">
                             <input name="date" type="month"/>
@@ -139,6 +152,7 @@
 					</div> <!-- End of container -->
 				</div>
 			</div>
+
 		</div>
     </div>
 </body>
