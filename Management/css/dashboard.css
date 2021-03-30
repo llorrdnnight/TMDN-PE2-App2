@@ -14,21 +14,21 @@ body{
 
 
 .card-logout{
-    background-color: #ff6700;
-    color:white;
-    text-align: center;
-    text-decoration: none;
-    font-size: 19px;
-    cursor: pointer;
-    width: 29em;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    padding: 10px;
-    border-radius: 10px;
-    margin: 10px;
-    display: flex;
-    justify-content: center;
-  }
+  cursor: pointer;
+  background-color: #ff6700;
+  color: #3a6ea5;
+  font-size: 21px;
+  width: 10em;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  padding: 30px;
+  border-radius: 10px;
+  margin: 10px;
+  display: inline-block;
+  justify-content: center;
+  text-align: center;
+  
+}
 
   .card {
     cursor: pointer;

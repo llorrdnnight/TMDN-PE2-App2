@@ -47,10 +47,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
           <h4><b>Employee list</b></h4> 
         </div>
       </div></a>
+      <a href="#"><div class="card">
+        <div class="container">
+          <h4><b>Orders</b></h4> 
+        </div>
+      </div></a>
       <div class="card-logout">
+        <div class="container">
           <form action="" method="post">
             <input type="submit" value="Logout">
           </form>
+        </div>
       </div>
 </div>
 </body>
