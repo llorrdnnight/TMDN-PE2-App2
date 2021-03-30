@@ -56,12 +56,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
       </div></a>
       <a href="absences/create.php"><div class="card">
         <div class="container">
-          <h4><b>File an absence</b></h4> 
+          <h4><b>Sickness report</b></h4> 
         </div>
       </div></a>
       <a href="absences/overview.php"><div class="card">
         <div class="container">
-          <h4><b>Absences</b></h4> 
+          <h4><b>Sickness overview</b></h4> 
         </div>
       </div></a>
       <div class="card-logout">
