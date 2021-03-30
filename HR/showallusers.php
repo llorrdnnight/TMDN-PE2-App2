@@ -19,7 +19,7 @@ echo '<link rel="stylesheet" href ="../css/home.css"></link>';
      $result = $db->query($sql);
 
      echo"<div><table class='usertable'><th colspan=8>Employees<form action='showallusers.php' method='post'>
-   Search: <input type='text' name='firstname' />
+   Search Name: <input type='text' name='firstname' />
    <input type='submit' name='submit' value='Submit' />
    </form></th>
            <tr id='fix'><td><b>Id</b></td><td><b>Name</b></td><td><b>Lastname</b></td><td><b>Email</b></td><td><b>Phone</b><td><b>Salary</b></td><td><b>birthDate</b></td><td><b>Manage</b></td><tr>";
