@@ -1,6 +1,12 @@
 <?php
+session_start();
+// Check if the session is set else redirect to login page
+if (isset($_SESSION['employee_id'])){}
+
+else
+header("Location: login.php");
     //Get temporary database file contents
-    $json = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."/Management/database.json"), true);
+    $json = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."/TMDN-PE2-App2/Management/database.json"), true);
 
     function echoStatistics($arr, $id, $status)
     {
@@ -37,8 +43,8 @@
     }
 ?>
 
-<?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/head/head.php"); ?>
-<?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/head/head-dashboard-bottom.html"); ?>
+<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head/head.php"); ?>
+<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head/head-dashboard-bottom.html"); ?>
 <body>
     <div id="wrapper"> <!-- Page container -->
         <header class="col-lg-12"> <!-- Header class -->

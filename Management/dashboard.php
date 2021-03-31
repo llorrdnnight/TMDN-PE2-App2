@@ -2,20 +2,15 @@
 
 session_start();
 include './includes/authentication.php';
-
-
 if(!isLoggedIn()){
 
   header("Location: login.php");
 }
 
-
 if($_SERVER['REQUEST_METHOD'] == "POST"){
 
   logoutUser();
   header("Location: login.php");
-
-
 }
 
 
@@ -47,7 +42,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
           <h4><b>Employee list</b></h4> 
         </div>
       </div></a>
-      <a href="#"><div class="card">
+      <a href="deliveries.php"><div class="card">
         <div class="container">
           <h4><b>Orders</b></h4> 
         </div>

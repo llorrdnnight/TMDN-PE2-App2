@@ -55,7 +55,7 @@ h1 a:hover
 
 #sidebar-wrapper
 {
-    /* background-color: var(--gray); */
+    background-color: var(--white);
     padding: 15px 0px;
     font-size: 16px;
 }
@@ -70,7 +70,7 @@ h1 a:hover
 
 #sidebar-wrapper a:hover
 {
-    color: var(--darkblue);
+    color: var(--orange);
     text-decoration: underline;
 }
 
@@ -89,25 +89,28 @@ h1 a:hover
 /* #endregion */
 
 /* #region DELIVERIES */
-button{ width: 100px; }
+#deliveriestable tbody tr:hover{ cursor: pointer; }
 
-.input-group{ border: 1px solid black; }
-
-#deliveriestable{ color: var(--text); }
-
-#deliveriestable tbody tr:hover { cursor: pointer; }
-
+/* These rows are filled with details about each delivery, and need to be hidden at the start */
 .collapserow{ display: none; }
 
+/* needs to be changed to a better type, here or in php file */
 .deliverystatus{ width: 1%; }
 
 .delivered{ background-color: var(--green); }
 
-.onhold{ background-color: var(--darkgray); }
+.onhold{ background-color: var(--gray); }
 
 .notdelivered{ background-color: var(--red); }
 /* #endregion */
 
-/* #region DASHBOARD */
-
+/* #region STATISTICS */
+.graph{ margin: 0 auto; }
 /* #endregion */
+
+/* which page does this even apply to... */
+#recent
+{
+    width: 100%;
+    table-layout: fixed;
+}
