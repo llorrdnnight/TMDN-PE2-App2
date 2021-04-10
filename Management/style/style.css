@@ -2,15 +2,14 @@
 :root
 {
     --white: #EBEBEB;
-    --lightgray: #C0C0C0;
-    --gray: #999999;
-    --darkgray: #3f3f3f;
-    --black: #858585;
+    --gray: #C0C0C0;
+    --darkgray: #999999;
+    --black: #2e2e2e;
 
-    --red: #c42121;
+    --red: #C41313;
     --orange: #FF6700;
 
-    --green: #198b2c;
+    --green: #1E9239;
 
     --lightblue: #3A6EA5;
     --blue: #004E98;
@@ -28,14 +27,12 @@
 html, body
 {
     height: 100%;
+    color: var(--text);
     -ms-overflow-style: none; 
     scrollbar-width: none;
 }
 
-body *
-{
-    color: var(--text);
-}
+.nopadding{ padding: 0; }
 
 header
 {
@@ -44,22 +41,26 @@ header
     background-color: var(--darkblue);
 }
 
-header h1 a
+h1 a
 {
     color: var(--white);
     text-decoration: none;
 }
 
-header h1 a:hover
+h1 a:hover
 {
     color: var(--orange);
     text-decoration: none;
 }
 
-#sidebar-wrapper /* navbar */
+#sidebar-wrapper
 {
     background-color: var(--white);
+    padding: 15px 0px;
+    font-size: 16px;
 }
+
+#sidebar-wrapper ul ul{ padding-left: 10px; }
 
 #sidebar-wrapper a
 {
@@ -67,11 +68,23 @@ header h1 a:hover
     text-decoration: none;
 }
 
-#sidebar-wrapper a:hover{ color: var(--orange); }
-
-#sidebar-wrapper ul > li > ul
+#sidebar-wrapper a:hover
 {
-    padding-left: 10px;
+    color: var(--orange);
+    text-decoration: underline;
+}
+
+.sidebar-nav ul, .sidebar-nav li
+{
+    padding: none;
+    margin: none;
+}
+
+#page-content-wrapper
+{
+    padding-top: 15px;
+    padding-left: 0px;
+    padding: 15px 0 0 0;
 }
 /* #endregion */
 

@@ -121,7 +121,7 @@
     }
 ?>
 
-<?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/head/head.php"); ?>
+<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head/head.php"); ?>
     <script src="./scripts/javascript/expandRow.js"></script>
     <script src="./scripts/javascript/cleanForm.js"></script>
     <title>Deliveries</title>
@@ -140,7 +140,7 @@
                     </div>
 
                     <div class="row flex-grow-1">
-                        <?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/nav.html"); ?><!-- Navbar -->
+                        <?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/nav.html"); ?><!-- Navbar -->
                         <div class="col-xl-10 col-md-9 p-0"><!-- insert content here -->
                             <form id="deliveryfilter" class="col-lg-12 pt-3 g-0">
                                 <div>

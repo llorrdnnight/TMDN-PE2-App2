@@ -144,8 +144,8 @@
     }
 ?>
 
-<?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/head/head.php"); ?>
-    <?php echo "<script src='" . $_SERVER["DOCUMENT_ROOT"] . "/Management/scripts/javascript/cleanForm.js'></script>" ?>
+<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head/head.php"); ?>
+    <?php echo "<script src='" . $_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/scripts/javascript/cleanForm.js'></script>" ?>
     <title>Complaints - Open</title>
 </head>
 <body>
@@ -162,10 +162,10 @@
                     </div>
 
                     <div class="row flex-grow-1">
-                        <?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/nav.html"); ?><!-- Navbar -->
+                        <?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/nav.html"); ?><!-- Navbar -->
 
                         <div class="col-xl-10 col-md-9 p-0"><!-- insert content here -->
-                            <?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/complaintsnav.html"); ?>
+                            <?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/complaintsnav.html"); ?>
 
                             <form id="complaintsfilter" class="col-lg-12">
                                 <div>

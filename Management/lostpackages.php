@@ -18,15 +18,7 @@
     }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./style/reset.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="./style/style.css">
+<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head/head.php"); ?>
     <title>Lost Packages</title>
 </head>
 <body>
@@ -43,7 +35,7 @@
                     </div>
 
                     <div class="row flex-grow-1">
-                        <?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/nav.html"); ?>
+                        <?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/nav.html"); ?>
 
                         <div class="col-xl-10 col-md-9 p-0"><!-- insert content here -->
                             <div id="lostpackages">

@@ -21,7 +21,7 @@ function setPieChartData(id, category)
 
     $.ajax(
     {
-        url: "/Management/scripts/php/getChartData.php" + DataUrl,
+        url: "/TMDN-PE2-App2/Management/scripts/php/getChartData.php" + DataUrl,
         dataType: "json",
         success: function(Result)
         {
@@ -68,7 +68,7 @@ function setBarChartData(id)
 
     $.ajax(
     {
-        url: "/Management/scripts/php/getChartData.php" + DataUrl,
+        url: "/TMDN-PE2-App2/Management/scripts/php/getChartData.php" + DataUrl,
         dataType: "json",
         success: function(Result)
         {

@@ -1,6 +1,6 @@
 <?php
     //Get temporary database file contents
-    $json = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."/Management/database.json"), true);
+    $json = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."/TMDN-PE2-App2/Management/database.json"), true);
 
     function echoStatistics($arr, $id, $status)
     {
@@ -37,9 +37,9 @@
     }
 ?>
 
-<?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/head/head.php"); ?>
+<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head/head.php"); ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-    <script src="/Management/scripts/javascript/getGraph.js"></script>
+    <script src="/TMDN-PE2-App2/Management/scripts/javascript/getGraph.js"></script>
     <title>Complaints - Dashboard</title>
 </head>
 <body>
@@ -56,10 +56,10 @@
                     </div>
 
                     <div class="row flex-grow-1">
-                        <?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/nav.html"); ?><!-- Navbar -->
+                        <?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/nav.html"); ?><!-- Navbar -->
 
                         <div class="col-xl-10 col-md-9 p-0"><!-- insert content here -->
-                            <?php require($_SERVER["DOCUMENT_ROOT"] . "/Management/components/complaintsnav.html"); ?>
+                            <?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/complaintsnav.html"); ?>
 
                             <div class="container-fluid">
                                 <div class="row"><div id="test"></div></div>
