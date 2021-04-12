@@ -1,11 +1,11 @@
 <?php
     //Get temporary database file contents
-    $json = json_decode(file_get_contents("TEMPDB.json"), true);
+    $json = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/HR/TEMPDB.json"), true);
 
     //Declare empty array, the default page variable and the number of table rows
     $rows = array();
     $page = 1; 
-    $maxrows = 12;
+    $maxrows = 11;
 
     if ($_SERVER["REQUEST_METHOD"] == "GET")
     {
@@ -102,17 +102,8 @@
     }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/HR/css/reset.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/HR/css/test.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><!-- Jquery -->
-    <title>Verlof</title>
+<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/HR/components/head.php"); ?>
+    <title>Leave list</title>
 </head>
 <body>
     <div id="wrapper" class="container-fluid h-100"><!-- full body wrapper -->
@@ -129,7 +120,7 @@
 
                     <div class="row flex-grow-1">
                         <div class="col-lg-12 g-0 pt-2">
-                            <?php require($_SERVER["DOCUMENT_ROOT"] . "/HR/components/leavenav.php"); ?>
+                            <?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/HR/components/leavenav.php"); ?>
 
                             <table id="leavetable" class="table table-hover">
                                 <thead>
