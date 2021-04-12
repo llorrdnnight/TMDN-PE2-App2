@@ -37,7 +37,7 @@
     }
 ?>
 
-<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head/head.php"); ?>
+<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head.php"); ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
     <script src="/TMDN-PE2-App2/Management/scripts/javascript/getGraph.js"></script>
     <title>Complaints - Dashboard</title>

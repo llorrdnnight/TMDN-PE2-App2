@@ -144,7 +144,7 @@
     }
 ?>
 
-<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head/head.php"); ?>
+<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head.php"); ?>
     <?php echo "<script src='" . $_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/scripts/javascript/cleanForm.js'></script>" ?>
     <title>Complaints - Open</title>
 </head>

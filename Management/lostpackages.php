@@ -3,14 +3,22 @@
 
     function echoLostPackages($arr)
     {
+        $now = new DateTime("now");
+
         foreach ($arr as $Package)
         {
+            $date = new DateTime($Package["Date"]);
+            $diff = $now->diff($date);
+
             $row = "";
             $row .= "<tr>";
             $row .= "<td>" . $Package["PackageID"] . "</td>";
             $row .= "<td><a href='./complaints/opencomplaints.php?ComplaintID=" . $Package["ComplaintID"] . "'>" . $Package["ComplaintID"] . "</a></td>";
             $row .= "<td>" . $Package["OrderID"] . "</td>";
             $row .= "<td>" . $Package["Date"] . "</td>";
+            $row .= "<td>" . $Package["Addressee"] . "</td>";
+            $row .= "<td>" . $Package["Last Checkpoint"] . "</td>";
+            $row .= "<td>" . $diff->format("%d") . "</td>";
             $row .= "</tr>";
             
             echo $row;
@@ -18,7 +26,7 @@
     }
 ?>
 
-<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head/head.php"); ?>
+<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head.php"); ?>
     <title>Lost Packages</title>
 </head>
 <body>
