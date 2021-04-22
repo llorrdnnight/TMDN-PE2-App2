@@ -9,14 +9,22 @@ header("Location: login.php");
 
     function echoLostPackages($arr)
     {
+        $now = new DateTime("now");
+
         foreach ($arr as $Package)
         {
+            $date = new DateTime($Package["Date"]);
+            $diff = $now->diff($date);
+
             $row = "";
             $row .= "<tr>";
             $row .= "<td>" . $Package["PackageID"] . "</td>";
             $row .= "<td><a href='./complaints/opencomplaints.php?ComplaintID=" . $Package["ComplaintID"] . "'>" . $Package["ComplaintID"] . "</a></td>";
             $row .= "<td>" . $Package["OrderID"] . "</td>";
             $row .= "<td>" . $Package["Date"] . "</td>";
+            $row .= "<td>" . $Package["Addressee"] . "</td>";
+            $row .= "<td>" . $Package["Last Checkpoint"] . "</td>";
+            $row .= "<td>" . $diff->format("%d") . "</td>";
             $row .= "</tr>";
             
             echo $row;
@@ -24,9 +32,7 @@ header("Location: login.php");
     }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head/head.php"); ?>
+<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head.php"); ?>
     <title>Lost Packages</title>
 </head>
 <body>
@@ -36,7 +42,7 @@ header("Location: login.php");
                 <div class="d-flex flex-column h-100"><!-- content flexbox -->
                     <div class="row">
                         <div class="col-12 p-0">
-                            <header class="col-lg-12"> <!-- Header class -->
+                            <header> <!-- Header class -->
                                 <h1>Lost Packages</h1>
                             </header>
                         </div>

@@ -37,7 +37,7 @@
     }
 ?>
 
-<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head/head.php"); ?>
+<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head.php"); ?>
     <title>Complaints - Register</title>
 </head>
 <body>

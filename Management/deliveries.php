@@ -45,22 +45,32 @@ header("Location: login.php");
 
     function getFilteredArray($arr)
     {
+        // Deze functie wordt enkel gecalld 
         $FilteredArray = array();
-        $FilterList = array("PickupTime", "Location", "DeliveryID", "Status", "Company", "ReceiptID");
-        
-        foreach($FilterList as $Filter)
+        $FilterList = array("Location", "DeliveryID", "Status", "Company", "ReceiptID");
+
+        foreach ($arr as $item)
         {
-            if (isset($_GET[$Filter]))
+            $push = true;
+
+            // We can compare every value naturally except for DateTime
+            if (isset($_GET["PickupTime"]))
             {
-                foreach($arr as $item)
-                {
-                    if ($item[$Filter] == $_GET[$Filter])
-                        array_push($FilteredArray, $item);
-                }
-            }   
+                $itemtime = new DateTime($item["PickupTime"]);
+                $push = $itemtime->format("H:i") == $_GET["PickupTime"];
+            }
+
+            foreach ($FilterList as $Filter)
+            {
+                if (isset($_GET[$Filter]))
+                    $push = $item[$Filter] == $_GET[$Filter];
+            }
+
+            if ($push)
+                array_push($FilteredArray, $item);
         }
         
-        if (count($FilteredArray) > 0)
+        if (count($FilteredArray))
             return $FilteredArray;
         else
             return $arr;
@@ -127,7 +137,7 @@ header("Location: login.php");
     }
 ?>
 
-    <?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head/head.php"); ?>
+<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head.php"); ?>
     <script src="./scripts/javascript/expandRow.js"></script>
     <script src="./scripts/javascript/cleanForm.js"></script>
     <title>Deliveries</title>
@@ -153,6 +163,10 @@ header("Location: login.php");
                                     <div class="btn-group col-xl-2 p-0 pr-2">
                                         <button class="btn btn-success" type="submit">Filter</button>
                                         <button class="btn btn-secondary" type="reset">Reset</button>
+                                    </div>
+
+                                    <div class="col-xl-2 p-0 pl-2 float-right">
+                                        <span><?php echo "Total items: " . $totalitems ?></span>
                                     </div>
                                 </div>
 
