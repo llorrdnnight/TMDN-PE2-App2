@@ -1,6 +1,11 @@
 <?php
 	include "OrderList.php";
-
+	session_start();
+	// Check if the session is set else redirect to login page
+	if (isset($_SESSION['employee_id'])){}
+	
+	else
+	header("Location: login.php");
 	function printRows() {
 		global $orderArr;
 		
@@ -19,54 +24,36 @@
 				else {
 					echo('<td>&#10005;</td>');
 				}
-				echo('<td>' . '<a href="/Management/orderDetail.php?id=' . $order->get_id() . '">More Info</a>' . '</td>');
+				echo('<td>' . '<a href="/TMDN-PE2-App2/Management/orderDetail.php?id=' . $order->get_id() . '">More Info</a>' . '</td>');
 			echo("</tr>");
 		}
 	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/reset.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./style/style.css">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>Orders</title>
+<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head/head.php"); ?>
 </head>
 
 <body>
-    <div id="wrapper"> <!-- Page container -->
-        <header class="col-lg-12"> <!-- Header class -->
-            <h1>Orders</h1>
-        </header>
+<div id="wrapper" class="container-fluid h-100"><!-- full body wrapper -->
+        <div class="row h-100">
+            <div class="col-12">
+                <div class="d-flex flex-column h-100"><!-- content flexbox -->
+                    <div class="row">
+                        <div class="col-12 p-0">
+                            <header class="col-lg-12"> <!-- Header class -->
+                                <h1>Orders</h1>
+                            </header>
+                        </div>
+                    </div>
 
-		<div class="container-fluid"> <!-- Nav and content container -->
-			<div class="row"> <!-- Row class for nav and content columns -->
-				<nav id="sidebar-wrapper" class="col-lg-1"> <!-- 1 unit wide column -->
-					<ul class="sidebar-nav">
-						<li><a href="/Management/orders.php">Orders</a></li>
-						<li><a href="/Management/deliveries.php">Deliveries</a></li>
-						<li><a href="/Management/lostpackages.php">Lost Packages</a></li>
-						<li><a href="/Management/complaints/dashboard.php">Complaints</a></li>
-						<li>
-							<ul>
-								<li><a href="/Management/complaints/dashboard.php">Dashboard</a></li>
-								<li><a href="/Management/complaints/opencomplaints.php">Open Complaints</a></li>
-								<li><a href="/Management/complaints/closedcomplaints.php">Closed Complaints</a></li>
-								<li><a href="/Management/complaints/registercomplaint.php">Register Complaint</a></li>
-							</ul>
-						</li>
-					</ul>
-				</nav>
+		<div class="row flex-grow-1">
+            <?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/nav.html"); ?>
 
-				<div id="page-content-wrapper" class="col-lg-11"> <!-- Separate wrapper for content -->
+			<div class="col-xl-10 col-md-9 p-0"><!-- insert content here -->
 					<div class="container-fluid"> <!-- Insert code after this container -->
 						<div class="col-lg-12 nopadding">
-							<table id="orderstable" class="table table-hover table-responsive">
+							<table id="orderstable" class="table table-hover">
 								<thead>
 									<tr>
 										<th>Id</th>

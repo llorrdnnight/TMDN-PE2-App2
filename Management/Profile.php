@@ -4,7 +4,7 @@ session_start();
 if (isset($_SESSION['employee_id'])){}
 
 else
-header("Location: login.php")
+header("Location: login.php");
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +47,7 @@ header("Location: login.php")
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav" style="font-size: 20px;">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Email <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="dashboard.php">Dashboard <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Network</a>
@@ -71,7 +71,7 @@ header("Location: login.php")
                 <div class="collapse navbar-collapse" id="navbar">
                     <ul class="navbar-nav">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Email <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="dashboard.php">Dashboard <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Network</a>

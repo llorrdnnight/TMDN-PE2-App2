@@ -2,14 +2,15 @@
 :root
 {
     --white: #EBEBEB;
-    --gray: #C0C0C0;
-    --darkgray: #999999;
-    --black: #2e2e2e;
+    --lightgray: #C0C0C0;
+    --gray: #999999;
+    --darkgray: #3f3f3f;
+    --black: #858585;
 
-    --red: #C41313;
+    --red: #c42121;
     --orange: #FF6700;
 
-    --green: #1E9239;
+    --green: #198b2c;
 
     --lightblue: #3A6EA5;
     --blue: #004E98;
@@ -55,7 +56,7 @@ h1 a:hover
 
 #sidebar-wrapper
 {
-    background-color: var(--white);
+    /* background-color: var(--gray); */
     padding: 15px 0px;
     font-size: 16px;
 }
@@ -71,7 +72,6 @@ h1 a:hover
 #sidebar-wrapper a:hover
 {
     color: var(--orange);
-    text-decoration: underline;
 }
 
 .sidebar-nav ul, .sidebar-nav li
@@ -82,35 +82,78 @@ h1 a:hover
 
 #page-content-wrapper
 {
+    background-color: rgb(245, 245, 245);
     padding-top: 15px;
     padding-left: 0px;
     padding: 15px 0 0 0;
 }
 /* #endregion */
 
-/* #region DELIVERIES */
-#deliveriestable tbody tr:hover{ cursor: pointer; }
+/* #region VERLOF */
+#filter
+{
+    float: left;
+    border: 1px solid green;
+}
 
-/* These rows are filled with details about each delivery, and need to be hidden at the start */
-.collapserow{ display: none; }
+#content
+{
+    width: 800px;
+    float: left;
+    border: 1px solid red;
+}
 
-/* needs to be changed to a better type, here or in php file */
-.deliverystatus{ width: 1%; }
-
-.delivered{ background-color: var(--green); }
-
-.onhold{ background-color: var(--gray); }
-
-.notdelivered{ background-color: var(--red); }
-/* #endregion */
-
-/* #region STATISTICS */
-.graph{ margin: 0 auto; }
-/* #endregion */
-
-/* which page does this even apply to... */
 #recent
 {
     width: 100%;
     table-layout: fixed;
+}
+
+#recent tr th
+{
+    text-align: left;
+}
+
+#sdjfkl
+{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#sdjfkl th
+{
+    background-color: rgb(82, 170, 82);
+}
+
+#sdjfkl th, #sdjfkl td
+{
+    border: 1px solid rgb(207, 207, 207);
+}
+/* #endregion */
+
+.table-head
+{
+    color: white;
+    background-color: var(--blue);
+}
+
+.bg-green
+{
+    background-color: var(--green);
+}
+
+.bg-red
+{
+    background-color: var(--red);
+}
+
+#leavetable th, #leavetable td
+{
+    text-align: center;
+}
+
+#leavetable button
+{
+    height: 100%;
+    width: 100%;
 }
