@@ -1,11 +1,13 @@
 <?php
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/PATHS.PHP");
+    
 	include "OrderList.php";
-	session_start();
-	// Check if the session is set else redirect to login page
-	if (isset($_SESSION['employee_id'])){}
+	// session_start();
+	// // Check if the session is set else redirect to login page
+	// if (isset($_SESSION['employee_id'])){}
 	
-	else
-	header("Location: login.php");
+	// else
+	// header("Location: login.php");
 	function printRows() {
 		global $orderArr;
 		
@@ -29,53 +31,30 @@
 		}
 	}
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head/head.php"); ?>
+
+<?php require(COMPONENTSDIR . COMPONENT_HEAD); ?>
+    <title>Orders</title>
 </head>
 
-<body>
-<div id="wrapper" class="container-fluid h-100"><!-- full body wrapper -->
-        <div class="row h-100">
-            <div class="col-12">
-                <div class="d-flex flex-column h-100"><!-- content flexbox -->
-                    <div class="row">
-                        <div class="col-12 p-0">
-                            <header class="col-lg-12"> <!-- Header class -->
-                                <h1>Orders</h1>
-                            </header>
-                        </div>
-                    </div>
-
-		<div class="row flex-grow-1">
-            <?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/nav.html"); ?>
-
-			<div class="col-xl-10 col-md-9 p-0"><!-- insert content here -->
-					<div class="container-fluid"> <!-- Insert code after this container -->
-						<div class="col-lg-12 nopadding">
-							<table id="orderstable" class="table table-hover">
-								<thead>
-									<tr>
-										<th>Id</th>
-										<th>Source</th>
-										<th>Destination</th>
-										<th>Date</th>
-										<th>Customer</th>
-										<th>Status</th>
-										<th>Price</th>
-										<th>Payed</th>
-										<th>More Info</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php printRows(); ?>
-								</tbody>
-							</table>
-						</div>
-					</div> <!-- End of container -->
-				</div>
-			</div>
-		</div>
+<?php require(COMPONENTSDIR . COMPONENT_BODY_TOP); ?>
+    <div class="col-lg-12 nopadding">
+        <table id="orderstable" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Source</th>
+                    <th>Destination</th>
+                    <th>Date</th>
+                    <th>Customer</th>
+                    <th>Status</th>
+                    <th>Price</th>
+                    <th>Payed</th>
+                    <th>More Info</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php printRows(); ?>
+            </tbody>
+        </table>
     </div>
-</body>
-</html>
+<?php require(COMPONENTSDIR . COMPONENT_BODY_BOTTOM); ?>

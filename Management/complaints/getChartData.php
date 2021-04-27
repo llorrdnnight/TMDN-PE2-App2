@@ -1,10 +1,12 @@
 <?php
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/PATHS.PHP");
+
     if ($_SERVER["REQUEST_METHOD"] == "GET")
     {
         if (isset($_GET["Category"]))
         {
 
-            $json = json_decode(file_get_contents("../database.json"), true);
+            $json = json_decode(file_get_contents(MANAGEMENTDIR . "database.json"), true);
             $Days = array(0, 7, 30, 90, 180, 365);
             $Data = array(0, 0, 0, 0, 0, 0);
             
