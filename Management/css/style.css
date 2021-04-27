@@ -1,78 +1,149 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik');
+@import url('https://fonts.googleapis.com/css?family=Karla');
 
-footer {
-    bottom: 0;
-    width: 100%;
-    height: 5%;
-    text-align: center;
-    background-color: #a9a9a9;
-    position: fixed;
+/* #region VARIABLES */
+:root
+{
+    --white: #EBEBEB;
+    --gray: #6C757D;
+    --darkgray: #999999;
+    --black: #2e2e2e;
+
+    --red: #DC3545;
+    --orange: #FF6700;
+
+    --green: #28A745;
+
+    --lightblue: #eaf0ff;
+    --blue: #004E98;
+    --darkblue: #0D3459;
+
+    --text: #333333;
+}
+/* #endregion */
+
+/* #region WEBKITS */
+::-webkit-scrollbar{ display: none; }
+/* #endregion */
+
+/* #region SHARED */
+html, body
+{
+    height: 100%;
+    color: var(--text);
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+    font-family: Rubik;
 }
 
-.wrapper {
-    height: 100vh;
-    width: 100%;
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(#2d3130, #174061, #4d5758);
-  }
-
-.content{
-    width: 30%;
-    height: auto;
-    min-height: 500px;
-    background-color: white;
-    border-radius: 20px;
-    margin: 10px auto 10px auto;
-    align-self: center;
-
-}
-
-  .align_center{
-      align-items: center;
-  }
-  .flex-container,.flex-container-slideshow{
-    display: flex;    
-    flex-wrap: nowrap;
-    justify-content: center;   
+header
+{
+    display: flex;
+    flex-direction: row;
     align-items: center;
-}
-.flex-container-slideshow{
-    height: 600px;
-}
-  .flex-container > div,.flex-container-slideshow > div{
-    margin: 5px;
-    padding: 10px;
-  }
 
-  .flex-container > img ,.flex-container-slideshow > img{
-    margin: 10px;
-    padding: 10px;
-  }
-fieldset{
-    margin: 10px;
-    padding: 20px;
-}
-/* general styles */
-h1{
-	font-size: 200%;
-	padding: 5px;
-	margin: 5px;
-}
-div h2 {
-	font-size: 175%;
-	padding: 10px;
-    margin: 10px;
-    text-align: center;
-}
-h3 {
-	font-size: 125%;
-	padding: 10px;
-	margin: 10px;
-}
-p,textarea {
-	padding: 5px;
-    margin: 5px;
-    font-size: 110%;
-    resize: none;
+    height: 60px;
+    color: var(--white);
+    background-color: var(--blue);
 }
 
+#header-image-container
+{
+    height: 40px;
+    width: 220px;
+}
 
+#header-title
+{
+    color: var(--white);
+    text-decoration: none;
+}
+
+#header-title:hover
+{
+    color: var(--orange);
+}
+
+#sidebar-wrapper
+{
+    background-color: var(--lightblue);
+    padding: 15px 0px;
+    font-size: 16px;
+}
+
+#sidebar-wrapper ul li
+{
+    padding-left: 20px;
+    height: 40px;
+
+    color: var(--darkblue);
+}
+
+#sidebar-wrapper ul li:hover
+{
+    cursor: pointer;
+    background-color: var(--orange);
+}
+
+#sidebar-wrapper a
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    height: 100%;
+    width: 100%;
+
+    color: var(--darkblue);
+}
+
+#sidebar-wrapper a:hover
+{
+    text-decoration: none;
+}
+
+#page-content-wrapper
+{
+    padding-top: 15px;
+    padding-left: 0px;
+    padding: 15px 0 0 0;
+}
+
+table > *
+{
+    font-family: Karla;
+}
+
+table thead
+{
+    color: var(--white);
+    background-color: var(--blue);
+}
+/* #endregion */
+
+/* #region DELIVERIES */
+#deliveriestable tbody tr:hover{ cursor: pointer; }
+
+/* These rows are filled with details about each delivery, and need to be hidden at the start */
+.collapserow{ display: none; }
+
+/* needs to be changed to a better type, here or in php file */
+.deliverystatus{ width: 1%; }
+
+.delivered{ background-color: var(--green); }
+
+.onhold{ background-color: var(--gray); }
+
+.notdelivered{ background-color: var(--red); }
+/* #endregion */
+
+/* #region STATISTICS */
+.graph{ margin: 0 auto; }
+/* #endregion */
+
+/* which page does this even apply to... */
+#recent
+{
+    width: 100%;
+    table-layout: fixed;
+}

@@ -1,14 +1,14 @@
 <?php
-session_start();
-// Check if the session is set else redirect to login page
-if (isset($_SESSION['employee_id'])){}
+// session_start();
+// // Check if the session is set else redirect to login page
+// if (isset($_SESSION['employee_id'])){}
 
-else
-header("Location: login.php");
+// else
+// header("Location: login.php");
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/PATHS.PHP");
+
     //Get temporary database file contents
     $json = json_decode(file_get_contents("database.json"), true);
-
-    //Declare empty array, the default page variable and the number of table rows
     $rows = array();
     $page = 1; 
     $maxrows = 12;
@@ -45,22 +45,32 @@ header("Location: login.php");
 
     function getFilteredArray($arr)
     {
+        // Deze functie wordt enkel gecalld 
         $FilteredArray = array();
-        $FilterList = array("PickupTime", "Location", "DeliveryID", "Status", "Company", "ReceiptID");
-        
-        foreach($FilterList as $Filter)
+        $FilterList = array("Location", "DeliveryID", "Status", "Company", "ReceiptID");
+
+        foreach ($arr as $item)
         {
-            if (isset($_GET[$Filter]))
+            $push = true;
+
+            // We can compare every value naturally except for DateTime
+            if (isset($_GET["PickupTime"]))
             {
-                foreach($arr as $item)
-                {
-                    if ($item[$Filter] == $_GET[$Filter])
-                        array_push($FilteredArray, $item);
-                }
-            }   
+                $itemtime = new DateTime($item["PickupTime"]);
+                $push = $itemtime->format("H:i") == $_GET["PickupTime"];
+            }
+
+            foreach ($FilterList as $Filter)
+            {
+                if (isset($_GET[$Filter]))
+                    $push = $item[$Filter] == $_GET[$Filter];
+            }
+
+            if ($push)
+                array_push($FilteredArray, $item);
         }
         
-        if (count($FilteredArray) > 0)
+        if (count($FilteredArray))
             return $FilteredArray;
         else
             return $arr;
@@ -121,112 +131,92 @@ header("Location: login.php");
         for ($i = 0; $i < $totalpages; $i++)
         {   
             echo "<li class='page-item'><a class='page-link' href='deliveries.php?Page=" . ($i + 1) . $FilterLink . "'>" . ($i + 1) . "</a></li>";
-            // else
-            // echo "<li class='page-item'><a class='page-link' href='deliveries.php?Page=" . ($i + 1) . "'>" . ($i + 1) . "</a></li>";
         }
     }
 ?>
 
-    <?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head/head.php"); ?>
-    <script src="./scripts/javascript/expandRow.js"></script>
-    <script src="./scripts/javascript/cleanForm.js"></script>
+<?php require(COMPONENTSDIR . COMPONENT_HEAD); ?>
+    <script src=<?= HTMLJAVASCRIPT . "expandrow.js"; ?>></script>
+    <script src=<?= HTMLJAVASCRIPT . "cleanForm.js"; ?>></script>
     <title>Deliveries</title>
 </head>
-<body>
-    <div id="wrapper" class="container-fluid h-100"><!-- full body wrapper -->
-        <div class="row h-100">
-            <div class="col-12">
-                <div class="d-flex flex-column h-100"><!-- content flexbox -->
-                    <div class="row">
-                        <div class="col-12 p-0">
-                            <header><!-- insert header here -->
-                                <h1 class="pl-2"><a href='deliveries.php'>Deliveries</a></h1>
-                            </header>
-                        </div>
-                    </div>
+<?php require(COMPONENTSDIR . COMPONENT_BODY_TOP); ?>
+    <form id="deliveryfilter" class="col-lg-12 pt-3 g-0">
+        <div>
+            <div class="btn-group col-xl-2 col-8 p-0 pr-2">
+                <button class="btn btn-success" type="submit">Filter</button>
+                <button class="btn btn-secondary" type="reset">Reset</button>
+            </div>
 
-                    <div class="row flex-grow-1">
-                        <?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/nav.html"); ?><!-- Navbar -->
-                        <div class="col-xl-10 col-md-9 p-0"><!-- insert content here -->
-                            <form id="deliveryfilter" class="col-lg-12 pt-3 g-0">
-                                <div>
-                                    <div class="btn-group col-xl-2 p-0 pr-2">
-                                        <button class="btn btn-success" type="submit">Filter</button>
-                                        <button class="btn btn-secondary" type="reset">Reset</button>
-                                    </div>
-                                </div>
-
-                                <div class="form-row mb-3 pt-2">
-                                    <div class="col-lg-2 col-sm-4">
-                                        <label for="PickupTime">Pickup Time</label>
-                                        <input class="form-control" name="PickupTime" type="time">
-                                    </div>
-
-                                    <div class="col-lg-2 col-sm-4">
-                                        <label for="Location">Location</label>
-                                        <input class="form-control" name="Location" type="text">
-                                    </div>
-
-                                    <div class="col-lg-2 col-sm-4">
-                                        <label for="DeliveryID">Delivery ID</label>
-                                        <input class="form-control" name="DeliveryID" type="number">
-                                    </div>
-
-                                    <div class="col-lg-2 col-sm-4">
-                                        <label for="Status">Status</label>
-                                        <select class="form-control" name="Status">
-                                            <option hidden disabled selected value>-</option>
-                                            <option value="Delivered">Delivered</option>
-                                            <option value="On Hold">On Hold</option>
-                                            <option value="Not Delivered">Not Delivered</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-lg-2 col-sm-4">
-                                        <label for="Company">Company</label>
-                                        <input class="form-control" name="Company" type="text">
-                                    </div>
-
-                                    <div class="col-lg-2 col-sm-4">
-                                        <label for="ReceiptID">Receipt ID</label>
-                                        <input class="form-control" name="ReceiptID" type="number">
-                                    </div>
-
-                                    <?php echo "<input name='Page' type='hidden' value='" . $page . "'>"; ?>
-                                </div>
-                            </form>
-
-                            <div class="col-lg-12 g-0 pt-2">
-                                <table id="deliveriestable" class="table table-hover table-responsive">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>Pickup Time</th>
-                                            <th>Location</th>
-                                            <th>Delivery ID</th>
-                                            <th>Status</th>
-                                            <th>Company</th>
-                                            <th>Receipt ID</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php echoDeliveries($rows); ?>
-                                    </tbody>
-                                </table>
-
-                                <nav aria-label="Page navigation" class="d-flex justify-content-center">
-                                    <ul class="pagination">
-                                        <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
-                                        <?php echoPageIndex($totalpages); ?>
-                                        <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-xl-2 col-4 p-0 pl-2 float-right">
+                <span><?php echo "Total items: " . $totalitems ?></span>
             </div>
         </div>
+
+        <div class="form-row pt-2">
+            <div class="form-group col-lg-2 col-sm-4">
+                <label for="PickupTime">Pickup Time</label>
+                <input class="form-control" name="PickupTime" type="time">
+            </div>
+
+            <div class="form-group col-lg-2 col-sm-4">
+                <label for="Location">Location</label>
+                <input class="form-control" name="Location" type="text">
+            </div>
+
+            <div class="form-group col-lg-2 col-sm-4">
+                <label for="DeliveryID">Delivery ID</label>
+                <input class="form-control" name="DeliveryID" type="number">
+            </div>
+
+            <div class="form-group col-lg-2 col-sm-4">
+                <label for="Status">Status</label>
+                <select class="form-control" name="Status">
+                    <option hidden disabled selected value>-</option>
+                    <option value="Delivered">Delivered</option>
+                    <option value="On Hold">On Hold</option>
+                    <option value="Not Delivered">Not Delivered</option>
+                </select>
+            </div>
+
+            <div class="col-lg-2 col-sm-4">
+                <label for="Company">Company</label>
+                <input class="form-control" name="Company" type="text">
+            </div>
+
+            <div class="col-lg-2 col-sm-4">
+                <label for="ReceiptID">Receipt ID</label>
+                <input class="form-control" name="ReceiptID" type="number">
+            </div>
+
+            <?php echo "<input name='Page' type='hidden' value='" . $page . "'>"; ?>
+        </div>
+    </form>
+
+    <div class="col-12 g-0 pt-2">
+        <table id="deliveriestable" class="table table-hover table-responsive">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Pickup Time</th>
+                    <th>Location</th>
+                    <th>Delivery ID</th>
+                    <th>Status</th>
+                    <th>Company</th>
+                    <th>Receipt ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php echoDeliveries($rows); ?>
+            </tbody>
+        </table>
+
+        <nav aria-label="Page navigation" class="d-flex justify-content-center">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+                <?php echoPageIndex($totalpages); ?>
+                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
+            </ul>
+        </nav>
     </div>
-</body>
-</html>
+<?php require(COMPONENTSDIR . COMPONENT_BODY_BOTTOM); ?>

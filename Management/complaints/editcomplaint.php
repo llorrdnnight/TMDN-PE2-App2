@@ -1,5 +1,7 @@
 <?php
-    $json = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."/TMDN-PE2-App2/Management/database.json"), true);
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/PATHS.PHP");
+
+    $json = json_decode(file_get_contents(MANAGEMENTDIR . "database.json"), true);
 
     if (isset($_POST["Submit"]))
     {
@@ -34,48 +36,24 @@
     }
 ?>
 
-<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/head/head.php"); ?>
+<?php require(COMPONENTSDIR . COMPONENT_HEAD); ?>
     <title>Complaints - Edit</title>
 </head>
-<body>
-    <div id="wrapper" class="container-fluid h-100"><!-- full body wrapper -->
-        <div class="row h-100">
-            <div class="col-12">
-                <div class="d-flex flex-column h-100"><!-- content flexbox -->
-                    <div class="row">
-                        <div class="col-12 p-0">
-                            <header class="col-lg-12"> <!-- Header class -->
-                                <h1>Edit Complaint</h1>
-                            </header>
-                        </div>
-                    </div>
+<?php require(COMPONENTSDIR . COMPONENT_BODY_TOP); ?>
+    <?php require(COMPONENTSDIR . COMPONENT_COMPLAINTSNAV); ?>
 
-                    <div class="row flex-grow-1">
-                        <?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/nav.html"); ?><!-- Navbar -->
+    <div class="container-fluid">
+        <div class="col-lg-12">
+            <div id="editcomplaint">
+                <h1>Edit Complaint</h1>
 
-                        <div class="col-xl-10 col-md-9 p-0"><!-- insert content here -->
-                            <?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/Management/components/complaintsnav.html"); ?>
-
-                            <div class="container-fluid">
-                                <div class="col-lg-12">
-                                    <div id="editcomplaint">
-                                        <h1>Edit Complaint</h1>
-
-                                        <?php 
-                                            if (isset($_GET["ComplaintID"]) && !empty($_GET["ComplaintID"]))
-                                                echoEditableComplaintDetails($json["Complaints"], $_GET["ComplaintID"]);
-                                            else
-                                                header("Location: opencomplaints.php");
-                                        ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-				</div>
-			</div>
-		</div>
+                <?php 
+                    if (isset($_GET["ComplaintID"]) && !empty($_GET["ComplaintID"]))
+                        echoEditableComplaintDetails($json["Complaints"], $_GET["ComplaintID"]);
+                    else
+                        header("Location: opencomplaints.php");
+                ?>
+            </div>
+        </div>
     </div>
-</body>
-</html>
-
+<?php require(COMPONENTSDIR . COMPONENT_BODY_BOTTOM); ?>

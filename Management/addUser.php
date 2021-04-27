@@ -156,7 +156,7 @@ mysqli_close($link);
                                 <p>
                                 <input type="text" name="fName" id="" placeholder="First Name">
                                 <input type="text" name="lName" id="" placeholder="Last Name">
-                                <input type="date" name="dob" id="" placeholder="Date of birth">
+                                <input type="text" name="dob" id="" placeholder="Date of birth">
                                 </p>
                                 <p>
                                 <input type="text" name="email" id="" placeholder="E-mail">

@@ -1,0 +1,41 @@
+{
+    "Employees":
+    [
+        {"EmployeeID":1,"Firstname":"Callean","Surname":"Ellershaw","Address":"Pennsylvania","isAdmin":false},
+        {"EmployeeID":2,"Firstname":"Angelina","Surname":"Phillins","Address":"Kenwood","isAdmin":false},
+        {"EmployeeID":3,"Firstname":"Meryl","Surname":"Bischof","Address":"Karstens","isAdmin":true},
+        {"EmployeeID":4,"Firstname":"Seka","Surname":"De Metz","Address":"Corben","isAdmin":false},
+        {"EmployeeID":5,"Firstname":"Dela","Surname":"MacKimmie","Address":"Morningstar","isAdmin":true},
+        {"EmployeeID":6,"Firstname":"Ariela","Surname":"Venners","Address":"8th","isAdmin":false},
+        {"EmployeeID":7,"Firstname":"Ilse","Surname":"Bracer","Address":"Ronald Regan","isAdmin":true},
+        {"EmployeeID":8,"Firstname":"Tiffi","Surname":"Altamirano","Address":"Onsgard","isAdmin":false},
+        {"EmployeeID":9,"Firstname":"Garland","Surname":"Bogace","Address":"Hanover","isAdmin":true},
+        {"EmployeeID":10,"Firstname":"Carl","Surname":"Lyddy","Address":"Ruskin","isAdmin":true},
+        {"EmployeeID":11,"Firstname":"Raviv","Surname":"Tassell","Address":"Lighthouse Bay","isAdmin":true},
+        {"EmployeeID":12,"Firstname":"Alleen","Surname":"Chedgey","Address":"Marquette","isAdmin":false},
+        {"EmployeeID":13,"Firstname":"Vin","Surname":"Spottiswood","Address":"Sundown","isAdmin":false},
+        {"EmployeeID":14,"Firstname":"Lucienne","Surname":"Tinman","Address":"Lunder","isAdmin":false},
+        {"EmployeeID":15,"Firstname":"Mano","Surname":"MacMeeking","Address":"Riverside","isAdmin":false},
+        {"EmployeeID":16,"Firstname":"Dotti","Surname":"Copozio","Address":"Miller","isAdmin":false},
+        {"EmployeeID":17,"Firstname":"Jan","Surname":"Bagshawe","Address":"Ohio","isAdmin":true},
+        {"EmployeeID":18,"Firstname":"Leonerd","Surname":"Cridlon","Address":"1st","isAdmin":false},
+        {"EmployeeID":19,"Firstname":"Clair","Surname":"Blodget","Address":"Continental","isAdmin":false},
+        {"EmployeeID":20,"Firstname": "Christoforo","Surname": "Keppel","Address": "Debra","isAdmin": true}
+    ],
+
+    "TimeOff":
+    [
+        {"EmployeeID": 1, "RequestDate": "2021-01-05" , "Daterange": ["2021-03-24", "2021-03-29"]},
+        {"EmployeeID": 2, "RequestDate": "2021-01-10", "Daterange": ["2021-02-06", "2021-02-07"]},
+        {"EmployeeID": 3, "RequestDate": "2021-01-12", "Daterange": ["2021-02-22", "2021-02-26"]},
+        {"EmployeeID": 4, "RequestDate": "2021-02-01" , "Daterange": ["2021-04-01", "2021-04-14"]},
+        {"EmployeeID": 5, "RequestDate": "2021-02-12" , "Daterange": ["2021-03-24", "2021-03-29"]},
+        {"EmployeeID": 6, "RequestDate": "2021-02-13" , "Daterange": ["2021-03-27", "2021-04-01"]},
+        {"EmployeeID": 7, "RequestDate": "2021-02-15" , "Daterange": ["2021-04-01", "2021-04-16"]},
+        {"EmployeeID": 8, "RequestDate": "2021-02-15" , "Daterange": ["2021-04-03", "2021-04-12"]},
+        {"EmployeeID": 9, "RequestDate": "2021-02-17" , "Daterange": ["2021-04-03", "2021-04-08"]},
+        {"EmployeeID": 10, "RequestDate": "2021-02-21" , "Daterange": ["2021-04-15", "2021-04-23"]},
+        {"EmployeeID": 11, "RequestDate": "2021-02-28" , "Daterange": ["2021-04-16", "2021-04-24"]},
+        {"EmployeeID": 12, "RequestDate": "2021-03-01" , "Daterange": ["2021-05-20", "2021-05-21"]}
+    ]
+}
