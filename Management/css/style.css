@@ -11,7 +11,6 @@
 
     --red: #DC3545;
     --orange: #FF6700;
-
     --green: #28A745;
 
     --lightblue: #eaf0ff;
@@ -118,6 +117,28 @@ table thead
 {
     color: var(--white);
     background-color: var(--blue);
+}
+/* #endregion */
+
+/* #region LOGIN */
+#login
+{
+    background-color: var(--lightblue);
+}
+
+#login-image
+{
+    height: 120px;
+}
+
+#login-forgot
+{
+    color: var(--blue);
+}
+
+#login-forgot:hover
+{
+    cursor: pointer;
 }
 /* #endregion */
 

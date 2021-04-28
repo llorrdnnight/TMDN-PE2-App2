@@ -1,19 +1,17 @@
 <?php
 
-session_start();
-include './includes/authentication.php';
-if(!isLoggedIn()){
+// session_start();
+// include './includes/authentication.php';
+// if(!isLoggedIn()){
 
-  header("Location: login.php");
-}
+//   header("Location: login.php");
+// }
 
-if($_SERVER['REQUEST_METHOD'] == "POST"){
+// if($_SERVER['REQUEST_METHOD'] == "POST"){
 
-  logoutUser();
-  header("Location: login.php");
-}
-
-
+//   logoutUser();
+//   header("Location: login.php");
+// }
 ?>
 
 

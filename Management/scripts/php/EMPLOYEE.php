@@ -1,6 +1,4 @@
 <?php
-    require_once("Config.php");
-
     // Database Table base class, voor objecten die gemaakt moeten worden uit een table
     class DatabaseTable
     {

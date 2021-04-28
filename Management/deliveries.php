@@ -6,7 +6,7 @@
 // else
 // header("Location: login.php");
     require_once($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/PATHS.PHP");
-
+    
     //Get temporary database file contents
     $json = json_decode(file_get_contents("database.json"), true);
     $rows = array();
