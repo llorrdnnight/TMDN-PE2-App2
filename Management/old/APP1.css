@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik');
+@import url('https://fonts.googleapis.com/css?family=Karla');
+
+.navbar {
+    background-color: #004E98;
+}
+
+.menu-item {
+    color: #EBEBEB;
+    font-family: Rubik;
+}
+
+.btn {
+    color: #EBEBEB!important;
+    border-color: #EBEBEB!important;
+}
+
+nav ul li {
+    margin-left: 50px;
+}
+
+.menu-icon {
+    margin-right: 10px;
+}
+
+.form-control, .btn{
+    font-family: Rubik;   
+}
+
+table {
+    font-family: Rubik;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+table td, table th {
+    border: 1px solid #ddd;
+    padding: 3px;
+    font-family: Karla;
+  }
+table tr:nth-child(even){background-color: #f2f2f2;}
+  
+table tr:hover {background-color: #ddd;}
+  
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #004e98;
+    color: white;
+    font-family: Rubik;
+  }
+
+h1, h2, h3, h4, h5 {
+    font-family: Rubik!important;
+}
+
+p {
+    font-family: Karla!important;
+}
+
+.centered {
+    text-align: center;
+}
+
+h1 {
+    font-size: 200%!important;
+}
+
+h2 {
+    font-size: 150%!important;
+}
+
+.navbar-toggler-icon {
+    background-image: url("../images/cargo_icon.png")!important;
+}
+
+#mobilemenu {
+    display: none;
+}
+
+.navbar {
+    overflow: hidden;
+    position: relative;
+  }
+
+.navbar-mobile {
+    display:block;
+}
+
+
+.logo {
+    width: 250px;
+}
+
+.menu-icon {
+    display: none;
+}
+
+/* Priority page */
+.border-priority {
+    -webkit-box-shadow:inset 5px 0px 0px 0px #17A2B8;
+    -moz-box-shadow:inset 5px 0px 0px 0px #17A2B8;
+    box-shadow:inset 5px 0px 0px 0px #17A2B8;
+}
+
+.btnFilter {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.btnFilter button {
+    width: 10em;
+}
+
+.dropdown-menu-center {
+    right: auto!important;
+    left: 50%!important;
+    transform: translate(-50%, 38%)!important;
+}
+
+/* Table*/
+
+.tabletitle {
+    font-size: 0.8em;
+}
+
+.tabletext {
+    font-size: 0.8em;
+}
+
+.nowrap {
+    flex-wrap: nowrap;
+}
+
+.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, 
+.col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, 
+.col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, 
+.col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, 
+.col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, 
+.col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, 
+.col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, 
+.col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, 
+.col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, 
+.col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, 
+.col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, 
+.col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, 
+.col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+
+@media (min-width: 576px) { 
+    .logo{
+        width: 400px;
+    }
+
+    .tabletitle {
+        font-size: 1.1em;
+    }
+    
+    .tabletext {
+        font-size: 1.1em;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+
+@media (min-width: 768px) { 
+    .tabletitle {
+        font-size: 1.5em;
+    }
+    
+    .tabletext {
+        font-size: 1.5em;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+    .col, .col-1, .col-10, .col-11, .col-12, .col-2, 
+    .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, 
+    .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, 
+    .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, 
+    .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, 
+    .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, 
+    .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, 
+    .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, 
+    .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, 
+    .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, 
+    .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, 
+    .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, 
+    .col-xl-8, .col-xl-9, .col-xl-auto {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    table td, table th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        font-family: Karla;
+      }
+
+      .tabletitle {
+        font-size: 1.8em;
+    }
+    
+    .tabletext {
+        font-size: 1.8em;
+    }
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+    .logo{
+        width: 300px;
+    
+    }
+    .tabletitle {
+        font-size: 22px;
+    }
+    
+    .tabletext {
+        font-size: 22px;
+    }
+
+    .navbar-toggler-icon {
+        background-image: url("../images/cargo_icon.png")!important;
+    }
+
+    .menu-icon {
+        display: inline;
+    }
+
+ }
+
+/*  XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) { 
+    
+ }
