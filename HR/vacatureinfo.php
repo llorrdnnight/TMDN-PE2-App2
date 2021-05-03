@@ -5,6 +5,8 @@ include "vacatureList.php";
 include './includes/db_config.php';
 include './includes/sanitize.php';
 include './includes/authentication.php';
+include './includes/classes/Employee.php';
+
 
 session_start();
 
@@ -50,7 +52,7 @@ function printRows() {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/vacature.css">
+    <link rel="stylesheet" href="css/vacature.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
 
     <title>Vacature</title>
@@ -63,13 +65,13 @@ function printRows() {
             </div>
             <div class="right">
             <i class="fa fa-user-circle"></i>
-            <span>John Doe</span>
+            <span><?php echo Employee::getEmployeeNameById(getUserId(), $db); ?></span>
             </div>
         </div>
 <div id="page-content-wrapper" class="col-lg-11">
 	<div class="container-fluid">
 		<div class="col-lg-12 nopadding">
-			<table id="orderstable" class="table table-hover table-responsive">
+			<table class="content-table">
 				<thead>
 					<tr>
 						<th>Job Title</th>
@@ -79,12 +81,11 @@ function printRows() {
                     </tr>
 				</thead>
 				<tbody>
-					<?php printRows(); ?>
+					<?php printRows();?>
 				</tbody>
 			</table>
 		</div>
 	</div> 
-</div>
 </div>
 </body>
 </html>

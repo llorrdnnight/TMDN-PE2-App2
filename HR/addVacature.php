@@ -1,4 +1,20 @@
+<?php
 
+include "vacatureList.php";
+
+include './includes/db_config.php';
+include './includes/sanitize.php';
+include './includes/authentication.php';
+include './includes/classes/Employee.php';
+
+session_start();
+
+if(isLoggedIn()){
+
+    // redirect to main page
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,30 +27,30 @@
     <title>Add Vacature</title>
 </head>
 <body>
-<div class="nav-bar">
+        <div class="nav-bar">
             <div class="left">
-                <a href="dashboard.php"><i class="fas fa-arrow-left"></i></a>
+                <a href="Vacature.php"><i class="fas fa-arrow-left"></i></a>
                 <h1>Add Vacature</h1>
             </div>
             <div class="right">
             <i class="fa fa-user-circle"></i>
-            <span>John Doe</span>
+            <span><?php echo Employee::getEmployeeNameById(getUserId(), $db); ?></span>
             </div>
         </div>
-        <div class="add-container">
+    <div class="add-container">
             <form action="" method="POST">
                          
                 <div class="row">
                     <label for="">Job Title</label><br>
-                    <input type="text" value="title" name="" id="title">
+                    <input type="text" placeholder="title" name="" id="title">
                 </div>
                 <div class="row">
                     <label for="">Department</label><br>
-                    <input type="text" value="HR" name="" id="department">
+                    <input type="text" placeholder="HR" name="" id="department">
                 </div>
                 <div class="row">
                     <label for="">Location</label><br>
-                    <input type="text" value="Belgium" name="" id="location">
+                    <input type="text" placeholder="Belgium" name="" id="location">
                 </div>
                 <div class="row">
                     <label for="">Job creation Date</label><br>
@@ -45,20 +61,20 @@
                 </div>
                 <div class="row">
                     <label for="">Degree</label><br>
-                    <input type="text" value="E-ICT Batchler" name="" id="degree">
+                    <input type="text" placeholder="E-ICT Batchler" name="" id="degree">
                 </div>
                 <div class="row">
                     <label for="">Experience</label><br>
-                    <input type="text" value="2 years junior developer" name="" id="experience">
+                    <input type="textarea" placeholder="2 years junior developer" name="" id="experience">
                 </div>
                 <div class="row" id="reason">
                     <label for="">General Job Description</label><br>
-                    <textarea name="reason" placeholder="give a general description of the job" id="" cols="30" rows="2" spellcheck="false"></textarea>
+                    <textarea name="reason" placeholder="give a general description of the job" id="description" cols="30" rows="2" spellcheck="false"></textarea>
                 </div>
                 <div class="row">
-                    <input type="submit" value="Send">
+                    <input type="submit" value="Send" id="sentBtn">
                 </div>
             </form>
             
         </div>
-    </div>
+</body>

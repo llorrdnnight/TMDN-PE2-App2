@@ -5,6 +5,7 @@ include "vacatureList.php";
 include './includes/db_config.php';
 include './includes/sanitize.php';
 include './includes/authentication.php';
+include './includes/classes/Employee.php';
 
 session_start();
 
@@ -57,13 +58,13 @@ function printRows() {
             </div>
             <div class="right">
             <i class="fa fa-user-circle"></i>
-            <span>John Doe</span>
+            <span><?php echo Employee::getEmployeeNameById(getUserId(), $db); ?></span>
             </div>
         </div>
 <div id="page-content-wrapper" class="col-lg-11">
 	<div class="container-fluid">
 		<div class="col-lg-12 nopadding">
-			<table id="orderstable" class="table table-hover table-responsive">
+			<table class="content-table">
 				<thead>
 					<tr>
 						<th>Job Title</th>
@@ -80,6 +81,8 @@ function printRows() {
 		</div>
 	</div> <!-- End of container -->
 </div>
-</div>
+<a href="addVacature.php" class="float">
+<i class="fa fa-plus my-float"></i>
+</a>
 </body>
 </html>
