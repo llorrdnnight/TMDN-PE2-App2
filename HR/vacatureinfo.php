@@ -10,11 +10,9 @@ include './includes/classes/Employee.php';
 
 session_start();
 
-if(isLoggedIn()){
-
-    // redirect to main page
+if(!isLoggedIn()){
+    header("Location: ./dashboard.php");
 }
-
 $error = null;
 
 
