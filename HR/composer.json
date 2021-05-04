@@ -1,0 +1,12 @@
+{
+    "name": "gregd/hr",
+    "authors": [
+        {
+            "name": "Gregori De Vuyst",
+            "email": "greg.de.vuyst@gmail.com"
+        }
+    ],
+    "require": {
+        "nesbot/carbon": "^2.47"
+    }
+}

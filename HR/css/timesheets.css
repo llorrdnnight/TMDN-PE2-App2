@@ -1,0 +1,180 @@
+html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #0D3459;
+}
+
+.inactive {
+  opacity: .3;
+}
+
+.inactive:hover {
+  opacity: .3 !important;
+}
+
+.container {
+  padding: 5rem 2rem;
+}
+
+.start, .stop {
+  background-color: #FF6700;
+  border: none;
+  color: white;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  border-radius: 2rem;
+  -webkit-transition: .3s linear;
+  transition: .3s linear;
+}
+
+.start:hover, .stop:hover {
+  opacity: .5;
+}
+
+.start:disabled, .stop:disabled {
+  opacity: .4;
+  cursor: auto;
+}
+
+.start {
+  background-color: #37af37;
+  border: 1px solid #37af37;
+}
+
+.stop {
+  background-color: #e24444;
+  border: 1px solid #e24444;
+}
+
+.action {
+  border-bottom: 3px solid #3A6EA5;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.action span {
+  font-weight: 600;
+  font-size: 32px;
+}
+
+.current {
+  background-color: #004E98;
+  color: white;
+  -webkit-box-shadow: 0px 2px 4px 0px black;
+          box-shadow: 0px 2px 4px 0px black;
+}
+
+.current, .general, .last {
+  padding: 1.5rem 1rem;
+  margin: 1rem 0rem;
+}
+
+.general {
+  background-color: #EBEBEB;
+}
+
+.last {
+  background-color: #3A6EA5;
+  color: white;
+}
+
+.stats {
+  padding: 1rem 0rem;
+}
+
+.stats p {
+  margin: .5rem 0;
+}
+
+.stats h1 {
+  font-size: 30px;
+  margin-bottom: .7rem;
+}
+
+.stats .stat-container {
+  padding-top: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.stats .stat-container .stat {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 3rem;
+}
+
+.stats .stat-container .stat label {
+  margin-right: .5rem;
+  word-break: break-all;
+}
+
+.stats .stat-container .stat span {
+  font-weight: 700;
+  word-break: break-all;
+}
+
+.stats .title {
+  margin-bottom: 2rem;
+}
+
+.stats .mar-top-2 {
+  margin-top: 4rem;
+}
+
+.stats .column {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 1rem;
+  border-radius: 4px;
+  background-color: #3A6EA5;
+  color: white;
+}
+
+.stats .column h2 {
+  font-weight: 600;
+  padding-bottom: .5rem;
+  margin-bottom: .5rem;
+  border-bottom: 1px solid #0D3459;
+}
+
+.stats .column .row {
+  margin: .5rem 0rem;
+}
+
+@media only screen and (max-width: 1000px) {
+  .container {
+    padding: 3rem 1rem;
+  }
+  .stats h1 {
+    margin-bottom: .5rem;
+  }
+  .stats .stat-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .stats .stat-container .stat {
+    margin-right: 0rem;
+    margin-bottom: 1rem;
+  }
+  .stats .stat-container .stat:last-child {
+    margin-bottom: 0;
+  }
+}
+/*# sourceMappingURL=timesheets.css.map */
