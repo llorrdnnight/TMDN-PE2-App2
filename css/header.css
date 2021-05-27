@@ -1,0 +1,27 @@
+header
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    height: 60px;
+    color: var(--white);
+    background-color: var(--blue);
+}
+
+#header-image-container
+{
+    height: 40px;
+    width: 220px;
+}
+
+#header-title
+{
+    color: var(--white);
+    text-decoration: none;
+}
+
+#header-title:hover
+{
+    color: var(--orange);
+}

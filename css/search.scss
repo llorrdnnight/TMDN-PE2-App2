@@ -1,0 +1,170 @@
+@import 'colors.scss';
+
+html{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.search{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 3rem 0rem;
+
+    div{
+        border-radius: 2rem;
+        padding: .5rem .5rem;
+        display: inline;
+        border: 1px solid $darkBlue;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i{
+            color: $orange;
+        }
+    }
+    input{
+        border: none;
+        padding: 0rem .5rem;
+
+        &:focus{
+            outline: none;
+        }
+    }
+}
+
+.profiles{
+    display: flex;
+    justify-content: center;
+    padding: 3rem 2rem;
+    flex-wrap: wrap;
+
+
+    a{
+        text-decoration: none;
+        margin: 2rem;
+
+    }
+    
+    .profile{
+        height: 150px;
+        width:  150px;
+        background-color: $midBlue;
+        border-radius: .5rem;
+        box-shadow: 0px 0px 3px 1px gray;
+        display: flex;
+        flex-direction: column;
+        padding: 4rem 3rem;
+
+        > * {
+            margin: 1rem 0rem;
+            color: white;
+        }
+        span{
+            &:nth-child(2){
+                font-weight: 600;
+                margin-bottom: 0;
+                font-size: 18px;
+                line-height: 1.5rem;
+                text-align: center;
+            }
+
+            &:nth-child(3){
+                margin-bottom: 0;
+                font-size: 14px;
+            }
+        }
+        align-items: center;
+        
+        i{
+            font-size: 50px;
+            color: $orange;
+            
+        }
+    }
+}
+
+
+.single{
+    height: 90vh;
+    justify-content: center;
+    align-items: center;
+}
+
+#add{
+    position: fixed;
+    font-size: 35px;
+    bottom: 0;
+    right: 0;
+    background-color: $darkBlue;
+    color: $orange;
+    cursor: pointer;
+    padding: 1rem;
+    border-radius: 50%;
+    margin: 2rem;
+}
+
+
+.add-modal{
+    padding: 5rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: .5rem;
+    box-shadow: 0px 3px 4px 0px gray;
+    color: white;
+    background-color: $lightBlue;
+
+    span{
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 1rem;
+        vertical-align: middle;
+        font-size: 50px;
+        margin-top: 0;
+    }
+    h1{
+        font-size: 30px;
+
+    }
+    form{
+        margin-top: 2rem;
+        color: white;
+        width: 400px;
+
+        .row{
+            display: flex;
+            flex-direction: column;
+            margin: 1rem 0rem;
+
+            label{
+                margin-bottom: .5rem;
+
+
+            }
+
+            input[type=text], input[type=password], select{
+                padding: .4rem .2rem;
+                border: 1px solid $darkBlue;
+            }
+
+            input[type=submit]{
+                align-self: center;
+                border-radius: 2rem;
+                cursor: pointer;
+                padding: 1rem 2rem;
+                background-color: $orange;
+                color: white;
+                border: none;
+                margin-top: 2rem;
+            }
+        }
+    
+    }
+}

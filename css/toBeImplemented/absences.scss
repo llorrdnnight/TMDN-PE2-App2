@@ -1,0 +1,190 @@
+@import './colors';
+
+html{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+}
+
+.fa-times{
+    color: red;
+}
+
+.fa-check{
+    color: rgb(35, 243, 35);
+}
+
+.banner{
+    width: 100%;
+    display: flex;
+    padding: 2rem;
+    padding-left: .5rem;
+    background-color: $lightGray;
+    justify-content: space-between;
+    color: black;
+    margin-bottom: 2rem;
+    box-sizing: border-box;
+
+    a{
+        color: black;
+        text-decoration: none;
+        font-size: 16px;
+        margin-right: .5rem;
+    }
+
+    .info{
+        span{
+            &:nth-of-type(2){
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+input[type=submit]{
+    background-color: $orange;
+    border-radius: 2rem;
+    color: white;
+    padding: .5rem 1rem;
+    border: none;
+    cursor: pointer;
+    width: 120px;
+    text-align: center;
+    transition: opacity .3s linear;
+
+    &:hover{
+        opacity: .6;
+    }
+}
+
+.unverify{
+    background-color: $gray !important;
+}
+
+
+.inner{
+    padding: 0rem 2rem;
+}
+.navigation{
+
+    div{
+        border: 1px solid $darkBlue;
+        border-radius: 2rem;
+        padding: .5rem;
+    }
+
+    padding: 5rem 2rem;
+    display: flex;
+    justify-content: center;
+    i{
+        color: $orange;
+    }
+    input{
+        border: none;
+
+        &:focus{
+            outline: none;
+        }
+        
+    }
+    
+
+}
+
+
+table{
+
+    button[type=submit]{
+        margin-top: 0rem;
+        padding: .2rem 1rem;
+        width: 70px;
+    }
+  
+    width: 100%;
+
+    td{
+
+        width: 150px;
+
+        a{
+            text-decoration: none;
+        }
+        padding: 1rem;
+
+        i{
+            margin-right: .3rem;
+        }
+    }
+    
+    tr:nth-child(odd){
+        button[type=submit]{
+            
+            &:hover{
+                color: white;
+            }
+        }
+        background-color: $lightBlue;
+        color: white;
+        a{
+            color: white;
+        }
+    }
+    tr:nth-child(even){
+       
+        background-color: $lightGray;
+        a{
+            color: $darkBlue;
+        }
+    }
+      
+    tr{
+        &:nth-child(1){
+            background-color: $darkBlue;
+        }
+    }
+}
+
+.emptyTable{
+    margin-top: 2rem;
+}
+
+@media only screen and (max-width: 650px){
+    .wrapper{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    
+    
+      
+    
+        .absence-container{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding-bottom: 0;
+            padding: 4rem 2rem;
+            height: auto;
+            box-sizing: border-box;
+            form{
+    
+                width: 100%;
+                .row{
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 2rem;
+                    &:last-of-type{
+                        margin-bottom: 0rem;
+                    }
+                    label{
+                        margin-bottom: .5rem;
+                    }
+                }
+            }
+        }
+    }
+
+}

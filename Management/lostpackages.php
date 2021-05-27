@@ -1,13 +1,12 @@
 <?php
-// session_start();
-// // Check if the session is set else redirect to login page
-// if (isset($_SESSION['employee_id'])){}
+    if (!isset($_SESSION)) { session_start(); };
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/app2/PATHS.php");
+    require_once(PHPSCRIPTDIR . "error.php");
 
-// else
-// header("Location: login.php");
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/PATHS.PHP");
+    if (!isset($_SESSION["employee_id"]))
+        header("Location: login.php");
 
-    $json = json_decode(file_get_contents("database.json"), true);
+    $json = json_decode(file_get_contents(MOCKDIR . "database.json"), true);
 
     function echoLostPackages($arr)
     {
@@ -21,23 +20,23 @@
             $row = "";
             $row .= "<tr>";
             $row .= "<td>" . $Package["PackageID"] . "</td>";
-            $row .= "<td><a href='./complaints/opencomplaints.php?ComplaintID=" . $Package["ComplaintID"] . "'>" . $Package["ComplaintID"] . "</a></td>";
+            $row .= "<td><a href='" . COMPLAINTSDIR . "complaints.php?id=" . $Package["ComplaintID"] . "'>" . $Package["ComplaintID"] . "</a></td>";
             $row .= "<td>" . $Package["OrderID"] . "</td>";
             $row .= "<td>" . $Package["Date"] . "</td>";
             $row .= "<td>" . $Package["Addressee"] . "</td>";
             $row .= "<td>" . $Package["Last Checkpoint"] . "</td>";
             $row .= "<td>" . $diff->format("%d") . "</td>";
             $row .= "</tr>";
-            
+
             echo $row;
         }
     }
 ?>
 
-<?php require(COMPONENTSDIR . COMPONENT_HEAD); ?>
+<?php require(COMPONENTSDIR . COMPONENT_MANAGEMENTHEAD); ?>
     <title>Lost Packages</title>
 </head>
-<?php require(COMPONENTSDIR . COMPONENT_BODY_TOP); ?>
+<?php require(COMPONENTSDIR . COMPONENT_MANAGEMENT_BODY_TOP); ?>
     <div id="lostpackages">
         <table id="lostpackagestable" class="table table-sm table-hover">
             <thead>

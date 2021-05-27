@@ -1,0 +1,19 @@
+#login
+{
+    background-color: var(--lightblue);
+}
+
+#login-image
+{
+    height: 120px;
+}
+
+#login-forgot
+{
+    color: var(--blue);
+}
+
+#login-forgot:hover
+{
+    cursor: pointer;
+}

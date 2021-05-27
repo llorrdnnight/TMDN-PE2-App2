@@ -1,90 +1,126 @@
 <?php
-/**
- * @author Greg De Vuyst
- */
+    /**
+     * @author Greg De Vuyst
+    */
 
-include './includes/db_config.php';
-include './includes/sanitize.php';
-include './includes/authentication.php';
-session_start();
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/app2/PATHS.php");
+    require_once(PHPSCRIPTDIR . "error.php");
 
-if(isLoggedIn()){
+    require_once(PHPSCRIPTDIR . "db_config.php");
+    require_once(PHPSCRIPTDIR . "sanitize.php");
+    require_once(PHPSCRIPTDIR . "authentication.php");
 
-    // redirect to main page
-}
+    if (!isset($_SESSION)) { session_start(); };
 
-$error = null;
+    if(isLoggedIn()){
 
-// if post request has been sent
-if($_SERVER['REQUEST_METHOD'] == "POST"){
+        // redirect to main page
+    }
 
-    // retrieve the POST variables and sanitize them
-    $email = sanitize($_POST['email']);
-    $password = sanitize($_POST['password']);
+    $error = null;
 
-    
-    $sql = "SELECT * FROM employee WHERE mailAddress = :mail";
-    $stmt = $db->prepare($sql);
-    $stmt->bindParam(':mail', $email);
-    if($stmt->execute()){
-        // check if employee with given email exists
-        if($stmt->rowCount() > 0){
-            $employee = $stmt->fetch();
-            $hashed_password = $employee['password'];
-            // compare hashed password with input password
-            if(password_verify($password, $hashed_password)){
-                // add a session variable with the employee's ID
-                $_SESSION['employee_id'] = $employee['id'];
-                // store the access level of the employee
-                $_SESSION['admin'] = ($employee['isAdmin'] == 1)? true: false;
-                // temporary success msg
-               
-                // REDIRECT USER TO main page
-                header("Location: dashboard.php");
+    // if post request has been sent
+    if($_SERVER['REQUEST_METHOD'] == "POST"){
 
+        // retrieve the POST variables and sanitize them
+        $email = sanitize($_POST['email']);
+        $password = sanitize($_POST['password']);
+
+        $sql = "SELECT * FROM employee WHERE mailAddress = :mail";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':mail', $email);
+        if($stmt->execute()){
+            // check if employee with given email exists
+            if($stmt->rowCount() > 0){
+                $employee = $stmt->fetch();
+                $hashed_password = $employee['password'];
+                // compare hashed password with input password
+                if(password_verify($password, $hashed_password)){
+                    // add a session variable with the employee's ID
+                    $_SESSION['employee_id'] = $employee['id'];
+                    // store the access level of the employee
+                    $_SESSION['admin'] = ($employee['isAdmin'] == 1)? true: false;
+                    // temporary success msg
+
+                    // REDIRECT USER TO main page
+                    header("Location: dashboard.php");
+
+                }
+                else{
+                    // invalid password
+                    $error = "Incorrect password";
+                }
             }
             else{
-                // invalid password
-                $error = "Incorrect password";
+                $error = "Incorrect email address";
             }
         }
         else{
-            $error = "Incorrect email address";
+            $error = "Execution error";
         }
     }
-    else{
-        $error = "Execution error";
-    }
-}
-
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Login</title>
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/login.css">
+<?php require(COMPONENTSDIR . COMPONENT_HRHEAD); ?>
+    <title>Login</title>
 </head>
 <body>
+    <div id="wrapper" class="container-fluid h-100"><!-- full body wrapper -->
+        <div class="row h-100">
+            <div class="col-12">
+                <div class="d-flex flex-column h-100"><!-- content flexbox -->
+                    <div class="row">
+                        <div class="col-12 p-0">
+                            <header><!-- insert header here -->
+                                <div id="header-image-container"><img id="header-image" src=<?= HTMLIMAGES . "LOGO_composite.png"; ?> class="img-fluid"></div>
+                                <h1><a id="header-title" href="login.php">Login</a></h1>
+                            </header>
+                        </div>
+                    </div>
 
-    <div class="wrapper">
+                    <div class="d-flex flex-column justify-content-center align-items-center h-75">
+                        <div class="col-lg-5 col-md-8 col-12 pt-5">
 
-        <!-- The login box -->
-        <div class="login-modal">
-            <h1>HR - Login</h1>
-            <form action="" method="POST">
-                <input type="text" name="email" id="" placeholder="E-mail">
-                <input type="password" name="password" id="" placeholder="Password">
-                <input type="submit" value="Login">
-                <p id="error"><?php echo $error; ?></p>
-            </form>
+                            <div id="login-image-container" class="text-center">
+                                <img id="login-image" src=<?= HTMLIMAGES . "LOGOok.png"; ?> class="img-fluid">
+                            </div>
 
+                            <form action="login.php" method="POST" id="login-form" class="d-flex flex-column col-12 pt-3">
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    </div>
+
+                                    <input type="email" name="email" id="input_email" class="form-control" placeholder="Company Email">
+                                </div>
+
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                    </div>
+
+                                    <input type="password" name="password" id="input_password" class="form-control" placeholder="Password">
+                                </div>
+
+                                <div class="row d-flex flex-row justify-content-between">
+                                    <div class="form-check ml-3">
+                                        <input type="checkbox" id="input_stayloggedin" class="form-check-input">
+                                        <label for="input_stayloggedin" class="form-check-label">Stay logged in?</label>
+                                    </div>
+
+                                    <div class="form-group mr-3">
+                                        <a id="login-forgot">Forgot password?</a>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="submit" value="login" class="btn btn-primary float-right">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
     </div>
-    
 </body>
-</html>

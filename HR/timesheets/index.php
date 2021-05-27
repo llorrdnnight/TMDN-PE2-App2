@@ -1,19 +1,59 @@
 <?php
 use Carbon\Carbon;
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
-session_start();
-require '../vendor/autoload.php';
-include '../includes/db_config.php';
-include '../includes/authentication.php';
-include '../includes/sanitize.php';
-include '../components/navbar.php';
-include '../includes/classes/Employee.php';
+if (!isset($_SESSION)) { session_start(); };
+require_once($_SERVER["DOCUMENT_ROOT"] . "/app2/PATHS.php");
+require(HRDIR. "vendor/autoload.php");
+include(INCLUDESDIR . "authentication.php");
+include(INCLUDESDIR . "sanitize.php");
+include(COMPONENTSDIR . "navbar.php");
+include(PHPCLASSDIR . "Employee.php");
+
+// every employee can access!
+
+$user = "test";
+$pass = "1Azerty?!";
+$employeeID = getLoggedInEmployee()->id;
+// try and create a PHP database object
+try {
+    $db = new PDO('mysql:host=10.128.63.132;dbname=Bluesky_DB', $user, $pass);
+}
+
+// handle exception
+catch (PDOException $e) {
+    echo "Oops something when wrong trying to connect to the database: ".$e->getMessage();
+
+}
 
 
 
+function getSessionsBetweenDates($start, $end, $db){
+    $sql = "SELECT count(id) as count FROM timesheets WHERE start BETWEEN '$start' AND '$end'";
+    $result = $db->query($sql);
 
-if(!isLoggedIn()){
-    header("Location: ../dashboard.php");
+    if($result->rowCount() > 0){
+
+        return $result->fetch(0,1)['count'];
+
+    }
+}
+
+function getHoursWorked($start, $end, $db){
+    $sql = "SELECT * FROM timesheets WHERE start BETWEEN '$start' AND '$end' ";
+    $result = $db->query($sql);
+
+
+if($result->rowCount() > 0){
+    $records = $result->fetchAll();
+    $totalAmountWorked = 0;
+    foreach($records as $record){
+        $start = Carbon::parse($record['start']);
+        $end = Carbon::parse($record['end']);
+        $diff = abs($start->diffInHours($end));
+        $totalAmountWorked += $diff;
+    }
+        return $totalAmountWorked;
+}
 }
 
 
@@ -21,11 +61,22 @@ if(!isLoggedIn()){
 if($_SERVER['REQUEST_METHOD'] == "POST"){
 
 
-
     if(isset($_POST['startSession'])){
 
         /* Working session started */
-        Employee::startWorkSession(getUserId(), $db);
+
+        $now = date_create()->format('Y-m-d H:i:s');
+
+        $stmt = $db->prepare("INSERT INTO timesheets(employee,start) VALUES(:employee, :start)");
+        $stmt->bindParam(":employee", getLoggedInEmployee()->id);
+        $stmt->bindParam(":start", $now);
+
+
+        if($stmt->execute()){
+
+        }
+        else{
+        }
 
     }
 
@@ -33,8 +84,22 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     else if(isset($_POST['stopSession'])){
 
         /* Working session stopped */
-        Employee::stopWorkSession(getUserId(), $db);
+        $id = getLoggedInEmployee()->id;
+        $stmt = $db->query("SELECT * FROM timesheets WHERE end IS NULL AND employee = $id");
+        $result = $stmt->fetch(0,1);
+        $currentSession = $result['id'];
 
+        $now = date_create()->format('Y-m-d H:i:s');
+
+        $stmt = $db->prepare("UPDATE timesheets SET end = :end WHERE id = $currentSession");
+        $stmt->bindParam(":end", $now);
+
+
+        if($stmt->execute()){
+
+        }
+        else{
+        }
 
     }
 
@@ -42,17 +107,54 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 }
 
 // Get working hours for employees
-$lastSession = Employee::getLastWorkingSession(getUserId(), $db);
-if(Employee::getCurrentWorkSession(getUserId(),$db)){
-    $currentSession = Employee::getWorkSessionById(Employee::getCurrentWorkSession(getUserId(),$db), $db);
+$sql = "SELECT * FROM timesheets WHERE end IS NOT NULL AND employee = $employeeID AND id = (SELECT MAX(id) FROM timesheets WHERE employee = $employeeID AND end IS NOT NULL)";
+$result = $db->query($sql);
+$lastSession = null;
+$currentSession = null;
+
+if($result->rowCount() > 0){
+    $lastSession =  $result->fetch(0,1);
+
 }
+
+else{
+}
+
+$sql = "SELECT * FROM timesheets WHERE employee = $employeeID AND end IS NULL LIMIT 0,1";
+$result = $db->query($sql);
+
+if($result->rowCount() > 0){
+    $currentSession = $result->fetch(0,1);
+}
+
+else{
+}
+
 
 
 // calculate some statistics
 
-$hoursWorkedThisWeek = Employee::getHoursWorkedThisWeek(getUserId(), $db);
-$hoursWorkedThisMonth = Employee::getHoursWorkedThisMonth(getUserId(), $db);
-$hoursWorkedThisYear = Employee::getHoursWorkedThisYear(getUserId(), $db);
+
+$startOfWeek = Carbon::now()->startOfWeek()->format('Y-m-d H:i:s');
+$endOfWeek = Carbon::now()->endOfWeek()->format('Y-m-d H:i:s');
+$startOfMonth = Carbon::now()->startOfMonth()->format('Y-m-d H:i:s');
+$endOfMonth = Carbon::now()->endOfMonth()->format('Y-m-d H:i:s');
+$startOfYear = Carbon::now()->startOfYear()->format('Y-m-d H:i:s');
+$endOfYear = Carbon::now()->endOfYear()->format('Y-m-d H:i:s');
+
+$hoursWorkedThisWeek = getHoursWorked($startOfWeek, $endOfWeek, $db);
+$hoursWorkedThisMonth = getHoursWorked($startOfMonth, $endOfMonth, $db);
+$hoursWorkedThisYear = getHoursWorked($startOfYear, $endOfYear, $db);
+
+
+
+
+
+
+
+// $hoursWorkedThisWeek = Employee::getHoursWorkedThisWeek(getLoggedInEmployee()->id, $db);
+// $hoursWorkedThisMonth = Employee::getHoursWorkedThisMonth(getLoggedInEmployee()->id, $db);
+// $hoursWorkedThisYear = Employee::getHoursWorkedThisYear(getLoggedInEmployee()->id, $db);
 
 
 
@@ -69,9 +171,10 @@ $hoursWorkedThisYear = Employee::getHoursWorkedThisYear(getUserId(), $db);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timesheets | HR</title>
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/navbar.css">
-    <link rel="stylesheet" href="../css/timesheets.css">
+    <link rel="stylesheet" href=<?= HTMLCSS . "reset.css"; ?>>
+    <link rel="stylesheet" href=<?= HTMLCSS . "navbar.css"; ?>>
+    <link rel="stylesheet" href=<?= HTMLCSS . "timesheets.css"; ?>>
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
 
 </head>
@@ -79,12 +182,14 @@ $hoursWorkedThisYear = Employee::getHoursWorkedThisYear(getUserId(), $db);
 
 <div class="wrapper">
 
-    <?php echo generateNavigationBar('Timesheets', '../dashboard.php', Employee::getEmployeeNameById(getUserId(), $db))?>
+    <?php echo generateNavigationBar('Timesheets', '/app2/hr/dashboard', getEmployeeFirstName())?>
     <div class="container">
+
+
         <div class="action">
             <form action="" method="POST">
-                <input type="submit" <?php if(Employee::hasCurrentWorkSession(getUserId(), $db)){echo "disabled='true'";} ?> value="Start working" name="startSession" class="start">
-                <input type="submit" <?php if(!Employee::hasCurrentWorkSession(getUserId(), $db)){echo "disabled='true'";} ?> value="Stop working" name="stopSession" class="stop">
+                <input type="submit" <?php if(Employee::hasCurrentWorkSession(getLoggedInEmployee()->id, $db)){echo "disabled='true'";} ?> value="Start working" name="startSession" class="start">
+                <input type="submit" <?php if(!Employee::hasCurrentWorkSession(getLoggedInEmployee()->id, $db)){echo "disabled='true'";} ?> value="Stop working" name="stopSession" class="stop">
             </form>
             <span id="clock"></span>
         </div>
@@ -92,7 +197,7 @@ $hoursWorkedThisYear = Employee::getHoursWorkedThisYear(getUserId(), $db);
             <h1 class="title">Sessions</h1>
 
             <?php if(isset($currentSession)):
-                $start = Carbon::parse($currentSession['start']);    
+                $start = Carbon::parse($currentSession['start']);
             ?>
             <div class="current">
                 <h1>Current session</h1>
@@ -109,17 +214,18 @@ $hoursWorkedThisYear = Employee::getHoursWorkedThisYear(getUserId(), $db);
                         <label for="">Duration:</label>
                         <span><?php echo $start->diffInHours(Carbon::now());?> hours</span>
                     </div>
-                </div>             
+                </div>
             </div>
+
             <?php endif; ?>
-            <?php if($lastSession): 
-                
-                $start = Carbon::parse($lastSession['start']);    
-                $end = Carbon::parse($lastSession['end']);    
+            <?php if($lastSession !==null):
+
+                $start = Carbon::parse($lastSession['start']);
+                $end = Carbon::parse($lastSession['end']);
 
             ?>
-        
-            <?php endif ?>
+
+
             <div class="last">
             <h1 >Last session</h1>
                 <div class="stat-container">
@@ -139,21 +245,20 @@ $hoursWorkedThisYear = Employee::getHoursWorkedThisYear(getUserId(), $db);
                         <label for="">Duration:</label>
                         <span><?php echo $start->diffInHours($end);?> hours</span>
                     </div>
-                    <div class="stat">
-                        <label for="">Earned:</label>
-                        <span>€<?php echo $start->diffInHours($end) * Employee::getEmployeeSalary(getUserId(), $db);?> EBIT</span>
-                    </div>
+
                 </div>
             </div>
+            <?php endif ?>
             <h1 class="title mar-top-2">Overview</h1>
-            
+
+            <?php if($lastSession !== null): ?>
             <div class="last">
             <h1>This week</h1>
                 <div class="stat-container">
-                        <?php 
-                            $startOfWeek = Carbon::now()->startOfWeek()->format('Y-m-d H:i:s'); 
-                            $endOfWeek = Carbon::now()->endOfWeek()->format('Y-m-d H:i:s'); 
-                            $sessionCount = Employee::getSessionCountBetweenDates(getUserId(),$db,$startOfWeek, $endOfWeek);
+                        <?php
+                            $startOfWeek = Carbon::now()->startOfWeek()->format('Y-m-d H:i:s');
+                            $endOfWeek = Carbon::now()->endOfWeek()->format('Y-m-d H:i:s');
+                            $sessionCount = getSessionsBetweenDates($startOfWeek, $endOfWeek, $db);
 
                         ?>
 
@@ -165,19 +270,15 @@ $hoursWorkedThisYear = Employee::getHoursWorkedThisYear(getUserId(), $db);
                         <label for="">Hours worked:</label>
                         <span><?php echo $hoursWorkedThisWeek;?></span>
                     </div>
-                    <div class="stat">
-                        <label for="">Money earned:</label>
-                        <span>&euro;<?php echo $hoursWorkedThisWeek * Employee::getEmployeeSalary(getUserId(), $db)?></span>
-                    </div>
                 </div>
             </div>
             <div class="last">
             <h1>This Month</h1>
                 <div class="stat-container">
-                    <?php 
-                        $startOfMonth = Carbon::now()->startOfMonth()->format('Y-m-d H:i:s'); 
-                        $endOfMonth = Carbon::now()->endOfMonth()->format('Y-m-d H:i:s'); 
-                        $sessionCount = Employee::getSessionCountBetweenDates(getUserId(),$db,$startOfMonth, $endOfMonth);
+                    <?php
+                        $startOfMonth = Carbon::now()->startOfMonth()->format('Y-m-d H:i:s');
+                        $endOfMonth = Carbon::now()->endOfMonth()->format('Y-m-d H:i:s');
+                        $sessionCount = getSessionsBetweenDates($startOfMonth, $endOfMonth, $db);
 
                     ?>
 
@@ -189,19 +290,15 @@ $hoursWorkedThisYear = Employee::getHoursWorkedThisYear(getUserId(), $db);
                         <label for="">Hours worked:</label>
                         <span><?php echo $hoursWorkedThisMonth;?></span>
                     </div>
-                    <div class="stat">
-                        <label for="">Money earned:</label>
-                        <span>&euro;<?php echo $hoursWorkedThisMonth * Employee::getEmployeeSalary(getUserId(), $db)?></span>
-                    </div>
                 </div>
             </div>
             <div class="last">
             <h1>This Year</h1>
                 <div class="stat-container">
-                    <?php 
-                        $startOfYear = Carbon::now()->startOfYear()->format('Y-m-d H:i:s'); 
-                        $endOfYear = Carbon::now()->endOfYear()->format('Y-m-d H:i:s'); 
-                        $sessionCount = Employee::getSessionCountBetweenDates(getUserId(),$db,$startOfYear, $endOfYear);
+                    <?php
+                        $startOfYear = Carbon::now()->startOfYear()->format('Y-m-d H:i:s');
+                        $endOfYear = Carbon::now()->endOfYear()->format('Y-m-d H:i:s');
+                        $sessionCount = getSessionsBetweenDates($startOfYear, $endOfYear, $db);
 
                     ?>
 
@@ -213,13 +310,11 @@ $hoursWorkedThisYear = Employee::getHoursWorkedThisYear(getUserId(), $db);
                         <label for="">Hours worked:</label>
                         <span><?php echo $hoursWorkedThisYear;?></span>
                     </div>
-                    <div class="stat">
-                        <label for="">Money earned:</label>
-                        <span>&euro;<?php echo $hoursWorkedThisYear * Employee::getEmployeeSalary(getUserId(), $db)?></span>
-                    </div>
                 </div>
             </div>
-           
+            <?php else: ?>
+            <p>No sessions found.</p>
+            <?php endif; ?>
         </div>
     </div>
 </div>
@@ -258,6 +353,6 @@ calculateLiveClock();
 
 </script>
 
-    
+
 </body>
 </html>

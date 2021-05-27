@@ -1,0 +1,119 @@
+html{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  background: rgb(13,52,89);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2d3130), color-stop(#174061), to(#4d5758));
+  background: linear-gradient(#0D3459, #0D3459);}
+
+.card-logout{
+  cursor: pointer;
+  background-color: #ff6700;
+  color: #3a6ea5;
+  font-size: 21px;
+  width: 10em;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  padding: 30px;
+  border-radius: 10px;
+  margin: 10px;
+  display: inline-block;
+  justify-content: center;
+  text-align: center;
+  
+  }
+
+  .card {
+    cursor: pointer;
+    background-color: #ebebeb;
+    color: #3a6ea5;
+    font-size: 21px;
+    width: 10em;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding: 30px;
+    border-radius: 10px;
+    margin: 10px;
+    display: inline-block;
+    justify-content: center;
+    text-align: center;
+    
+  }
+  .center{
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+      }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.2);
+  }
+  
+  .card-logout:hover {
+    box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.2);
+  }
+  
+  .container {
+    padding: 2px 16px;
+  }
+
+
+  form{
+    width: 100%;
+    height: 100%;
+  }
+
+  input[type=submit]{
+
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    color: white;
+
+  }
+
+  .header {
+    overflow: hidden;
+    color: white;
+  }
+  
+  .header {
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px; 
+  }
+  
+  .header .logo {
+    padding: 12px;
+    padding-right: 30px;
+    padding-top: 30px;
+    text-align: center;
+    float: right;
+    font-size: 35px;
+    font-weight: bold;
+  }
+  
+  .header .img {
+    position: relative;
+    padding-left: 30px;
+    padding-top: 30px;
+    float: left;
+    top: 0px;
+    width: 20em;
+  }
+
+  .header .img,
+  .header .logo{
+    display: inline-block;
+    vertical-align: bottom;
+  }

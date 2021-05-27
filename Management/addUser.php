@@ -1,9 +1,15 @@
 <?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/PATHS.PHP");
+    if (!isset($_SESSION)) { session_start(); };
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/app2/PATHS.php");
+    require_once(PHPSCRIPTDIR . "error.php");
 
-    include './includes/db_config.php';
-    include './includes/sanitize.php';
-    include "components/check_db.php"; // check if the foreig keys have been set
+    if (!isset($_SESSION["employee_id"]))
+        header("Location: login.php");
+
+    include(PHPSCRIPTDIR . "db_config.php");
+    include(PHPSCRIPTDIR . "sanitize.php");
+    include(PHPSCRIPTDIR . "check_db.php"); // check if the foreign keys have been set
+
     // add a new user
     $msg = "";
     $err = FALSE;
@@ -23,7 +29,7 @@
         $id = 1;
 
         // add a new user
-    $password = password_hash("password",PASSWORD_DEFAULT);
+    $password = password_hash("password", PASSWORD_DEFAULT);
     $sql = "SELECT * FROM employee;";
     $result = mysqli_query($link,$sql);
 
@@ -32,7 +38,7 @@
                 $id++;
             }
             if($email == $row['mailAddress']){
-                
+
                 $msg = "This email is already in use !";
                 $err = TRUE;
             }
@@ -47,14 +53,14 @@
     }
 ?>
 
-<?php require(COMPONENTSDIR . COMPONENT_HEAD); ?>
+<?php require(COMPONENTSDIR . COMPONENT_MANAGEMENTHEAD); ?>
     <script src=<?= HTMLJAVASCRIPT . "expandrow.js"; ?>></script>
     <script src=<?= HTMLJAVASCRIPT . "cleanForm.js"; ?>></script>
     <title>Deliveries</title>
 </head>
-<?php require(COMPONENTSDIR . COMPONENT_BODY_TOP); ?>
+<?php require(COMPONENTSDIR . COMPONENT_MANAGEMENT_BODY_TOP); ?>
     <div class="col-lg-12 pt-3 g-0">
-        <h2>Add a new employee</h2>                    
+        <h2>Add a new employee</h2>
             <div class="flex-container">
                 <div>
                     <form action="" method="POST">

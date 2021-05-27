@@ -1,0 +1,160 @@
+/* #region VARIABLES */
+/* absences css file, has to be moved to hrstyle */
+:root
+{
+    --white: #EBEBEB;
+    --lightgray: #C0C0C0;
+    --gray: #999999;
+    --darkgray: #3f3f3f;
+    --black: #858585;
+
+    --red: #c42121;
+    --orange: #FF6700;
+
+    --green: #198b2c;
+
+    --lightblue: #3A6EA5;
+    --blue: #004E98;
+    --darkblue: #0D3459;
+
+    --text: #333333;
+}
+/* #endregion */
+
+/* #region WEBKITS */
+::-webkit-scrollbar{ display: none; }
+/* #endregion */
+
+/* #region SHARED */
+html, body
+{
+    height: 100%;
+    color: var(--text);
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+}
+
+.nopadding{ padding: 0; }
+
+header
+{
+    height: 60px;
+    color: var(--white);
+    background-color: var(--darkblue);
+}
+
+h1 a
+{
+    color: var(--white);
+    text-decoration: none;
+}
+
+h1 a:hover
+{
+    color: var(--orange);
+    text-decoration: none;
+}
+
+#sidebar-wrapper
+{
+    /* background-color: var(--gray); */
+    padding: 15px 0px;
+    font-size: 16px;
+}
+
+#sidebar-wrapper ul ul{ padding-left: 10px; }
+
+#sidebar-wrapper a
+{
+    color: var(--blue);
+    text-decoration: none;
+}
+
+#sidebar-wrapper a:hover
+{
+    color: var(--orange);
+}
+
+.sidebar-nav ul, .sidebar-nav li
+{
+    padding: none;
+    margin: none;
+}
+
+#page-content-wrapper
+{
+    background-color: rgb(245, 245, 245);
+    padding-top: 15px;
+    padding-left: 0px;
+    padding: 15px 0 0 0;
+}
+/* #endregion */
+
+/* #region VERLOF */
+#filter
+{
+    float: left;
+    border: 1px solid green;
+}
+
+#content
+{
+    width: 800px;
+    float: left;
+    border: 1px solid red;
+}
+
+#recent
+{
+    width: 100%;
+    table-layout: fixed;
+}
+
+#recent tr th
+{
+    text-align: left;
+}
+
+#sdjfkl
+{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#sdjfkl th
+{
+    background-color: rgb(82, 170, 82);
+}
+
+#sdjfkl th, #sdjfkl td
+{
+    border: 1px solid rgb(207, 207, 207);
+}
+/* #endregion */
+
+.table-head
+{
+    color: white;
+    background-color: var(--blue);
+}
+
+.bg-green
+{
+    background-color: var(--green);
+}
+
+.bg-red
+{
+    background-color: var(--red);
+}
+
+#leavetable th, #leavetable td
+{
+    text-align: center;
+}
+
+#leavetable button
+{
+    height: 100%;
+    width: 100%;
+}

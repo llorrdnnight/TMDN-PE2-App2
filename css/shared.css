@@ -1,0 +1,50 @@
+:root
+{
+    --white: #EBEBEB;
+    --gray: #6C757D;
+    --darkgray: #999999;
+    --black: #2e2e2e;
+    
+    --red: #DC3545;
+    --orange: #FF6700;
+    --green: #28A745;
+    
+    --lightblue: #eaf0ff;
+    --blue: #004E98;
+    --darkblue: #0D3459;
+    
+    --text: #333333;
+}
+
+html, body
+{
+    height: 100%;
+    color: var(--text);
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+    font-family: Rubik;
+}
+
+::-webkit-scrollbar{ display: none; }
+
+table > *
+{
+    font-family: Karla;
+}
+
+table thead
+{
+    color: var(--white);
+    background-color: var(--blue);
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button 
+{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] 
+{
+    -moz-appearance: textfield;
+}

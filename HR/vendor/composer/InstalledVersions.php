@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'b7778badebaed17468e77baa42aa85a593897ee6',
+    'reference' => '94682f49040ef610deca9e6393261f84e798bcdf',
     'name' => 'gregd/hr',
   ),
   'versions' => 
@@ -42,7 +42,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'b7778badebaed17468e77baa42aa85a593897ee6',
+      'reference' => '94682f49040ef610deca9e6393261f84e798bcdf',
     ),
     'nesbot/carbon' => 
     array (

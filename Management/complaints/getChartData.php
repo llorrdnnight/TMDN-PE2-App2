@@ -1,5 +1,6 @@
 <?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/PATHS.PHP");
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/app2/PATHS.php");
+    require_once(PHPSCRIPTDIR . "error.php");
 
     if ($_SERVER["REQUEST_METHOD"] == "GET")
     {

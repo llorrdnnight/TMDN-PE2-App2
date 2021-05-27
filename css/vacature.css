@@ -1,0 +1,149 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.nav-bar {
+  background-color: #0D3459;
+  width: 100%;
+  height: 10vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.nav-bar .left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-left: 2rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.nav-bar .left i {
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.nav-bar .right {
+  color: white;
+  padding-right: 2rem;
+}
+
+.nav-bar .right span {
+  padding-left: .2rem;
+}
+
+.nav-bar h1 {
+  color: white !important;
+  font-size: 23px;
+  padding: 0rem 1.5rem;
+}
+a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+}
+.round {
+  border-radius: 50%;
+}
+#page-content-wrapper{
+  overflow-x:auto;
+  margin: 20px;
+}
+.content-table{
+  width: 100%;
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.content-table thead tr{
+  background-color: #ff6700;
+  color: white;
+  text-align: left;
+  font-weight: bold;
+  font-size: 18px;
+}
+.content-table th, .content-table td{
+  padding: 12px 15px;
+}
+.content-table tbody tr{
+  border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even){
+  background-color: #f3f3f3;
+}
+.content-table tbody tr:last-of-type{
+  border-bottom: 2px solid #ff6700;
+}
+.add-container{
+  justify-content: center;
+  display: flex;
+  padding: .5rem;
+  margin-top: 50px;
+  border-radius: 30px;
+}
+
+label{
+  margin-top: .5rem;
+  display: block;
+}
+input, textarea{
+  border-radius: 6px;
+  display: block;
+  width: 100%;
+}
+#sentBtn{
+  border: 0;
+  background-color: #ff6700;
+  padding: .5rem;
+  color: white;
+  margin-top: .5rem;
+  text-transform: uppercase;
+  width: 100%;
+}
+#description{
+  width: 500px;
+  height: 150px;
+  resize: none;
+
+}
+.float{
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:40px;
+  right:40px;
+  background-color:#ff6700;
+  color:#FFF;
+  border-radius:50px;
+  text-align:center;
+  box-shadow: 2px 2px 3px #999;
+}
+
+.my-float{
+  margin-top:22px;
+}

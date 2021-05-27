@@ -1,1 +1,0 @@
-# Here should all re-usable components be stored like navigation bars, footers,..

@@ -1,178 +1,176 @@
 <?php
-    $json = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/HR/TEMPDB.json"), true);
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/app2/PATHS.php");
+    require_once(PHPSCRIPTDIR . "error.php");
 
-    function echoRecentLeaveRequests($employees, $timeoff)
+    $employees = json_decode(file_get_contents("http://10.128.30.7:8080/api/employees"), true);
+    $absences = json_decode(file_get_contents("http://10.128.30.7:8080/api/absences"), true);
+    $acceptedRequests = getRequestsByAttribute($absences, "approved", 1);
+    $nonAcceptedRequests = getRequestsByAttribute($absences, "approved", 0);
+
+    function getRequestsByAttribute($leave, $attribute, $value)
     {
-        $r = 0;
-        foreach ($timeoff as $period)
-        {
-            $fullname = $employees[$period["EmployeeID"] - 1]["Firstname"] . " " . $employees[$period["EmployeeID"] - 1]["Surname"];
-            $datestart = new DateTime($period["Daterange"][0]);
-            $dateend = new DateTime($period["Daterange"][1]);
-            $row = "";
-            $row .= "<tr>";
-            $row .= "<td>" . $fullname . "</td>";
-            $row .= "<td>" . $datestart->diff($dateend)->format("%a") . "</td>";
-            $row .= "<td>" . $period["RequestDate"] . "</td>";
-            $row .= "<td>" . $datestart->format("Y-m-d") . " | " . $dateend->format("Y-m-d") . "</td>";
-            $row .= "</tr>";
-            
-            echo $row;
+        $arr = array();
 
-            // TODO: remove this, replace with non approved leave requests
-            $r++;
-            if ($r > 4)
-                break;
+        foreach($leave as $request)
+        {
+            if ($request[$attribute] == $request);
+                array_push($arr, $request);
         }
+
+        return $arr;
     }
 
-    function echoMonthlyLeaveReport($employees, $timeoff)
+    function echoMonthlyLeaveReport($employees, $leave)
     {
+        //I'll shortly explain what this trainwreck of a function does
+        //It generates a table of the employees and their availability for the upcoming 31 days.
+        //It does this by iterating over the absences and then fetching the relevant information from the employees.
+        //A table is created to show all this information in a clean way.
+        //The code has been divided with { and } to hopefully make things more clear.
+
         //Create DateTime object of today
-        $today = new DateTime("Now");
+        $today = new DateTime("now");
+        $leaveReportIndex = 0;
 
         //Set up table and 2 table headers
-        $table = $theadrow1 = $theadrow2 = $tbody = "";
-        $table .= "<table class='table table-hover table-sm col-lg-12 text-center'><colgroup><col span='1' class='text-left'</colgroup>";
-        $theadrow1 .= "<thead><tr class='table-head'><th>Maand</th><th></th>";
-        $theadrow2 = "<thead><tr><th>Werknemer</th><th>Periode</th>";
-        $tbody = "<tbody>";
-        //Add data to table headers
-        for ($i = 0; $i < 31; $i++)
+        //This was all made before I knew you can write HTML "between" php brackets
         {
-            $theadrow1 .= "<th>" . $today->format("D") . "</th>";
-            $theadrow2 .= "<th>" . $today->format("d") . "</th>";
+            $table = "<table class='table table-hover table-sm text-center'>";
+            $theadrow1 = "<thead><tr class='table-head'><th>Month</th><th></th>";
+            $theadrow2 = "<thead><tr><th>Employee</th><th>Days</th>";
+            $tbody = "<tbody>";
 
-            $today->add(new DateInterval("P1D"));
+            //Set up the 2 table headers which contain <Month, Day> and <EmployeeName, Days> respectively
+            for ($i = 0; $i < 31; $i++)
+            {
+                $theadrow1 .= "<th>" . $today->format("D") . "</th>";
+                $theadrow2 .= "<th>" . $today->format("d") . "</th>";
+
+                $today->add(new DateInterval("P1D"));
+            }
+
+            //Close off the table headers
+            $theadrow1 .= "</tr></thead>";
+            $theadrow2 .= "</tr></thead>";
+
+            //And add them to the table
+            $table .= $theadrow1;
+            $table .= $theadrow2;
         }
 
-        $theadrow1 .= "</tr></thead>";
-        $theadrow2 .= "</tr></thead>";
-        $table .= $theadrow1;
-        $table .= $theadrow2;
-
-        //placeholder datetime aangezien het hierboven ge increment is
+        //We redeclare the $today variable because it has been incremented by 31 days.
         $today = new DateTime("now");
         $nextmonth = new DateTime("now");
         $nextmonth->add(new DateInterval("P1M"));
 
-        //dit zou dus in de bovenstaande for loop gestoken moeten worden
-        foreach($timeoff as $period)
+        //Give each cell in the table a red or green color, depending on the availability of the employee
         {
-            $dateiterator = new DateTime("now");
-            $startdate = new DateTime($period["Daterange"][0]);
-            $enddate = new DateTime($period["Daterange"][1]);
-
-            $row = "<tr><td>" . $employees[$period["EmployeeID"] - 1]["Firstname"] . "</td>";
-            $row .= "<td>" . $startdate->diff($enddate)->format("%a") . "</td>";
-
-            //If the Daterange starts before the end of the interval and ends after today
-            if ($startdate <= $nextmonth && $enddate >= $today) //fill row with active and non active days
+            foreach($leave as $period)
             {
-                for ($i = 0; $i < 31; $i++)
-                {
-                    if ($dateiterator >= $startdate && $dateiterator <= $enddate)
-                        $row .= "<td class='bg-red'></td>";
-                    else
-                        $row .= "<td class='bg-green'></td>";
+                $dateiterator = new DateTime("now");
+                $startdate = new DateTime($period["startDate"]);
+                $enddate = new DateTime($period["endDate"]);
 
-                    $dateiterator->add(new DateInterval("P1D"));
-                }
-            }
-            else //fill row with active days
-            {
-                for ($i = 0; $i < 31; $i++)
+                $employee = $employees[$period["employeeID"] - 1];
+                $row = "<tr><td>" . $employee["employeeFirstName"] . " " . $employee["employeeLastName"] . "</td>";
+                $row .= "<td>" . $startdate->diff($enddate)->format("%a") . "</td>";
+
+                //If the Daterange starts before the end of the interval and ends after today
+                if ($startdate <= $nextmonth && $enddate >= $today) //fill row with active and non active days
                 {
-                    $row .= "<td class='bg-green'></td>";
+                    echo "in range";
+                    for ($i = 0; $i < 31; $i++)
+                    {
+                        if ($dateiterator >= $startdate && $dateiterator <= $enddate)
+                            $row .= "<td class='bg-danger'></td>";
+                        else
+                            $row .= "<td class='bg-success'></td>";
+
+                        $dateiterator->add(new DateInterval("P1D"));
+                    }
                 }
+                else //fill row with active days
+                {
+                    for ($i = 0; $i < 31; $i++)
+                    {
+                        $row .= "<td class='bg-success'></td>";
+                    }
+                }
+
+                $tbody .= $row;
+
+                $leaveReportIndex++;
+                if ($leaveReportIndex > 12)
+                    break;
             }
 
-            //add rows to table
-            $tbody .= $row;
+            $tbody .= "</tbody>";
         }
 
-        $tbody .= "</tbody>";
-        $table .= $tbody;
-        $table .= "</table>";
+        $table .= $tbody; //Add generated body to the table
+        $table .= "</table>"; //And close it off
 
         echo $table;
     }
 ?>
 
-<?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/HR/components/head.php"); ?>
+<?php require(COMPONENTSDIR . COMPONENT_HRHEAD); ?>
     <title>Leave</title>
 </head>
-<body>
-    <div id="wrapper" class="container-fluid h-100"><!-- full body wrapper -->
-        <div class="row h-100">
-            <div class="col-12">
-                <div class="d-flex flex-column h-100"><!-- content flexbox -->
-                    <div class="row">
-                        <div class="col-12 p-0">
-                            <header><a href="leave.php">Leave</a></header>
-                        </div>
-                    </div>
+<?php require(COMPONENTSDIR . COMPONENT_HR_BODY_TOP); ?>
+    <?php require(COMPONENTSDIR . COMPONENT_LEAVENAV); ?>
 
-                    <div class="row flex-grow-1">
-                        <div class="col-lg-12 g-0 pt-2">
-                            <?php require($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/HR/components/leavenav.php"); ?>
+    <div class="row">
+        <div class="recentdiv col-12">
+            <table id="leave-recent" class="table table-hover table-sm">
+                <thead>
+                    <tr class="table-head">
+                        <th colspan="5">New Leave Requests</th>
+                    </tr>
+                </thead>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Days</th>
+                        <th>Request Date</th>
+                        <th>Period</th>
+                        <th>Approve</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        $r = 0;
 
-                            <!-- <div id="filter">
-                                <div>
-                                    <input id="calendar" type="date" name="calendar">
-                                </div>
+                        foreach ($nonAcceptedRequests as $period)
+                        {
+                            $fullName = $employees[$period["employeeID"] - 1]["employeeFirstName"] . " " . $employees[$period["employeeID"] - 1]["employeeLastName"];
+                            $dateStart = new DateTime($period["startDate"]);
+                            $dateEnd = new DateTime($period["endDate"]);
+                    ?>
 
-                                <div>
-                                    <br/><br/><br/>
-                                    <ul>
-                                        <li class="title">Aanvraag</li>
-                                        <li><input type="checkbox" name="Verlof" value="Verlof"><label for="Verlof">Verlof</label></li>
-                                        <li><input type="checkbox" name="Onbeschikbaar" value="Onbeschikbaar"><label for="Onbeschikbaar">Onbeschikbaar</label></li>
-                                    </ul>
-                                    <br/><br/><br/>
-                                    <ul>
-                                        <li class="title">Status</li>
-                                        <li><input type="checkbox" name="Nieuw" value="Nieuw"><label for="Nieuw">Nieuw</label></li>
-                                        <li><input type="checkbox" name="Goedgekeurd" value="Goedgekeurd"><label for="Goedgekeurd">Goedgekeurd</label></li>
-                                        <li><input type="checkbox" name="Niet Goedgekeurd" value="Niet Goedgekeurd"><label for="Niet Goedgekeurd">Niet Goedgekeurd</label></li>
-                                    </ul>
-                                </div>
-                            </div> -->
+                    <tr>
+                        <td><?= $fullName; ?></td>
+                        <td><?= $dateStart->diff($dateEnd)->format("%a"); ?></td>
+                        <td><?php $creationDate = new DateTime($period["created_at"]); echo $creationDate->format("Y-m-d"); ?></td>
+                        <td><?= $dateStart->format("Y-m-d") . " | " . $dateEnd->format("Y-m-d"); ?></td>
+                        <td>&#10003; &#10007;</td>
+                    </tr>
 
-                            <div class="row">
-                                <div class="recentdiv col-lg-6">
-                                    <table id="recent" class="table table-hover table-sm">
-                                        <thead>
-                                            <tr class="table-head">
-                                                <th colspan="4">Verlof aanvragen</th>
-                                            </tr>
-                                        </thead>
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Days</th>
-                                                <th>Request Date</th>
-                                                <th>Period</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php echoRecentLeaveRequests($json["Employees"], $json["TimeOff"]); ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            
-                                <div class="unavailable col-lg-6">
-                                </div>
-                            </div>
-        
-                            <div class="calendar col-lg-12">
-                                <?php echoMonthlyLeaveReport($json["Employees"], $json["TimeOff"]); ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    <?php
+                        // TODO: remove this, replace with non approved leave requests
+                        $r++;
+                        if ($r > 4)
+                            break;
+                    }
+                    ?>
+                </tbody>
+            </table>
         </div>
     </div>
-</body>
-</html>
+
+    <div class="row">
+        <div class="calendar col-12">
+            <?php echoMonthlyLeaveReport($employees, $acceptedRequests); ?>
+        </div>
+    </div>
+<?php require(COMPONENTSDIR . COMPONENT_BODY_BOTTOM); ?>

@@ -4,47 +4,66 @@
     //To add your own file or folder paths, follow the examples below. Make sure to add them under the right category eg. HTML paths under HTML header.
     //Also, make sure to end every folder path with a '/' so you dont have to prefix filenames with it.
 
-    //L1 DIRECTORIES
+    //L0
     define("ROOTDIR", realpath(dirname(__FILE__) . '/..')); //If this file were to be put next to the root folder, it would not be included in the Github repo.
-    define("GITDIR", ROOTDIR . "/TMDN-PE2-App2/");
-    define("MANAGEMENTDIR", GITDIR . "Management/");
-    define("LOGDIR", GITDIR . "Logs/");
+    define("GITDIR", ROOTDIR . "/app2/");
+
+    //L1 DIRECTORIES
+    define("COMPONENTSDIR", GITDIR . "components/");
+    define("CSSDIR", GITDIR . "css/");
+    define("MOCKDIR", GITDIR . "database/"); //                                     <= remove when not needed anymore, so after main database is fully in use.
+    define("HRDIR", GITDIR . "HR/");
+    define("IMAGESDIR", GITDIR . "images/");
+    define("INCLUDESDIR", GITDIR . "includes/");
+    define("LOGDIR", GITDIR . "logs/");
+    define("MANAGEMENTDIR", GITDIR . "management/");
+    define("SCRIPTSDIR", GITDIR . "scripts/");
 
     //L2 DIRECTORIES
-    define("INCLUDESDIR", MANAGEMENTDIR . "includes/");
-    define("COMPONENTSDIR", MANAGEMENTDIR . "components/");
+    define("LEAVEDIR", HRDIR . "leave/");
     define("COMPLAINTSDIR", MANAGEMENTDIR . "complaints/");
-    define("SCRIPTSDIR", MANAGEMENTDIR . "scripts/");
-    define("CSSDIR", MANAGEMENTDIR . "css/");
 
-    //L3 DIRECTORIES
     define("JAVASCRIPTDIR", SCRIPTSDIR . "javascript/");
     define("PHPSCRIPTDIR", SCRIPTSDIR . "php/");
+    define("PHPCLASSDIR", PHPSCRIPTDIR . "classes/");
 
     //HTML
-    define("HTMLROOT", '/' . basename(GITDIR) . '/');
-    define("HTMLMANAGEMENT", HTMLROOT . "Management/");
+    define("HTMLROOT", '/' . basename(GITDIR) . '/'); //This is currently the TMDN-PE2-App2 directory, which is not the same as the PHP root directory
 
-    define("HTMLCOMPLAINTS", HTMLMANAGEMENT . "complaints/");
-    define("HTMLSCRIPTS", HTMLMANAGEMENT . "scripts/");
-    define("HTMLCSS", HTMLMANAGEMENT . "css/");
+    define("HTMLHR", HTMLROOT . "HR/");
+    define("HTMLMANAGEMENT", HTMLROOT . "management/");
+    define("HTMLCSS", HTMLROOT . "css/");
     define("HTMLIMAGES", HTMLROOT . "images/");
-    
+    define("HTMLSCRIPTS", HTMLROOT . "scripts/");
+
+    define("HTMLLEAVE", HTMLHR . "leave/");
+    define("HTMLCOMPLAINTS", HTMLMANAGEMENT . "complaints/");
+
     define("HTMLJAVASCRIPT", HTMLSCRIPTS . "javascript/");
     define("HTMLPHP", HTMLSCRIPTS . "php/");
 
     //----------------------------------------------------------------
 
     //FILENAMES
-    define("COMPONENT_HEAD", "head.php");
-    define("COMPONENT_BODY_TOP", "body_top.php");
-    define("COMPONENT_BODY_BOTTOM", "body_bottom.php");
-    define("COMPONENT_NAV", "nav.php");
-    define("COMPONENT_COMPLAINTSNAV", "complaintsnav.html");
-    define("COMPONENT_FOOTER", "footer.php");
+    define("COMPONENT_HRHEAD", "head/hrhead.php");
+    define("COMPONENT_MANAGEMENTHEAD", "head/managementhead.php");
+
+    define("COMPONENT_HR_BODY_TOP", "body/hr_body_top.php");
+    define("COMPONENT_MANAGEMENT_BODY_TOP", "body/management_body_top.php");
+    define("COMPONENT_BODY_BOTTOM", "body/body_bottom.php");
+    define("COMPONENT_FOOTER", "body/footer.php");
+
+    define("COMPONENT_HR_NAV", "navigation/hr_nav.php");
+    define("COMPONENT_MANAGEMENT_NAV", "navigation/management_nav.php");
+    define("COMPONENT_LEAVENAV", "navigation/leavenav.php");
+    define("COMPONENT_COMPLAINTSNAV", "navigation/complaintsnav.html");
 
     define("CSS_RESET", "reset.css");
-    define("CSS_STYLE", "style.css");
+    define("CSS_PROFILE", "style.css");
+    define("CSS_COMMON", "common.css");
+    define("CSS_BOOTSTRAP", "bootstrap.css");
+    define("CSS_HRSTYLE", "hrstyle.css");
+    define("CSS_MANAGEMENTSTYLE", "managementstyle.css");
 
     //NOT USED ANYMORE, HTML VARIABLES RELATIVE TO ROOT PATH ARE A SIMPLER OPTION
     //https://stackoverflow.com/questions/2637945/getting-relative-path-from-absolute-path-in-php
@@ -61,26 +80,26 @@
         $to       = explode('/', $to);
         $relPath  = $to;
 
-        foreach($from as $depth => $dir) 
+        foreach($from as $depth => $dir)
         {
             // find first non-matching dir
-            if($dir === $to[$depth]) 
+            if($dir === $to[$depth])
             {
                 // ignore this directory
                 array_shift($relPath);
-            } 
-            else 
+            }
+            else
             {
                 // get number of remaining dirs to $from
                 $remaining = count($from) - $depth;
-                if($remaining > 1) 
+                if($remaining > 1)
                 {
                     // add traversals up to first matching dir
                     $padLength = (count($relPath) + $remaining - 1) * -1;
                     $relPath = array_pad($relPath, $padLength, '..');
                     break;
-                } 
-                else 
+                }
+                else
                 {
                     $relPath[0] = './' . $relPath[0];
                 }

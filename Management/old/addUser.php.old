@@ -46,12 +46,12 @@ mysqli_close($link);
 }
 ?>
 
-<?php require(COMPONENTSDIR . COMPONENT_HEAD); ?>
+<?php require(COMPONENTSDIR . COMPONENT_MANAGEMENTHEAD); ?>
     <script src=<?= HTMLJAVASCRIPT . "expandrow.js"; ?>></script>
     <script src=<?= HTMLJAVASCRIPT . "cleanForm.js"; ?>></script>
     <title>Deliveries</title>
 </head>
-<?php require(COMPONENTSDIR . COMPONENT_BODY_TOP); ?>
+<?php require(COMPONENTSDIR . COMPONENT_MANAGEMENT_BODY_TOP); ?>
     <div class="wrapper">
     <nav class="navbar navbar-expand-lg navbar-dark">
             <img src="images/LOGO_composite.png" alt="Logo Blue Sky" class="nav-logo"/>

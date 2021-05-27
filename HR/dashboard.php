@@ -1,76 +1,72 @@
 <?php
+require_once($_SERVER["DOCUMENT_ROOT"] . "/app2/PATHS.php");
+require_once(PHPSCRIPTDIR . "error.php");
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+include(INCLUDESDIR . "authentication.php");
+include(COMPONENTSDIR . "navbar.php");
 
-session_start();
-include './includes/authentication.php';
-
-
-if(!isLoggedIn()){
-
-  header("Location: login.php");
+if(isHR() == false && isManagement() == false){
+    header("Location: /portal");
 }
 
-
-if($_SERVER['REQUEST_METHOD'] == "POST"){
-
-  logoutUser();
-  header("Location: login.php");
+if (!isset($_SESSION)) { session_start(); };
 
 
+if($_SERVER['REQUEST_METHOD'] == "POST"){ // ?
+  setcookie("access_token", "", time() - 3600);
 }
 
 
 ?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dashboard HR</title>
-<link rel="stylesheet" href="./css/reset.css">
-<link rel="stylesheet" href="./css/dashboard.css">
+<link rel="stylesheet" href=<?= HTMLCSS . "reset.css"; ?>>
+<link rel="stylesheet" href=<?= HTMLCSS . "navbar.css"; ?>>
+<link rel="stylesheet" href=<?= HTMLCSS . "dashboard.css"; ?>>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
 
 </head>
 <body>
 <div class="header">
+<img class="img" src=<?= HTMLIMAGES . "LOGO_composite.png"; ?> alt="logo">
 <h2 class="logo">Dashboard HR</h2>
-<img class="img" src="images\Blue Sky Unlimited.png" alt="logo">
-
 </div>
 <div class="center">
-    <div class="card">
-        <div class="container">
-          <h4><b>Account</b></h4> 
-        </div>
-      </div>
-      <div class="card">
-        <div class="container">
-          <h4><b>Employee list</b></h4> 
-        </div>
-      </div>
-      <a href="Vacature.php"><div class="card">
-        <div class="container">
-          <h4><b>Vacature</b></h4> 
+    <a href=<?= HTMLHR . "employees"; ?>><div class="card">
+    <div class="container">
+          <h4><b>Employee</b></h4>
         </div>
       </div></a>
-      <a href="absences/create.php"><div class="card">
+      <a href=<?= HTMLHR . "timesheets"; ?>><div class="card">
         <div class="container">
-          <h4><b>Sickness report</b></h4> 
+          <h4><b>Timesheet</b></h4>
         </div>
       </div></a>
-      <a href="absences/overview.php"><div class="card">
+      <a href=<?= HTMLHR . "vacature"; ?>><div class="card">
         <div class="container">
-          <h4><b>Sickness overview</b></h4> 
+          <h4><b>Vacature</b></h4>
         </div>
       </div></a>
-      <div class="card-logout">
+      <a href=<?= HTMLHR . "absences/create"; ?>><div class="card">
+        <div class="container">
+          <h4><b>Sickness report</b></h4>
+        </div>
+      </div></a>
+      <a href=<?= HTMLHR . "absences/overview"; ?>><div class="card">
+        <div class="container">
+          <h4><b>Sickness overview</b></h4>
+        </div>
+      </div></a>
+      <a><div class="card-logout">
         <div class="container">
           <form action="" method="post">
             <input type="submit" value="Logout">
           </form>
         </div>
-      </div>
+      </div></a>
 </div>
 </body>
-</html> 
+</html>

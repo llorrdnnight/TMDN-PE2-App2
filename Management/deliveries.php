@@ -1,21 +1,24 @@
 <?php
-// session_start();
-// // Check if the session is set else redirect to login page
-// if (isset($_SESSION['employee_id'])){}
-
-// else
-// header("Location: login.php");
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/PATHS.PHP");
+    if (!isset($_SESSION)) { session_start(); };
     
-    //Get temporary database file contents
-    $json = json_decode(file_get_contents("database.json"), true);
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/app2/PATHS.php");
+    require_once(PHPSCRIPTDIR . "error.php");    
+    
+    if (!isset($_SESSION["employee_id"]))
+        header("Location: login.php");
+    
+    $deliveries = json_decode(file_get_contents("http://10.128.30.7:8080/api/parcels"), true)["data"];
+    $shipments = json_decode(file_get_contents("http://10.128.30.7:8080/api/shipments"), true)["data"];
+    $flights = json_decode(file_get_contents("http://10.128.30.7:8080/api/flights"), true)["data"];
+
     $rows = array();
     $page = 1; 
     $maxrows = 12;
+    $index = 0; //too lazy to change the foreach loop down below to an indexed for loop.
 
     if ($_SERVER["REQUEST_METHOD"] == "GET")
     {
-        $filteredjson = getFilteredArray($json["Deliveries"]);
+        $filteredjson = getFilteredArray($deliveries);
         $totalitems = count($filteredjson);
         $totalpages = ceil($totalitems / $maxrows);
 
@@ -38,89 +41,55 @@
     }
     else
     {
-        $totalitems = count($json["Deliveries"]);
+        $totalitems = count($deliveries);
         $totalpages = ceil($totalitems / $maxrows);
-        $rows = $json["Deliveries"];
+        $rows = $deliveries;
     }
 
     function getFilteredArray($arr)
     {
         // Deze functie wordt enkel gecalld 
-        $FilteredArray = array();
-        $FilterList = array("Location", "DeliveryID", "Status", "Company", "ReceiptID");
+        $filteredArray = array();
+        $filterList = array("shipmentId", "flightId", "parcelTypeId", "priority", "isAllocated");
+        //num, num, num, string, date, date, bool
 
-        foreach ($arr as $item)
+        foreach ($arr as $item) //Push items in filtered array depending on their values
         {
             $push = true;
 
             // We can compare every value naturally except for DateTime
-            if (isset($_GET["PickupTime"]))
+            if (isset($_GET["deptTime"]))
             {
-                $itemtime = new DateTime($item["PickupTime"]);
-                $push = $itemtime->format("H:i") == $_GET["PickupTime"];
+                $itemtime = new DateTime($item["created_at"]);
+                $push = $itemtime->format("H:i") == $_GET["createdAt"];
             }
 
-            foreach ($FilterList as $Filter)
+            if (isset($_GET["arrivalTime"]))
             {
-                if (isset($_GET[$Filter]))
-                    $push = $item[$Filter] == $_GET[$Filter];
+                $itemtime = new DateTime($item["updated_at"]);
+                $push = $itemtime->format("H:i") == $_GET["updatedAt"];
+            }
+
+            foreach ($filterList as $filter)
+            {
+                if (isset($_GET[$filter]))
+                    $push = $item[$filter] == $_GET[$filter];
             }
 
             if ($push)
-                array_push($FilteredArray, $item);
+                array_push($filteredArray, $item);
         }
         
-        if (count($FilteredArray))
-            return $FilteredArray;
+        if (count($filteredArray))
+            return $filteredArray;
         else
             return $arr;
-    }
-
-    function echoDeliveries($Deliveries)
-    {
-        foreach ($Deliveries as $Delivery)
-        {
-            //Row status colour
-            if ($Delivery["Status"] == "Delivered")
-                $tdclass = "delivered";
-            elseif ($Delivery["Status"] == "On Hold")
-                $tdclass = "onhold";
-            else
-                $tdclass = "notdelivered";
-
-            //Table row
-            $row = "";
-            $row .= "<tr class='expandrow'>";
-            $row .= "<td class='deliverystatus " . $tdclass . " w-1'></td>";
-            $row .= "<td>" . $Delivery["PickupTime"] . "</td>";
-            $row .= "<td>" . $Delivery["Location"] . "</td>";
-            $row .= "<td>" . $Delivery["DeliveryID"] . "</td>";
-            $row .= "<td>" . $Delivery["Status"] . "</td>";
-            $row .= "<td>" . $Delivery["Company"] . "</td>";
-            $row .= "<td>" . $Delivery["ReceiptID"] . "</td>";
-            $row .= "</tr>";
-
-            //Details row
-            $row .= "<tr class='collapserow'>";
-            $row .= "<td colspan='7'>";
-            $row .= "<div>";
-
-            //Small dropdown menu for delivery details. Needs to include more information.
-            foreach($Delivery as $key => $value)
-            {
-                $row .= "<p>" . $key . ": " . $value . "</p>";
-            }
-
-            $row .= "</div></td></tr>";
-
-            echo $row;
-        }
     }
 
     function echoPageIndex($totalpages)
     {
         $FilterLink = "";
-        $FilterList = array("PickupTime", "Location", "DeliveryID", "Status", "Company", "ReceiptID");
+        $FilterList = array("shipmentId", "flightId", "parcelTypeId", "priority", "isAllocated");
 
         foreach($FilterList as $Filter)
         {   
@@ -135,19 +104,18 @@
     }
 ?>
 
-<?php require(COMPONENTSDIR . COMPONENT_HEAD); ?>
+<?php require(COMPONENTSDIR . COMPONENT_MANAGEMENTHEAD); ?>
     <script src=<?= HTMLJAVASCRIPT . "expandrow.js"; ?>></script>
     <script src=<?= HTMLJAVASCRIPT . "cleanForm.js"; ?>></script>
     <title>Deliveries</title>
 </head>
-<?php require(COMPONENTSDIR . COMPONENT_BODY_TOP); ?>
+<?php require(COMPONENTSDIR . COMPONENT_MANAGEMENT_BODY_TOP); ?>
     <form id="deliveryfilter" class="col-lg-12 pt-3 g-0">
         <div>
             <div class="btn-group col-xl-2 col-8 p-0 pr-2">
                 <button class="btn btn-success" type="submit">Filter</button>
                 <button class="btn btn-secondary" type="reset">Reset</button>
             </div>
-
             <div class="col-xl-2 col-4 p-0 pl-2 float-right">
                 <span><?php echo "Total items: " . $totalitems ?></span>
             </div>
@@ -155,61 +123,124 @@
 
         <div class="form-row pt-2">
             <div class="form-group col-lg-2 col-sm-4">
-                <label for="PickupTime">Pickup Time</label>
-                <input class="form-control" name="PickupTime" type="time">
+                <label for="shipmentId">Order ID</label>
+                <input class="form-control" name="shipmentId" type="number">
             </div>
 
             <div class="form-group col-lg-2 col-sm-4">
-                <label for="Location">Location</label>
-                <input class="form-control" name="Location" type="text">
+                <label for="flightId">Flight ID</label>
+                <input class="form-control" name="flightId" type="number">
             </div>
 
             <div class="form-group col-lg-2 col-sm-4">
-                <label for="DeliveryID">Delivery ID</label>
-                <input class="form-control" name="DeliveryID" type="number">
+                <label for="parcelTypeId">Package Type ID</label>
+                <input class="form-control" name="parcelTypeId" type="number">
             </div>
 
             <div class="form-group col-lg-2 col-sm-4">
-                <label for="Status">Status</label>
-                <select class="form-control" name="Status">
-                    <option hidden disabled selected value>-</option>
-                    <option value="Delivered">Delivered</option>
-                    <option value="On Hold">On Hold</option>
-                    <option value="Not Delivered">Not Delivered</option>
-                </select>
+                <label for="priority">Priority</label>
+                <input class="form-control" name="priority" type="text">
             </div>
 
-            <div class="col-lg-2 col-sm-4">
-                <label for="Company">Company</label>
-                <input class="form-control" name="Company" type="text">
+            <div class="form-group col-lg-2 col-sm-4">
+                <label for="createdAt">Created At</label>
+                <input class="form-control" name="createdAt" type="date">
             </div>
 
-            <div class="col-lg-2 col-sm-4">
-                <label for="ReceiptID">Receipt ID</label>
-                <input class="form-control" name="ReceiptID" type="number">
+            <div class="form-group col-lg-2 col-sm-4">
+                <label for="updatedAt">Updated At</label>
+                <input class="form-control" name="updatedAt" type="date">
             </div>
-
             <?php echo "<input name='Page' type='hidden' value='" . $page . "'>"; ?>
         </div>
     </form>
 
-    <div class="col-12 g-0 pt-2">
-        <table id="deliveriestable" class="table table-hover table-responsive">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Pickup Time</th>
-                    <th>Location</th>
-                    <th>Delivery ID</th>
-                    <th>Status</th>
-                    <th>Company</th>
-                    <th>Receipt ID</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php echoDeliveries($rows); ?>
-            </tbody>
-        </table>
+    <div class="col-12 pt-2 g-0"><!-- Todo: justify page index to bottom of page -->
+        <?php if ($totalitems) { ?>
+            <table id="deliveriestable" class="table table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Order ID</th>
+                        <th>Flight ID</th>
+                        <th>Package Type ID</th>
+                        <th>Priority</th>
+                        <th>Creation Date</th>
+                        <th>Last Updated On</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($rows as $delivery) {
+                        switch ($shipments[$delivery["shipmentId"] - 1]["statusId"] % 2)
+                        {
+                            case 1: $tdclass = "delivered"; break;
+                            case 2: $tdclass = "onhold"; break;
+                            case 3: $tdclass = "notdelivered"; break;
+                            default: $tdclass = "notdelivered"; break;; 
+                        }
+                    ?>
+
+                        <tr class="expandrow">
+                            <td class='<?= "deliverystatus w-1 " . $tdclass; ?>'></td>
+                            <td><?= $delivery["shipmentId"]; ?></td>
+                            <td><?= $delivery["flightId"]; ?></td>
+                            <td><?= $delivery["parcelTypeId"]; ?></td>
+                            <td><?= $delivery["priority"]; ?></td>
+                            <td><?= $delivery["created_at"]; ?></td>
+                            <td><?= $delivery["updated_at"]; ?></td>
+                        </tr>
+
+                        <tr class="collapserow">
+                            <td colspan="7">
+                                <div class="row m-0 p-0">         
+                                    <div class="col-6">
+                                        <div class="card">
+                                            <div class="card-header bg-blue">
+                                                <span>Shipment Information</span>
+                                            </div>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item">Departure Time Stamp: <?= gmdate("Y-m-d\TH:i:s\Z", $shipments[$index]["departureTimeStamp"]); ?></li>
+                                                <li class="list-group-item">Departure Time Stamp: <?= gmdate("Y-m-d\TH:i:s\Z", $shipments[$index]["arrivalTimeStamp"]); ?></li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="card mt-3">
+                                            <div class="card-header bg-blue">
+                                                <span>Package Information</span>
+                                            </div>
+                                            <ul class="list-group list-group-item-flush">
+                                                <li class="list-group-item">Height: <?= $delivery["height"]; ?></li>
+                                                <li class="list-group-item">Width: <?= $delivery["width"]; ?></li>
+                                                <li class="list-group-item">Length: <?= $delivery["length"]; ?></li>
+                                                <li class="list-group-item">Weight: <?= $delivery["weight"]; ?></li>
+                                            </ul>
+                                        </div>
+                                    </div>    
+
+                                    <div class="col-6">
+                                        <div class="card">
+                                            <div class="card-header bg-blue">
+                                                <span>Flight Information</span>
+                                            </div>
+
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item">Flight number: <?= $flights[$index]["flightNumber"]; ?></li>
+                                                <li class="list-group-item">Departure Airport: <?= $flights[$index]["depAirport"]; ?></li>
+                                                <li class="list-group-item">Destination Airport: <?= $flights[$index]["destAirport"]; ?></li>
+                                                <li class="list-group-item">Reserved Weight: <?= $flights[$index]["reservedWeight"]; ?></li>
+                                                <li class="list-group-item">Reserved Volume: <?= $flights[$index]["reservedVolume"]; ?></li>
+                                                <li class="list-group-item">Airline: <?= $flights[$index]["airlineName"]; ?></li>
+                                                <li class="list-group-item">Last Updated On: <?= $flights[$index]["updated_at"]; ?></li>
+                                            </ul>
+                                        </div>
+                                    </div>  
+                                </div>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        <?php $index++; } else { echo "No deliveries found."; } ?>
 
         <nav aria-label="Page navigation" class="d-flex justify-content-center">
             <ul class="pagination">

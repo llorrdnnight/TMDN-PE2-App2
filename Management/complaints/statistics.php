@@ -1,25 +1,24 @@
 <?php
-    require_once($_SERVER["DOCUMENT_ROOT"] . "/TMDN-PE2-App2/PATHS.PHP");
+    if (!isset($_SESSION)) { session_start(); };
     
-    //Get temporary database file contents
-    $json = json_decode(file_get_contents(MANAGEMENTDIR . "database.json"), true);
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/app2/PATHS.php");
+    require_once(PHPSCRIPTDIR . "error.php");    
+    
+    if (!isset($_SESSION["employee_id"]))
+        header("Location: ../login.php");
 
-    function echoStatistics($arr, $id, $status)
+    $complaints = json_decode(file_get_contents("http://10.128.30.7:8080/api/tickets"), true)["data"];
+
+    function echoStatistics($complaints, $id, $status)
     {
-        $Complaints = array();
+        $complaintsDiv = "<div class='card'>";
+        $complaintsDiv .= "<div class='card-header'>";
+        $complaintsDiv .= "<span>" . $status . " complaints</span>";
+        $complaintsDiv .= "</div><div class='card-body'>";
+        $complaintsDiv .= "<canvas id=" . $id . " class='canvas graph col-lg-8' style='height: 200px;'></canvas>";
+        $complaintsDiv .= "</div></div>";
 
-        foreach($arr as $Complaint)
-        {
-            if ($Complaint["Status"] == $status)
-                array_push($Complaints, $Complaint);
-        }
-
-        $ComplaintsDiv = "";
-        $ComplaintsDiv .= "<p>Number of " . $status. " Complaints: " . count($Complaints) . "</p>";
-        $ComplaintsDiv .= "<p>Open for > 30 days: " . getDaysOpen($Complaints, 1) . "</p>";
-        $ComplaintsDiv .= "<canvas id=" . $id . " class='canvas graph col-lg-8' style='height: 200px;'></canvas>";
-
-        echo $ComplaintsDiv;
+        echo $complaintsDiv;
     }
 
     function getDaysOpen($Array, $Days)
@@ -39,29 +38,39 @@
     }
 ?>
 
-<?php require(COMPONENTSDIR . COMPONENT_HEAD); ?>
+<?php require(COMPONENTSDIR . COMPONENT_MANAGEMENTHEAD); ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
     <script src=<?= HTMLJAVASCRIPT . "getGraph.js"?>></script>
-    <title>Complaints - Dashboard</title>
+    <title>Complaints - Statistics</title>
 </head>
-<?php require(COMPONENTSDIR . COMPONENT_BODY_TOP); ?>
+<?php require(COMPONENTSDIR . COMPONENT_MANAGEMENT_BODY_TOP); ?>
     <?php require(COMPONENTSDIR . COMPONENT_COMPLAINTSNAV); ?>
 
     <div class="container-fluid">
-        <div class="row"><div id="test"></div></div>
-        <div class="row mb-3 pl-3 pr-3">
-            <div id="dashboard-opencomplaints" class="col-lg-6 dashboard-item">
-                <?php echoStatistics($json["Complaints"], "OpenComplaintsGraph", "Open"); ?>
+        <div class="h-100 d-flex flex-column justify-content-between">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <?php echoStatistics($complaints, "OpenComplaintsGraph", "Open"); ?>
+                </div>
+                
+                <div class="col-12 col-md-6">
+                    <?php echoStatistics($complaints, "ClosedComplaintsGraph", "Closed"); ?>
+                </div>
             </div>
             
-            <div id="dashboard-opencomplaints" class="col-lg-6 dashboard-item">
-                <?php echoStatistics($json["Complaints"], "ClosedComplaintsGraph", "Closed"); ?>
-            </div>
-        </div>
-
-        <div class="row mb-3 pl-3 pr-3">
-            <div class="chart-container col-lg-12">
-                <canvas id="MonthlyComplaintsGraph" class='canvas graph' style="height: 250px; width: 1600px;"></canvas>
+            <div id="bcc" class="row">
+                <div class="col-12 mt-3">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <span>Open and Closed complaints grouped by month</span>
+                        </div>
+                        <div class="card-body">
+                            <div id="barChartContainer">
+                                <canvas id="MonthlyComplaintsGraph" class='canvas graph'></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

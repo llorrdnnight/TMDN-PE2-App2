@@ -2,7 +2,658 @@
 [2] <set_exception_handler() expects the argument (customExceptionHandler) to be a valid callback>
 File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitKraken\TMDN-PE2-App2\Management\scripts\php\ERROR.php on line 9
 
-[2021-04-27 20:44:19] 'Europe/Brussels'
-[2] <set_exception_handler() expects the argument (customExceptionHandler) to be a valid callback>
-File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitKraken\TMDN-PE2-App2\Management\scripts\php\ERROR.php on line 9
+[2021-05-16 22:33:43] 'Europe/Brussels'
+[8] <Undefined index: employee_id>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitKraken\app2\components\body\management_body_top.php on line 17
+
+[2021-05-16 22:37:01] 'Europe/Brussels'
+[8] <Undefined variable: _SESSION>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitKraken\app2\components\body\management_body_top.php on line 17
+
+[2021-05-16 22:37:08] 'Europe/Brussels'
+[8] <Undefined variable: _SESSION>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitKraken\app2\components\body\management_body_top.php on line 17
+
+[2021-05-16 22:37:39] 'Europe/Brussels'
+[8] <Undefined variable: _SESSION>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitKraken\app2\components\body\management_body_top.php on line 17
+
+[2021-05-16 22:38:20] 'Europe/Brussels'
+[8] <Undefined index: registerComplaint.php>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitKraken\app2\components\body\pageTable.php on line 26
+
+[2021-05-16 22:39:48] 'Europe/Brussels'
+[2] <include(C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitKraken/app2/includes/db_config.php): failed to open stream: No such file or directory>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitKraken\app2\management\addUser.php on line 5
+
+[2021-05-16 22:40:36] 'Europe/Brussels'
+[2] <include(C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitKraken/app2/components/check_db.php): failed to open stream: No such file or directory>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitKraken\app2\management\addUser.php on line 7
+
+[2021-05-16 22:41:18] 'Europe/Brussels'
+[8] <Undefined index: isApproved>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitKraken\app2\hr\leave\leave.php on line 14
+
+[2021-05-16 22:42:31] 'Europe/Brussels'
+[8] <Undefined index: isApproved>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitKraken\app2\hr\leave\leave.php on line 14
+
+[2021-05-16 22:44:33] 'Europe/Brussels'
+[8] <Undefined index: isApproved>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitKraken\app2\hr\leave\leave.php on line 14
+
+[2021-05-18 22:27:52] 'Europe/Brussels'
+[2] <file_get_contents(http://10.128.30.7:8080/api/parcels): failed to open stream: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\deliveries.php on line 9
+
+[2021-05-18 22:31:40] 'Europe/Brussels'
+[8] <Undefined offset: 66611>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\leave.php on line 63
+
+[2021-05-18 22:35:46] 'Europe/Brussels'
+[8] <Undefined variable: leaveReportIndex>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\leave.php on line 92
+
+[2021-05-18 22:36:32] 'Europe/Brussels'
+[8] <Undefined variable: leaveReportIndex>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\leave.php on line 91
+
+[2021-05-18 22:39:59] 'Europe/Brussels'
+[8] <Undefined index: isApproved>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\leave.php on line 15
+
+[2021-05-18 22:43:46] 'Europe/Brussels'
+[8] <Undefined index: startDate>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\leave.php on line 59
+
+[2021-05-19 22:59:06] 'Europe/Brussels'
+[8] <Undefined index: isApproved>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\leave.php on line 16
+
+[2021-05-19 22:59:26] 'Europe/Brussels'
+[8] <Undefined variable: period>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\leave.php on line 132
+
+[2021-05-19 23:00:28] 'Europe/Brussels'
+[8] <Undefined variable: period>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\leave.php on line 132
+
+[2021-05-19 23:01:00] 'Europe/Brussels'
+[8] <Undefined index: EmployeeID>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\leave.php on line 132
+
+[2021-05-19 23:02:57] 'Europe/Brussels'
+[8] <Undefined variable: leave>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\leave.php on line 157
+
+[2021-05-19 23:03:10] 'Europe/Brussels'
+[8] <Undefined variable: acceptedRequests>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\leave.php on line 58
+
+[2021-05-19 23:16:02] 'Europe/Brussels'
+[8] <Undefined index: editLeave.php>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\pageTable.php on line 26
+
+[2021-05-19 23:16:06] 'Europe/Brussels'
+[8] <Undefined index: editLeave.php>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\pageTable.php on line 26
+
+[2021-05-19 23:20:28] 'Europe/Brussels'
+[8] <Undefined variable: json>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\leaveList.php on line 14
+
+[2021-05-19 23:22:33] 'Europe/Brussels'
+[8] <Undefined variable: json>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\leaveList.php on line 133
+
+[2021-05-19 23:25:24] 'Europe/Brussels'
+[8] <Undefined index: editLeave.php>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\pageTable.php on line 26
+
+[2021-05-19 23:30:37] 'Europe/Brussels'
+[8] <Undefined variable: complaint>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\editLeave.php on line 54
+
+[2021-05-19 23:37:21] 'Europe/Brussels'
+[8] <Undefined variable: complaint>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\editLeave.php on line 63
+
+[2021-05-19 23:37:29] 'Europe/Brussels'
+[8] <Undefined variable: complaint>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\editLeave.php on line 63
+
+[2021-05-19 23:37:38] 'Europe/Brussels'
+[8] <Undefined variable: complaint>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\editLeave.php on line 63
+
+[2021-05-19 23:38:46] 'Europe/Brussels'
+[8] <Undefined index: employeeId>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\editLeave.php on line 63
+
+[2021-05-19 23:39:21] 'Europe/Brussels'
+[8] <Undefined index: employeeId>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\editLeave.php on line 63
+
+[2021-05-19 23:42:06] 'Europe/Brussels'
+[8] <Undefined index: employeeId>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\editLeave.php on line 63
+
+[2021-05-19 23:42:21] 'Europe/Brussels'
+[8] <Undefined index: employeeID>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\editLeave.php on line 63
+
+[2021-05-19 23:52:59] 'Europe/Brussels'
+[8] <Undefined offset: -1>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\editLeave.php on line 12
+
+[2021-05-19 23:54:13] 'Europe/Brussels'
+[2] <A non-numeric value encountered>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\leaveList.php on line 84
+
+[2021-05-20 00:04:04] 'Europe/Brussels'
+[8] <Undefined index: vacatureinfo.php>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\pageTable.php on line 27
+
+[2021-05-20 00:04:58] 'Europe/Brussels'
+[8] <Undefined index: vacatureinfo.php>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\pageTable.php on line 27
+
+[2021-05-20 00:05:04] 'Europe/Brussels'
+[8] <Undefined index: Jobid>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\vacature\vacatureInfo.php on line 22
+
+[2021-05-20 00:05:51] 'Europe/Brussels'
+[8] <Undefined index: employee_id>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 14:28:22] 'Europe/Brussels'
+[8] <Undefined variable: _SESSION>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 14:31:18] 'Europe/Brussels'
+[2] <file_get_contents(MOCK_DATA.json): failed to open stream: No such file or directory>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\revenue.php on line 11
+
+[2021-05-20 14:31:46] 'Europe/Brussels'
+[8] <Undefined index: date>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\revenue.php on line 21
+
+[2021-05-20 14:33:02] 'Europe/Brussels'
+[8] <Undefined index: date>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\revenue.php on line 19
+
+[2021-05-20 14:33:12] 'Europe/Brussels'
+[8] <Undefined offset: 1>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\revenue.php on line 22
+
+[2021-05-20 14:33:25] 'Europe/Brussels'
+[8] <A non well formed numeric value encountered>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\revenue.php on line 70
+
+[2021-05-20 14:33:27] 'Europe/Brussels'
+[8] <A non well formed numeric value encountered>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\revenue.php on line 70
+
+[2021-05-20 14:39:21] 'Europe/Brussels'
+[8] <A non well formed numeric value encountered>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\revenue.php on line 70
+
+[2021-05-20 14:39:30] 'Europe/Brussels'
+[8] <Undefined index: date>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\revenue.php on line 19
+
+[2021-05-20 14:43:06] 'Europe/Brussels'
+[8] <Undefined index: date>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\revenue.php on line 19
+
+[2021-05-20 14:43:08] 'Europe/Brussels'
+[8] <A non well formed numeric value encountered>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\revenue.php on line 70
+
+[2021-05-20 14:43:08] 'Europe/Brussels'
+[8] <Undefined offset: 1>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\revenue.php on line 22
+
+[2021-05-20 14:43:09] 'Europe/Brussels'
+[8] <Undefined index: date>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\revenue.php on line 19
+
+[2021-05-20 14:54:47] 'Europe/Brussels'
+[8] <Undefined variable: _SESSION>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 14:55:21] 'Europe/Brussels'
+[8] <Undefined variable: _SESSION>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 14:56:27] 'Europe/Brussels'
+[8] <Undefined variable: _SESSION>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 14:57:45] 'Europe/Brussels'
+[8] <Undefined variable: _SESSION>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 14:59:04] 'Europe/Brussels'
+[8] <Undefined variable: json>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\complaints\statistics.php on line 57
+
+[2021-05-20 14:59:32] 'Europe/Brussels'
+[8] <Undefined index: Status>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\complaints\statistics.php on line 15
+
+[2021-05-20 15:01:34] 'Europe/Brussels'
+[8] <Undefined variable: Complaint>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\complaints\statistics.php on line 15
+
+[2021-05-20 15:02:08] 'Europe/Brussels'
+[8] <Undefined variable: Complaint>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\complaints\statistics.php on line 15
+
+[2021-05-20 15:02:12] 'Europe/Brussels'
+[8] <Undefined variable: Complaint>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\complaints\statistics.php on line 15
+
+[2021-05-20 15:21:35] 'Europe/Brussels'
+[8] <Undefined index: registercomplaint.php>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\pageTable.php on line 27
+
+[2021-05-20 15:22:28] 'Europe/Brussels'
+[8] <Undefined variable: _SESSION>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 15:39:02] 'Europe/Brussels'
+[8] <Undefined variable: _SESSION>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 15:39:05] 'Europe/Brussels'
+[8] <Undefined index: editcomplaint.php>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\pageTable.php on line 27
+
+[2021-05-20 21:18:44] 'Europe/Brussels'
+[2] <require(C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components): failed to open stream: Permission denied>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\TEMPLATE.php on line 6
+
+[2021-05-20 21:18:59] 'Europe/Brussels'
+[2] <Use of undefined constant COMPONENT_BODY_TOP - assumed 'COMPONENT_BODY_TOP' (this will throw an Error in a future version of PHP)>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\TEMPLATE.php on line 10
+
+[2021-05-20 21:19:14] 'Europe/Brussels'
+[8] <Undefined index: TEMPLATE.php>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\pageTable.php on line 27
+
+[2021-05-20 21:19:36] 'Europe/Brussels'
+[8] <Undefined index: TEMPLATE.php>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\pageTable.php on line 29
+
+[2021-05-20 21:19:43] 'Europe/Brussels'
+[8] <Undefined index: TEMPLATE.php>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\pageTable.php on line 29
+
+[2021-05-20 21:20:28] 'Europe/Brussels'
+[8] <Undefined index: TEMPLATE.php>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\pageTable.php on line 29
+
+[2021-05-20 21:20:45] 'Europe/Brussels'
+[8] <Undefined variable: _SESSION>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 21:20:56] 'Europe/Brussels'
+[8] <Undefined index: employee_id>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 21:21:24] 'Europe/Brussels'
+[8] <Undefined index: employee_id>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 21:22:47] 'Europe/Brussels'
+[8] <Undefined index: employee_id>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 21:24:03] 'Europe/Brussels'
+[8] <Undefined index: employee_id>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 21:24:24] 'Europe/Brussels'
+[8] <Undefined index: employee_id>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 21:24:26] 'Europe/Brussels'
+[8] <Undefined index: employee_id>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 21:24:26] 'Europe/Brussels'
+[8] <Undefined index: employee_id>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 21:24:26] 'Europe/Brussels'
+[8] <Undefined index: employee_id>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 21:24:26] 'Europe/Brussels'
+[8] <Undefined index: employee_id>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 21:28:27] 'Europe/Brussels'
+[8] <Undefined index: employee_id>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 21:28:29] 'Europe/Brussels'
+[8] <Undefined index: employee_id>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 21:28:29] 'Europe/Brussels'
+[8] <Undefined index: employee_id>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 21:28:29] 'Europe/Brussels'
+[8] <Undefined index: employee_id>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 21:28:29] 'Europe/Brussels'
+[8] <Undefined index: employee_id>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 21:28:29] 'Europe/Brussels'
+[8] <Undefined index: employee_id>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 21:29:02] 'Europe/Brussels'
+[8] <Undefined index: employee_id>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 21:45:34] 'Europe/Brussels'
+[2] <Use of undefined constant COMPONENT_MANGEMENTHEAD - assumed 'COMPONENT_MANGEMENTHEAD' (this will throw an Error in a future version of PHP)>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\pricing.php on line 15
+
+[2021-05-20 21:45:45] 'Europe/Brussels'
+[2] <require(C:/Users/jariw/Google Drive/School/Year 2/Practice Enterprise 2/GitLabC:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab/app2/components/head/managementhead.php): failed to open stream: No such file or directory>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\pricing.php on line 15
+
+[2021-05-20 21:47:16] 'Europe/Brussels'
+[8] <Undefined index: pricing.php>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\pageTable.php on line 29
+
+[2021-05-20 21:49:35] 'Europe/Brussels'
+[2] <require_once(C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab/app2/includes/authentication.php): failed to open stream: No such file or directory>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\dashboard.php on line 6
+
+[2021-05-20 21:50:03] 'Europe/Brussels'
+[2] <require_once(C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab/app2/includes/authentication.php): failed to open stream: No such file or directory>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\dashboard.php on line 6
+
+[2021-05-20 21:50:08] 'Europe/Brussels'
+[8] <A non well formed numeric value encountered>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\revenue.php on line 71
+
+[2021-05-20 21:50:20] 'Europe/Brussels'
+[2] <require_once(C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab/app2/includes/authentication.php): failed to open stream: No such file or directory>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\dashboard.php on line 6
+
+[2021-05-20 21:50:24] 'Europe/Brussels'
+[2] <require_once(C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab/app2/includes/authentication.php): failed to open stream: No such file or directory>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\dashboard.php on line 6
+
+[2021-05-20 21:50:35] 'Europe/Brussels'
+[8] <Undefined variable: _SESSION>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 21:50:38] 'Europe/Brussels'
+[8] <Undefined index: editcomplaint.php>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\pageTable.php on line 30
+
+[2021-05-20 21:51:22] 'Europe/Brussels'
+[8] <Undefined index: editcomplaint.php>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\pageTable.php on line 30
+
+[2021-05-20 21:51:26] 'Europe/Brussels'
+[8] <Undefined index: editcomplaint.php>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\pageTable.php on line 30
+
+[2021-05-20 21:51:30] 'Europe/Brussels'
+[8] <Undefined index: editcomplaint.php>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\pageTable.php on line 30
+
+[2021-05-20 21:51:46] 'Europe/Brussels'
+[8] <Undefined index: editcomplaint.php>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\pageTable.php on line 30
+
+[2021-05-20 21:52:03] 'Europe/Brussels'
+[8] <Undefined variable: _SESSION>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-20 22:27:14] 'Europe/Brussels'
+[8] <Undefined index: Category>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\scripts\php\getChartData.php on line 14
+
+[2021-05-20 22:27:14] 'Europe/Brussels'
+[8] <Undefined index: Category>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\scripts\php\getChartData.php on line 14
+
+[2021-05-20 22:28:55] 'Europe/Brussels'
+[8] <Undefined offset: -1>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\scripts\php\getChartData.php on line 33
+
+[2021-05-20 22:35:44] 'Europe/Brussels'
+[2] <A non-numeric value encountered>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\scripts\php\getChartData.php on line 79
+
+[2021-05-20 23:05:30] 'Europe/Brussels'
+[8] <Undefined variable: success>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\absences\create.php on line 53
+
+[2021-05-20 23:05:34] 'Europe/Brussels'
+[2] <include(C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab/app2/includes/db_config.php): failed to open stream: No such file or directory>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\absences\overview.php on line 6
+
+[2021-05-20 23:10:45] 'Europe/Brussels'
+[2] <include(C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab/app2/includes/db_config.php): failed to open stream: No such file or directory>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\absences\overview.php on line 6
+
+[2021-05-20 23:15:50] 'Europe/Brussels'
+[2] <include(C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab/app2/includes/db_config.php): failed to open stream: No such file or directory>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\absences\overview.php on line 6
+
+[2021-05-20 23:25:13] 'Europe/Brussels'
+[8] <Undefined index: date>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\absences\overview.php on line 18
+
+[2021-05-20 23:25:23] 'Europe/Brussels'
+[2] <count(): Parameter must be an array or an object that implements Countable>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\absences\overview.php on line 112
+
+[2021-05-20 23:28:56] 'Europe/Brussels'
+[2] <file_get_contents(http://10.128.30.7:8080/api/absences): failed to open stream: HTTP request failed! HTTP/1.0 500 Internal Server Error
+>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\leave.php on line 7
+
+[2021-05-20 23:29:06] 'Europe/Brussels'
+[2] <file_get_contents(http://10.128.30.7:8080/api/absences): failed to open stream: HTTP request failed! HTTP/1.0 500 Internal Server Error
+>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\leave.php on line 7
+
+[2021-05-20 23:29:25] 'Europe/Brussels'
+[2] <file_get_contents(http://10.128.30.7:8080/api/absences): failed to open stream: HTTP request failed! HTTP/1.0 500 Internal Server Error
+>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\leave.php on line 7
+
+[2021-05-20 23:30:57] 'Europe/Brussels'
+[2] <file_get_contents(http://10.128.30.7:8080/api/absences): failed to open stream: HTTP request failed! HTTP/1.0 500 Internal Server Error
+>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\leave.php on line 7
+
+[2021-05-22 15:33:39] 'Europe/Brussels'
+[8] <Undefined index: employee_id>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-22 15:35:22] 'Europe/Brussels'
+[8] <Undefined index: employee_id>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-22 15:41:10] 'Europe/Brussels'
+[8] <Undefined index: employee_id>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-22 15:41:13] 'Europe/Brussels'
+[2] <require_once(C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab/app2/includes/authentication.php): failed to open stream: No such file or directory>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\dashboard.php on line 6
+
+[2021-05-22 15:42:22] 'Europe/Brussels'
+[8] <if (!isset($_SESSION)) { session_start(); }: A session had already been started - ignoring>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\revenue.php on line 12
+
+[2021-05-22 15:43:00] 'Europe/Brussels'
+[2] <require_once(C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab/app2/includes/authentication.php): failed to open stream: No such file or directory>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\dashboard.php on line 6
+
+[2021-05-22 15:44:31] 'Europe/Brussels'
+[2] <require_once(C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab/app2/includes/authentication.php): failed to open stream: No such file or directory>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\dashboard.php on line 6
+
+[2021-05-22 15:45:20] 'Europe/Brussels'
+[8] <Undefined variable: claims>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\scripts\php\authentication.php on line 2
+
+[2021-05-22 15:57:48] 'Europe/Brussels'
+[8] <Undefined variable: claims>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\scripts\php\authentication.php on line 2
+
+[2021-05-22 15:57:55] 'Europe/Brussels'
+[8] <Undefined variable: claims>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\scripts\php\authentication.php on line 2
+
+[2021-05-22 15:57:57] 'Europe/Brussels'
+[8] <Undefined variable: claims>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\scripts\php\authentication.php on line 2
+
+[2021-05-22 15:58:04] 'Europe/Brussels'
+[8] <Undefined variable: absence>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\editLeave.php on line 78
+
+[2021-05-22 15:59:34] 'Europe/Brussels'
+[8] <Undefined variable: absence>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\hr\leave\editLeave.php on line 82
+
+[2021-05-22 16:04:53] 'Europe/Brussels'
+[8] <Undefined variable: claims>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\scripts\php\authentication.php on line 2
+
+[2021-05-22 16:10:03] 'Europe/Brussels'
+[8] <Undefined index: shipmentId>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\orders.php on line 160
+
+[2021-05-22 17:59:29] 'Europe/Brussels'
+[2] <Undefined array key "employee_id">
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-22 17:59:33] 'Europe/Brussels'
+[2] <Undefined array key "access_token">
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\scripts\php\authentication.php on line 7
+
+[2021-05-22 17:59:33] 'Europe/Brussels'
+[2] <file_get_contents(http://10.128.30.7:8080/api/parcels): Failed to open stream: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\deliveries.php on line 10
+
+[2021-05-23 14:49:19] 'Europe/Brussels'
+[2] <Undefined array key "employee_id">
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\management_body_top.php on line 17
+
+[2021-05-23 14:49:58] 'Europe/Brussels'
+[2] <Undefined array key "access_token">
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\scripts\php\authentication.php on line 7
+
+[2021-05-23 14:56:37] 'Europe/Brussels'
+[2] <Undefined array key 15>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\deliveries.php on line 174
+
+[2021-05-23 15:01:03] 'Europe/Brussels'
+[2] <Undefined variable $delivery>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\deliveries.php on line 124
+
+[2021-05-23 15:04:52] 'Europe/Brussels'
+[2] <Undefined array key "createdAt">
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\deliveries.php on line 64
+
+[2021-05-23 15:06:48] 'Europe/Brussels'
+[2] <Undefined variable $FilterList>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\deliveries.php on line 94
+
+[2021-05-23 15:07:04] 'Europe/Brussels'
+[2] <Undefined array key 15>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\deliveries.php on line 174
+
+[2021-05-23 15:08:16] 'Europe/Brussels'
+[2] <Undefined array key 15>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\deliveries.php on line 174
+
+[2021-05-23 15:10:52] 'Europe/Brussels'
+[2] <Undefined array key "id">
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\deliveries.php on line 174
+
+[2021-05-23 16:15:21] 'Europe/Brussels'
+[2] <Undefined array key "access_token">
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\scripts\php\authentication.php on line 7
+
+[2021-05-25 12:28:10] 'Europe/Brussels'
+[2] <Undefined array key "registercomplaint.php">
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\pageTable.php on line 30
+
+[2021-05-25 12:29:59] 'Europe/Brussels'
+[2] <Undefined array key "employee_id">
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\complaints\registercomplaint.php on line 76
+
+[2021-05-25 12:31:13] 'Europe/Brussels'
+[2] <Undefined array key "employee_id">
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\complaints\registercomplaint.php on line 79
+
+[2021-05-25 12:31:42] 'Europe/Brussels'
+[2] <Undefined array key "employee_id">
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\complaints\registercomplaint.php on line 79
+
+[2021-05-25 12:31:45] 'Europe/Brussels'
+[2] <Undefined array key "access_token">
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\scripts\php\authentication.php on line 7
+
+[2021-05-25 12:36:04] 'Europe/Brussels'
+[2] <file_get_contents(http://10.128.30.7:8080/api/tickets): Failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\complaints\registercomplaint.php on line 55
+
+[2021-05-25 12:38:32] 'Europe/Brussels'
+[2] <file_get_contents(http://10.128.30.7:8080/api/tickets): Failed to open stream: HTTP request failed! HTTP/1.1 500 Internal Server Error
+>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\complaints\registercomplaint.php on line 55
+
+[2021-05-25 12:53:22] 'Europe/Brussels'
+[2] <Undefined variable $ch>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\complaints\registercomplaint.php on line 47
+
+[2021-05-25 12:53:47] 'Europe/Brussels'
+[2] <Undefined variable $data_json>
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\management\complaints\registercomplaint.php on line 49
+
+[2021-05-25 12:58:13] 'Europe/Brussels'
+[2] <Undefined array key "access_token">
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\scripts\php\authentication.php on line 7
+
+[2021-05-25 12:58:44] 'Europe/Brussels'
+[2] <Undefined array key "access_token">
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\scripts\php\authentication.php on line 7
+
+[2021-05-25 13:30:46] 'Europe/Brussels'
+[2] <Undefined array key "editleave.php">
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\pageTable.php on line 32
+
+[2021-05-25 13:30:49] 'Europe/Brussels'
+[2] <Undefined array key "editleave.php">
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\pageTable.php on line 32
+
+[2021-05-25 13:30:53] 'Europe/Brussels'
+[2] <Undefined array key "editleave.php">
+File: C:\Users\jariw\Google Drive\School\Year 2\Practice Enterprise 2\GitLab\app_2\components\body\pageTable.php on line 32
+
+[2021-05-25 13:23:12] 'Europe/Brussels'
+[8192] <Required parameter $date follows optional parameter $start>
+File: C:\xampp\htdocs\app2\scripts\php\classes\Absence.php on line 77
 

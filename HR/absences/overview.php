@@ -1,137 +1,77 @@
-<?php 
-session_start();
-include '../includes/db_config.php';
-include '../includes/classes/Absence.php';
-include '../includes/classes/Employee.php';
-error_reporting(E_ERROR | E_PARSE);
-// loadMore variables
-$start = 0;
-$offset = 5;
-// GET vars
-$sortDate = null;
-$state = null;
-$update = null;
-$sortDate = $_GET['date'];
+<?php
+    if (!isset($_SESSION)) { session_start(); };
+    
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/app2/PATHS.php");
+    require_once(PHPSCRIPTDIR . "error.php");    
+    
+    if (!isset($_SESSION["employee_id"]))
+        header("Location: login.php");
+    
+    require_once(PHPSCRIPTDIR . "authentication.php");
+    require_once(PHPSCRIPTDIR . "sanitize.php"); 
+    require_once(PHPCLASSDIR . "Absence.php");
+    require_once(PHPCLASSDIR . "Employee.php");
+    require_once(COMPONENTSDIR . "navbar.php");
 
-
-
-// hard coded for sick at this moment
-$type = "Sick";
-
-
-/* POST METHOD for verifying an absence */
-
-if($_SERVER['REQUEST_METHOD'] == "POST"){
-
-
-    $absence = $_POST['id'];
-    if(Absence::verifyAbsence($absence, $db)){
-
-        $updateSuccess = true;
+    if(isHR() == false && isManagement() == false){
+        header("Location: /portal");
     }
+    $success = false;
 
-    else{
-
-        $updateFail = true;
-    }
-
-}
-
-// function to get amount of days between to dates
-function getDaysBetweenDates($startDate, $endDate){
-
-    $startDate = DateTime::createFromFormat("Y-m-d", $startDate);
-    $endDate = DateTime::createFromFormat("Y-m-d", $endDate);
-
-    return $endDate->diff($startDate)->format("%a");
-}
-
-
-// check if state get isset
-
-if(isset($_GET['state'])){
-
-    $state = $_GET['state'];
-
-    switch($state){
-        case 'verified': $state = 1;
-            break;
-        case 'pending': $state = 0;
-            break;
-    }
-}
-
-// check if there is an employee queried
-
-if(isset($_GET['employee'])){
-    $employee = $_GET['employee'];
-    $employeeName = Employee::getEmployeeNameById($employee, $db);
-    $absences = Absence::getAbsencesByEmployee($start,$offset,$employee,$db);
-    $numberOfRecords = count(Absence::getAbsencesByEmployee(null,null,$employee,$db));
-    // calculate some details about the employee
-    $employeeDetails = Employee::getEmployeeById($employee,$db);
-    // how many days absent this year
-    $holidaysTaken = 0;
-    $sicknessDays = 0;
-    foreach($absences as $absence){
-
-       
-            $sicknessDays += getDaysBetweenDates($absence['startDate'], $absence['endDate']);
-
-
+    $user = "test";
+    $pass = "1Azerty?!";
+    // try and create a PHP database object
+    try {
+        $db = new PDO('mysql:host=10.128.63.132;dbname=Bluesky_DB', $user, $pass);
+    } 
+    
+    // handle exception
+    catch (PDOException $e) {
+        echo "Oops something when wrong trying to connect to the database: ".$e->getMessage();
         
     }
-}
 
-// check if there is a search query
-else if(isset($_GET['q'])){
-    $search = $_GET['q'];
-    $numberOfRecords = count(Absence::getAbsencesBySearch(null,null, $search, $db));
-    $absences = Absence::getAbsencesBySearch($start,$offset,$search, $db);
-}
-// check if there is a date query
-else{
 
-if ($sortDate == "today"){
-    $today = new DateTime();
-    $dateObj = $today;
-    $today = $today->format("Y-m-d");
-    $absences = Absence::getAbsencesByDate($start,$offset,$today, $state, $db);
-    $numberOfRecords = count(Absence::getAbsencesByDate(null,null,$today,$state,$db));
 
-}
+    if($_SERVER['REQUEST_METHOD'] == "POST"){
+        if(isset($_POST['verify'])){
+            $id = $_POST['absence'];
+            $db->query("UPDATE absences SET approved = 1 WHERE id = $id")->fetchAll();
+            $success = true;
 
-else if ($sortDate == "yesterday"){
-    $yesterday = new DateTime();
-    $yesterday = $yesterday->modify("-1 day");
-    $dateObj = $yesterday;
-    $yesterday = $yesterday->format("Y-m-d");
-    $absences = Absence::getAbsencesByDate($start, $offset,$yesterday, $state, $db);
-    $numberOfRecords = count(Absence::getAbsencesByDate(null,null,$yesterday,$state,$db));
+        }
+        else if(isset($_POST['unverify'])){
+            $id = $_POST['absence'];
+            $db->query("UPDATE absences SET approved = 0 WHERE id = $id")->fetchAll();
+            $success = true;
 
-}
-else if ($sortDate == "tomorrow"){
-    $tomorrow = new DateTime();
-    $tomorrow->modify("+1 day");
-    $dateObj = $tomorrow;
-    $tomorrow = $tomorrow->format("Y-m-d");
-    $absences = Absence::getAbsencesByDate($start, $offset,$tomorrow, $state, $db);
-    $numberOfRecords = count(Absence::getAbsencesByDate(null,null,$tomorrow,$state,$db));
 
-}
+        }
+    }
 
-else{
-    $numberOfRecords = count(Absence::getAllAbsences($db,null,null,$state));
-    $absences = Absence::getAllAbsences($db, $start, $offset, $state);
-}
 
-}
+
+
+    if(isset($_GET['employee'])){
+        $employee = $_GET['employee'];
+        $result = $db->query("SELECT * FROM absences WHERE employeeID = $employee");
+        $absences = $result->fetchAll();
+    }
+    else if(isset($_GET['q'])){
+        $q = $_GET['q'];
+        $stmt = $db->query("SELECT * FROM absences WHERE employeeID IN(SELECT id FROM employees WHERE CONCAT(employeeFirstName, ' ', employeeLastName) LIKE '%".$q."%')");
+        $absences = $stmt->fetchAll();
+
+    }
+    else{
+        $result = $db->query("SELECT * FROM absences");
+        $absences = $result->fetchAll();
+    }
 
 
 
 
 ?>
-
 
 
 <!DOCTYPE html>
@@ -140,221 +80,122 @@ else{
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/absences.css">
-    <link rel="stylesheet" href="../css/state-messages.css">
-    <title>Dashboard - Absences</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script defer src="../js/notification.js"></script>
-    <script defer src="../js/absences.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+    <title>Absences overview - HR</title>
+    <link rel="stylesheet" href=<?= HTMLCSS . "reset.css"; ?>>
+    <link rel="stylesheet" href=<?= HTMLCSS . "navbar.css"; ?>>
+    <link rel="stylesheet" href=<?= HTMLCSS . "state-messages.css"; ?>>
+    <link rel="stylesheet" href=<?= HTMLCSS . "absences.css"; ?>>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
+    <script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous">
+    </script>
+    <script src=<?= HTMLJAVASCRIPT . "notification.js"; ?>></script>
 </head>
 <body>
-
-
-
     <div class="wrapper">
 
+    <?php echo generateNavigationBar("Absences overview", "app2/hr/dashboard", getEmployeeFirstName()) ?>
 
 
-        <!-- Error messages -->
-        <?php if($updateSuccess): ?>
-        <div class="success-message">
-            <p>Absence has been verified.</p>
-        </div>
-        <?php endif; ?>
-
-        <?php if($updateFail): ?>
-        <div class="error-message">
-            <p>Something went wrong with the verification</p>
-        </div>
-        <?php endif; ?>
-
-
-        <div class="nav-bar">
-            <div class="left">
-                <a href="../dashboard.php"><i class="fas fa-arrow-left"></i></a>
-                <?php if($dateObj !== null): ?>
-                    <h1 class="title">Sickness - <?php echo $dateObj->format("d").'th of '.$dateObj->format("F").' '.$dateObj->format("Y")?></h1>
-                <?php else: ?>
-                    <h1 class="title">Sickness</h1>
-                <?php endif; ?>            </div>
-            <div class="right">
-            <i class="fa fa-user-circle"></i>
-            <span>John Doe</span>
+    
+    <?php if($success):?>
+            <div class="success-message">
+                Absence updated!
             </div>
-            
+            <?php endif; ?>
+
+    <div class="content">
+        <div class="navigation">
+            <div>
+                    <form action="" method="GET">
+                    <i class="fa fa-search"></i>
+                    <input type="search" placeholder="Search employee..." name="q" id="">
+                </form>
+            </div>
         </div>
 
+        
+        <div class="inner">
+        <?php if(isset($employee) || isset($q)): ?>
+        <div class="banner">
 
-        <div class="content">
-
-            <div class="inner-content">
-
-            <?php if (isset($search)): ?>
-                    <div class="employee-info">
-                        <div class="row">
-                            <a href="./overview.php"><i class="fas fa-arrow-left"></i></a>
-                            <span>Search results for:</span><strong>'<?php echo $search; ?>'</strong>
-                        </div>
-                      
-                    </div>
-            <?php endif; ?>
-
-            <?php if (isset($employee)): ?>
-                    <div class="employee-info">
-                        <div class="row">
-                            <a href="./overview.php"><i class="fas fa-arrow-left"></i></a>
-                            <span>Employee:</span><strong><?php echo $employeeName; ?></strong>
-                        </div>
-                        <div class="row">
-                            <span>Days sick this year:</span><strong><?php echo $sicknessDays; ?></strong>
-                        </div>
-                        <div class="row">
-                            <span>Go to profile <i class="fa fa-user-circle"></i> </span></strong>
-                        </div>
-                    </div>
-            <?php endif; ?>
-
-
-                <?php if(is_null($employee) && is_null($search)): ?>
-
-                <div class="nav">
-
-
-                    <div class="left">
-
-                        <div class="filter-box">
-                            <div class="row">
-                                <a href="./overview.php?<?php
-                                if(isset($_GET['type'])){echo "&type=$type";}
-                                ?>" class="<?php if(!isset($_GET['date'])){echo "active-toggle";}?>">All</a>
-                                <a href="./overview.php?date=yesterday<?php
-                                if(isset($_GET['type'])){echo "&type=$type";}
-                                ?>" class="<?php if($_GET['date'] == "yesterday"){echo "active";} ?>">Yesterday</a>
-                                <a href="./overview.php?date=today<?php
-                                if(isset($_GET['type'])){echo "&type=$type";}
-                                ?>" class="<?php if($_GET['date'] == "today"){echo "active";} ?>">Today</a>
-                                <a href="./overview.php?date=tomorrow<?php
-                                if(isset($_GET['type'])){echo "&type=$type";}
-                                ?>" class="<?php if($_GET['date'] == "tomorrow"){echo "active";} ?>">Tomorrow</a>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                   
-
-                  
-                    <div class="right">
+        
+            <?php if(isset($employee)): ?>
+            <?php 
                 
-                    
-                    <div class="searchField">
-                        <form action="" method="GET">
-                        <input autocomplete="off" type="search" name="q" id="" placeholder="Search employee...">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                        </form>
-                    </div>
+                // $id = $employee;
+                // $result = $db->query("SELECT * FROM employees WHERE id = $id");
+                // $temp = $result->fetch(0,1);
+                // $employeeName = $temp['employeeFirstName']. " ". $temp['employeeLastName']    
+                $url = "http://10.128.30.7:8080/api/AD/employees?id=$employee";
+                $response = file_get_contents($url);
+                $result = json_decode($response);
+                $employeeNameAD = $result->employeeFirstName. " ".$result->employeeLastName; 
 
-                        <div class="row">
-                            <a href="./overview.php?<?php
-                            if(isset($_GET['date'])){echo "&date=$sortDate";}
-                            ?>" class="<?php if(!isset($_GET['state'])){echo "active-toggle";} ?>">All</a>    
-                            <a href="./overview.php?state=verified<?php
-                            if(isset($_GET['date'])){echo "&date=$sortDate";}
-                            ?>" class="<?php if($_GET['state'] == "verified"){echo "active-toggle";} ?>">Verified</a>
-                            <a href="./overview.php?state=pending<?php
-                            if(isset($_GET['date'])){echo "&date=$sortDate";}
-                            ?>" class="<?php if($_GET['state'] == "pending"){echo "active-toggle";} ?>">Pending</a>
-
-                        </div>
-
-                        
-                   
-                    </div>
-                </div>
-
-                <?php endif; ?>
-
-                <table>
-                        <tr>
-                            <td>Employee</th>
-                            <td>Start Date</th>
-                            <td>End Date</th>
-                            <td>Days</th>
-                            <td>Verified</td>
-
-                        </tr>
-
-                  
-                    <?php foreach($absences as $absence): ?>
-                    <tr>
-                        <td><a href="overview.php?employee=<?php echo $absence['employee']; ?>"><i class="fa fa-user"> </i><?php echo Employee::getEmployeeNameById($absence['employee'], $db);?></a></td>
-                        <td><?php echo $absence['startDate'] ?></td>
-                        <td><?php echo $absence['endDate'] ?></td>
-                        <td><?php echo getDaysBetweenDates($absence['startDate'],$absence['endDate']); ?></td>
-                        <td class="icons">
-                        <?php if($absence['state'] == 1): ?>
-                        <i class="fa fa-check"></i>
-                        <?php else: ?>
-                        <form action="overview.php?<?php if(isset($_GET['date'])){echo "date=$sortDate"."&";} if(isset($_GET['state'])){
-                            
-                            if($_GET['state'] == 0){
-                                echo "state=pending&";
-                            }
-                            else if($_GET['state'] == 1) {
-                                echo "state=verified&";
-                            }
-                        
-                        } 
-
-                             if(isset($_GET['employee'])){echo "employee=$employee"."&";}
-
-                             if(isset($_GET['q'])){echo "q=$search";}
-
-
-                            
-                            ?>" method="POST">
-                            <button type="submit">Verify</button>
-                            <input type="hidden" name="id" value="<?php echo $absence['id'] ?>">
-                        </form>
-                        <?php endif; ?>
-                        </td>
-                    </tr>
-                    
-                    <?php endforeach; ?>
-                    
-                </table>
-
-                <?php if(count($absences) == 0): ?>
-                        <p class="emptyTable">There are no absences found for this particular query. 
-                <?php endif; ?>
-
-                <?php if($offset < $numberOfRecords): ?>
-                <button id="loadMore">Load more</button>
-                <?php endif; ?>
-
-                <input type="hidden" id="startValue" value="<?php echo $offset; ?>">
-
-                <input type="hidden" id="numberOfRecords" value="<?php echo $numberOfRecords; ?>">
-
-
-                <input type="hidden" id="state" value="<?php echo $_GET['state']; ?>">
-                <input type="hidden" id="date" value="<?php echo $_GET['date']; ?>">
-
-                <input type="hidden" id="employee" value="<?php echo $_GET['employee']; ?>">
-
-                <input type="hidden" id="search" value="<?php echo $_GET['q']; ?>">
-
-
-
+                
+            ?>
+            <div class="info">
+              <a href="/app2/hr/absences/overview" class="fa fa-arrow-left"></a></i><span>Absences for: </span><span><?php echo $employeeNameAD; ?></span>
             </div>
+            <?php elseif(isset($q)):?>
+                <div class="info">
+              <a href="/app2/hr/absences/overview" class="fa fa-arrow-left"></a></i><span>Absences search for: </span><span><?php echo $q; ?></span>
+            </div>
+            <?php endif; ?>
         </div>
-       
+        <?php endif; ?>
+            <table>
+                <tr>
+                    <td>Employee</td>
+                    <td>Start date</td>
+                    <td>End date</td>
+                    <td>Approved</td>
+
+                </tr>
+                <?php foreach($absences as $absence): 
+
+
+                    $id = $absence['employeeID'];
+                    $result = $db->query("SELECT * FROM employees WHERE id = $id");
+                    $temp = $result->fetch(0,1);
+                    $employeeName = $temp['employeeFirstName']. " ". $temp['employeeLastName']
+                    
+                ?>
+                <tr>
+                    <?php if(isset($employee)): ?>
+                    <td><a href="/app2/hr/absences/overview?employee=<?php echo $id ?>"><?php echo $employeeNameAD; ?></a></td>
+                    <?php else: ?>
+                    <td><a href="/app2/hr/absences/overview?employee=<?php echo $id ?>"><?php echo $employeeName; ?></a></td>
+                    <?php endif; ?>
+                    <td><?php echo explode(" ", $absence['startDate'])[0] ?></td>
+                    <td><?php echo explode(" ", $absence['endDate'])[0] ?></td>
+                    <td>
+                        <?php if($absence['approved'] == 0): ?>
+                            <form action="" method="POST">
+                                <input type="submit" name="verify" value="Verify">
+                                <input type="hidden" name="absence" value="<?php echo $absence['id']; ?>">
+                            </form>
+                        <?php else: ?>
+                            <form action="" method="POST">
+                                <input type="submit"  class="unverify" name="unverify" value="Unverify">
+                                <input type="hidden" name="absence" value="<?php echo $absence['id']; ?>">
+                            </form>
+
+                        <?php endif; ?>
+                
+                    </td>
+
+                </tr>
+
+                <?php endforeach; ?>
+            </table>
+        </div>
     </div>
 
 
-
+    </div>
+    
 </body>
 </html>

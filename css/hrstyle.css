@@ -1,0 +1,57 @@
+@import url("shared.css");
+@import url("header.css");
+@import url("sidebar.css");
+@import url("login.css");
+
+@import url("https://fonts.googleapis.com/css?family=Rubik");
+@import url("https://fonts.googleapis.com/css?family=Karla");
+
+/* #region VERLOF */
+#leave-recent
+{
+    width: 100%;
+    table-layout: fixed;
+}
+
+#leavetable th, #leavetable td
+{
+    text-align: center;
+}
+
+#leavetable button
+{
+    height: 100%;
+    width: 100%;
+}
+/* #endregion */
+
+/* #region ABSENCES */
+.success-message, .error-message{
+
+    position: absolute;
+    top: 1rem;
+    padding: 1rem 2rem;
+    color: white;
+    border-radius: .5rem;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%)
+
+}
+
+.error-message{
+    background-color: #dc3545;;
+}
+
+.success-message{
+    background-color: #28a745; 
+    border-radius: .5rem;
+}
+
+.formError {
+    color: #cc3838;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+  }
+/* #endregion */

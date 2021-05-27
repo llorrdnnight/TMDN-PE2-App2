@@ -1,0 +1,52 @@
+@import url("shared.css");
+@import url("header.css");
+@import url("sidebar.css");
+@import url("login.css");
+
+@import url("https://fonts.googleapis.com/css?family=Rubik");
+@import url("https://fonts.googleapis.com/css?family=Karla");
+
+
+
+/* #region DELIVERIES */
+#deliveriestable th, #deliveriestable td { text-align: center; }
+#deliveriestable tbody tr:hover{ cursor: pointer; }
+.collapserow{ display: none; } /* These rows are filled with details about each delivery, and need to be hidden at the start */
+
+.deliverystatus{ width: 1%; } /* needs to be changed to a better type, here or in php file */ 
+.delivered{ background-color: var(--green); }
+.onhold{ background-color: var(--gray); }
+.notdelivered{ background-color: var(--red); }
+
+.bg-blue { background-color: var(--lightblue); }
+/* #endregion */
+
+
+
+/* #region STATISTICS */
+.graph { margin: 0 auto; }
+#MonthlyComplaintsGraph { min-height: 160px; }
+#barChartContainer { position: relative; height: 30vh;}
+#bcc { margin-top: auto; }
+/* #endregion */
+
+
+
+/* #region COMPLAINTS */
+#complaintstable th, #complaintstable td { text-align: center; }
+.clink
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    height: 100%;
+    width: 100%;
+}
+
+.complaintid:hover
+{
+    cursor: pointer;
+    background-color: var(--lightblue);
+}
+/* #endregion */
